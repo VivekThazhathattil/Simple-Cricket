@@ -6,6 +6,7 @@
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=4]
 
 [node name="game_mode" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 600, 0 )
 script = ExtResource( 1 )
 
@@ -27,23 +28,23 @@ custom_constants/separation = 50
 
 [node name="single_player" type="Button" parent="Container"]
 margin_right = 500.0
-margin_bottom = 77.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 text = "Single Player"
 
 [node name="multiplayer" type="Button" parent="Container"]
-margin_top = 127.0
+margin_top = 100.0
 margin_right = 500.0
-margin_bottom = 204.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 text = "Multiplayer"
 
 [node name="tours" type="Button" parent="Container"]
-margin_top = 254.0
+margin_top = 200.0
 margin_right = 500.0
-margin_bottom = 331.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 text = "Tours"
@@ -52,9 +53,9 @@ __meta__ = {
 }
 
 [node name="tournaments" type="Button" parent="Container"]
-margin_top = 381.0
+margin_top = 300.0
 margin_right = 500.0
-margin_bottom = 458.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 text = "Tournaments"
@@ -73,4 +74,5 @@ __meta__ = {
 
 [node name="transition_anim" parent="." instance=ExtResource( 4 )]
 [connection signal="pressed" from="Container/single_player" to="." method="_on_single_player_pressed"]
+[connection signal="pressed" from="Container/tournaments" to="." method="_on_tournaments_pressed"]
 [connection signal="pressed" from="go_back" to="." method="_on_go_back_pressed"]

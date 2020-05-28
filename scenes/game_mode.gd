@@ -19,3 +19,7 @@ func _on_single_player_pressed():
 
 func _on_go_back_pressed():
 	get_tree().change_scene("res://scenes/menu.tscn")
+
+func _on_tournaments_pressed():
+	ins = load("res://scenes/tournaments.tscn").instance()
+	self.add_child(ins)

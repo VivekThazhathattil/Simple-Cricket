@@ -7,6 +7,7 @@
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
 
 [node name="menu" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 600, 0 )
 script = ExtResource( 3 )
 
@@ -43,7 +44,7 @@ __meta__ = {
 }
 
 [node name="PLAY NOW" type="Button" parent="Container"]
-margin_right = 506.0
+margin_right = 502.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 theme = ExtResource( 4 )
@@ -55,19 +56,19 @@ __meta__ = {
 
 [node name="MY PROFILE" type="Button" parent="Container"]
 margin_top = 150.0
-margin_right = 506.0
+margin_right = 502.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 0, 100 )
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
-text = "MY PROFILE"
+text = "MY STATS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HOW TO PLAY" type="Button" parent="Container"]
 margin_top = 300.0
-margin_right = 506.0
+margin_right = 502.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 0, 100 )
 theme = ExtResource( 4 )
@@ -79,3 +80,5 @@ __meta__ = {
 
 [node name="transition_anim" parent="." instance=ExtResource( 5 )]
 [connection signal="pressed" from="Container/PLAY NOW" to="." method="_on_PLAY_NOW_pressed"]
+[connection signal="pressed" from="Container/MY PROFILE" to="." method="_on_MY_PROFILE_pressed"]
+[connection signal="pressed" from="Container/HOW TO PLAY" to="." method="_on_HOW_TO_PLAY_pressed"]

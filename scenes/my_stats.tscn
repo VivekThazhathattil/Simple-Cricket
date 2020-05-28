@@ -1,0 +1,163 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=1]
+[ext_resource path="res://sprites/my_stats_bg.png" type="Texture" id=2]
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://texture/small_font_theme.tres" type="Theme" id=4]
+[ext_resource path="res://scenes/my_stats.gd" type="Script" id=5]
+[ext_resource path="res://transition_anim.tscn" type="PackedScene" id=6]
+
+[node name="stats_page" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 600, 0 )
+script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="my_stats" type="ScrollContainer" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 550.0
+margin_bottom = 850.0
+rect_min_size = Vector2( 500, 800 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="my_profile" type="VBoxContainer" parent="my_stats"]
+margin_right = 308.0
+margin_bottom = 675.0
+custom_constants/separation = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="total_games" type="Label" parent="my_stats/my_profile"]
+margin_right = 308.0
+margin_bottom = 25.0
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+text = "Total games played: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="games_won" type="Label" parent="my_stats/my_profile"]
+margin_top = 65.0
+margin_right = 308.0
+margin_bottom = 90.0
+theme = ExtResource( 4 )
+text = "Games won: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="games_lost" type="Label" parent="my_stats/my_profile"]
+margin_top = 130.0
+margin_right = 308.0
+margin_bottom = 155.0
+theme = ExtResource( 4 )
+text = "Games lost :-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="games_drawn" type="Label" parent="my_stats/my_profile"]
+margin_top = 195.0
+margin_right = 308.0
+margin_bottom = 220.0
+theme = ExtResource( 4 )
+text = "Games drawn: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="total_tournaments2" type="Label" parent="my_stats/my_profile"]
+margin_top = 260.0
+margin_right = 308.0
+margin_bottom = 285.0
+theme = ExtResource( 4 )
+text = "Total tournaments: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tournaments won" type="Label" parent="my_stats/my_profile"]
+margin_top = 325.0
+margin_right = 308.0
+margin_bottom = 350.0
+theme = ExtResource( 4 )
+text = "Tournaments won: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tournaments lost" type="Label" parent="my_stats/my_profile"]
+margin_top = 390.0
+margin_right = 308.0
+margin_bottom = 415.0
+theme = ExtResource( 4 )
+text = "Tournaments lost: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="percent_win_rate" type="Label" parent="my_stats/my_profile"]
+margin_top = 455.0
+margin_right = 308.0
+margin_bottom = 480.0
+theme = ExtResource( 4 )
+text = "Percentage win rate: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="net_run_rate" type="Label" parent="my_stats/my_profile"]
+margin_top = 520.0
+margin_right = 308.0
+margin_bottom = 545.0
+theme = ExtResource( 4 )
+text = "Net run rate: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="strike_rate" type="Label" parent="my_stats/my_profile"]
+margin_top = 585.0
+margin_right = 308.0
+margin_bottom = 610.0
+theme = ExtResource( 4 )
+text = "Net strike rate: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="economy" type="Label" parent="my_stats/my_profile"]
+margin_top = 650.0
+margin_right = 308.0
+margin_bottom = 675.0
+theme = ExtResource( 4 )
+text = "Net economy: -"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="go_back" type="Button" parent="."]
+margin_left = 210.0
+margin_top = 900.0
+margin_right = 341.0
+margin_bottom = 941.0
+theme = ExtResource( 1 )
+text = "Go Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="transition_anim" parent="." instance=ExtResource( 6 )]
+[connection signal="pressed" from="go_back" to="." method="_on_go_back_pressed"]

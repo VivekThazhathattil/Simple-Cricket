@@ -5,8 +5,7 @@ var dec
 var _player_batting
 
 func _ready():
-	pass # Replace with function body.
-	
+	pass
 func _final_action():
 	queue_free()
 	
@@ -18,7 +17,7 @@ func _pop_up_opp_choice(opp_choice):
 	else:
 		dec = "bowl"
 		_player_batting = true
-	$opp_choice.set_text("You lost the toss! Opponent has chosen to " + str(dec) + " first.")
+	$opp_choice/Label.set_text("You lost the toss! Opponent has chosen to " + str(dec) + " first.")
 	$coinbox.visible = false
 
 func _pop_up_select_batting():

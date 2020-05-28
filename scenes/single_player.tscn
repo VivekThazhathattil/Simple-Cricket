@@ -7,6 +7,7 @@
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
 
 [node name="single_player" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 600, 0 )
 script = ExtResource( 1 )
 
@@ -31,43 +32,43 @@ __meta__ = {
 
 [node name="one_over" type="Button" parent="Container"]
 margin_right = 400.0
-margin_bottom = 77.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "1 over"
 
 [node name="five_overs" type="Button" parent="Container"]
-margin_top = 97.0
+margin_top = 70.0
 margin_right = 400.0
-margin_bottom = 174.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "5 overs"
 
 [node name="10_overs" type="Button" parent="Container"]
-margin_top = 194.0
+margin_top = 140.0
 margin_right = 400.0
-margin_bottom = 271.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "10 overs"
 
 [node name="20_overs" type="Button" parent="Container"]
-margin_top = 291.0
+margin_top = 210.0
 margin_right = 400.0
-margin_bottom = 368.0
+margin_bottom = 260.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "20 overs"
 
 [node name="Test" type="Button" parent="Container"]
-margin_top = 388.0
+margin_top = 280.0
 margin_right = 400.0
-margin_bottom = 465.0
+margin_bottom = 330.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
@@ -77,18 +78,18 @@ __meta__ = {
 }
 
 [node name="Limitless" type="Button" parent="Container"]
-margin_top = 485.0
+margin_top = 350.0
 margin_right = 400.0
-margin_bottom = 562.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Limitless"
 
 [node name="Custom" type="Button" parent="Container"]
-margin_top = 582.0
+margin_top = 420.0
 margin_right = 400.0
-margin_bottom = 659.0
+margin_bottom = 470.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
