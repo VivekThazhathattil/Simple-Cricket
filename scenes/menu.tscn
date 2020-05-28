@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menu.gd" type="Script" id=3]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=4]
+[ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
 
 [node name="menu" type="Node2D"]
+position = Vector2( 600, 0 )
 script = ExtResource( 3 )
 
 [node name="menu_bg" type="TextureRect" parent="."]
@@ -40,9 +43,10 @@ __meta__ = {
 }
 
 [node name="PLAY NOW" type="Button" parent="Container"]
-margin_right = 502.0
+margin_right = 506.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
+theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
 text = "PLAY NOW"
 __meta__ = {
@@ -51,9 +55,10 @@ __meta__ = {
 
 [node name="MY PROFILE" type="Button" parent="Container"]
 margin_top = 150.0
-margin_right = 502.0
+margin_right = 506.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 0, 100 )
+theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
 text = "MY PROFILE"
 __meta__ = {
@@ -62,12 +67,15 @@ __meta__ = {
 
 [node name="HOW TO PLAY" type="Button" parent="Container"]
 margin_top = 300.0
-margin_right = 502.0
+margin_right = 506.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 0, 100 )
+theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
 text = "HOW TO PLAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="transition_anim" parent="." instance=ExtResource( 5 )]
 [connection signal="pressed" from="Container/PLAY NOW" to="." method="_on_PLAY_NOW_pressed"]

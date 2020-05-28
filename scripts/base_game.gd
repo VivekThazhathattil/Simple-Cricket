@@ -27,9 +27,12 @@ var _match_over = false
 var player_overs = 0
 var opp_overs = 0
 
-func _ready():
+func _ready():	
+	print("base_game path = " + str(self.get_path()))
 	num_sides_batted_so_far += 1
-	
+	over_max = get_node("/root/menu").no_overs
+	print("over_max =" + str(over_max))
+	print("get_node(\"/root/menu\").no_overs =  " + str(get_node("/root/menu").no_overs))
 	$player.set_texture(hand_10)
 	$opponent.set_texture(hand_10)
 	$opponent.flip_h = true
@@ -51,10 +54,17 @@ func _end_match():
 		else:
 			$drawn.visible = true
 			
+func _final_action():
+	queue_free()
+	
 func _check_if_won():
-	if _player_batting and player_score > opp_score:
+	if _player_batting and player_score > opp_score and num_sides_batted_so_far == 2:
+		print("base_game:59: player has scored more than the opponent")
+		_match_over = true
 		_end_match()
-	elif not _player_batting and opp_score > player_score:
+	elif not _player_batting and opp_score > player_score and num_sides_batted_so_far == 2:
+		print("base_game:62: opponent has scored more than the player")
+		_match_over = true
 		_end_match()
 func _main_handler():
 	if _player_batting:
@@ -64,7 +74,7 @@ func _main_handler():
 			_update_labels()
 			_check_if_won()
 		else:
-			if player_wickets_rem == 0:
+			if player_wickets_rem == 1:
 				if num_sides_batted_so_far == 1:
 					_switch_sides()
 				else:
@@ -83,7 +93,7 @@ func _main_handler():
 			_update_labels()
 			_check_if_won()
 		else:
-			if opp_wickets_rem == 0:
+			if opp_wickets_rem == 1:
 				if num_sides_batted_so_far == 1:
 					_switch_sides()
 				else:
@@ -116,12 +126,11 @@ func _switch_sides():
 	else:
 		opp_overs = str(ball_count/6) + str(ball_count%6)
 	_player_batting = not _player_batting
-	_reset_hands()
 	yield(get_tree().create_timer(1),"timeout")
 	$innings_over.visible = true
+	_reset_hands()
 
 func _update_labels():
-
 	if _player_batting:
 		if player_score == 0 and opp_score == 0:
 			$pump_up.set_text("Begin!!!")
@@ -147,7 +156,7 @@ func _update_labels():
 
 
 func _on_continue_pressed():
-	queue_free()
+	_final_action()
 	get_tree().change_scene("res://scenes/menu.tscn")
 
 func _on_continue2_pressed():

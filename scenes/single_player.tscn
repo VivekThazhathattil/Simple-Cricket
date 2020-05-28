@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/single_player.gd" type="Script" id=1]
+[ext_resource path="res://sprites/singleplayer_bg.png" type="Texture" id=2]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=3]
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
+
+[node name="single_player" type="Node2D"]
+position = Vector2( 600, 0 )
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="."]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 400, 500 )
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="one_over" type="Button" parent="Container"]
+margin_right = 400.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "1 over"
+
+[node name="five_overs" type="Button" parent="Container"]
+margin_top = 97.0
+margin_right = 400.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "5 overs"
+
+[node name="10_overs" type="Button" parent="Container"]
+margin_top = 194.0
+margin_right = 400.0
+margin_bottom = 271.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "10 overs"
+
+[node name="20_overs" type="Button" parent="Container"]
+margin_top = 291.0
+margin_right = 400.0
+margin_bottom = 368.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "20 overs"
+
+[node name="Test" type="Button" parent="Container"]
+margin_top = 388.0
+margin_right = 400.0
+margin_bottom = 465.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "Test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Limitless" type="Button" parent="Container"]
+margin_top = 485.0
+margin_right = 400.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "Limitless"
+
+[node name="Custom" type="Button" parent="Container"]
+margin_top = 582.0
+margin_right = 400.0
+margin_bottom = 659.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "Custom"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 160.0
+margin_top = 900.0
+margin_right = 466.0
+margin_bottom = 977.0
+theme = ExtResource( 3 )
+text = "Go Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="transition_anim" parent="." instance=ExtResource( 5 )]
+[connection signal="pressed" from="Container/one_over" to="." method="_on_one_over_pressed"]
+[connection signal="pressed" from="Container/five_overs" to="." method="_on_five_overs_pressed"]
+[connection signal="pressed" from="Container/10_overs" to="." method="_on_10_overs_pressed"]
+[connection signal="pressed" from="Container/20_overs" to="." method="_on_20_overs_pressed"]
+[connection signal="pressed" from="Container/Test" to="." method="_on_Test_pressed"]
+[connection signal="pressed" from="Container/Limitless" to="." method="_on_Limitless_pressed"]
+[connection signal="pressed" from="Container/Custom" to="." method="_on_Custom_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
