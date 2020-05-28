@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
+
+[node name="menu" type="Node2D"]
+
+[node name="menu_bg" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="game_name" type="Label" parent="."]
+margin_right = 500.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 600, 100 )
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 1 )
+text = "Odd Even Hand Cricket"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
