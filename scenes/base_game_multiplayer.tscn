@@ -1,0 +1,956 @@
+[gd_scene load_steps=90 format=2]
+
+[ext_resource path="res://scenes/coin_toss_multiplayer.gd" type="Script" id=1]
+[ext_resource path="res://scenes/button_array_multiplayer.gd" type="Script" id=2]
+[ext_resource path="res://scripts/base_game_multiplayer.gd" type="Script" id=3]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=4]
+[ext_resource path="res://sprites/bg.png" type="Texture" id=5]
+[ext_resource path="res://sprites/win_bg.png" type="Texture" id=6]
+[ext_resource path="res://sprites/toss_screen.png" type="Texture" id=7]
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://other_data/neuropol x rg.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://sprites/lose_bg.png" type="Texture" id=10]
+[ext_resource path="res://transition_anim.tscn" type="PackedScene" id=11]
+[ext_resource path="res://sprites/draw_bg.png" type="Texture" id=12]
+[ext_resource path="res://sprites/confetti.png" type="Texture" id=13]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 72
+font_data = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 9 )
+
+[sub_resource type="Theme" id=75]
+default_font = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 9 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 512, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 1024, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 1536, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 2048, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=50]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=51]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=52]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=53]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=54]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=55]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=56]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=57]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=58]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=59]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=60]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=61]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=62]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=63]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=64]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=65]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=66]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=67]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 512, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=68]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1536, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2560, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3584, 3584, 512, 512 )
+
+[sub_resource type="SpriteFrames" id=74]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ) ],
+"loop": true,
+"name": "blow",
+"speed": 15.0
+} ]
+
+[sub_resource type="Animation" id=76]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 600, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="base_game_multiplayer" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 600, 1024 )
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="game_name" type="Label" parent="."]
+margin_left = 50.0
+margin_top = 30.0
+margin_right = 571.0
+margin_bottom = 110.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+text = "Odd-Even Hand Cricket"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="my_stats_cover" type="ColorRect" parent="."]
+margin_left = 50.0
+margin_top = 200.0
+margin_right = 550.0
+margin_bottom = 300.0
+rect_pivot_offset = Vector2( -1901.3, -275.55 )
+color = Color( 0, 0.47451, 0.419608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="opp_stats_cover" type="ColorRect" parent="."]
+margin_left = 50.0
+margin_top = 650.0
+margin_right = 550.0
+margin_bottom = 750.0
+rect_pivot_offset = Vector2( -1901.3, -275.55 )
+color = Color( 1, 0.321569, 0.321569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="my_stats" type="Container" parent="."]
+margin_left = 50.0
+margin_top = 200.0
+margin_right = 550.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 500, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="my_stats"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 500, 100 )
+custom_constants/separation = 50
+
+[node name="your_stat" type="Label" parent="my_stats/HBoxContainer"]
+margin_right = 207.0
+margin_bottom = 83.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+text = "You
+(Bowling)"
+
+[node name="your_stat2" type="Label" parent="my_stats/HBoxContainer"]
+margin_left = 257.0
+margin_right = 398.0
+margin_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+text = "Overs:"
+
+[node name="pump_up" type="Label" parent="."]
+margin_left = 200.0
+margin_top = 350.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Begin!!!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="opp_stats" type="Container" parent="."]
+margin_left = 50.0
+margin_top = 650.0
+margin_right = 550.0
+margin_bottom = 750.0
+rect_min_size = Vector2( 500, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="opp_stats"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 500, 100 )
+custom_constants/separation = 50
+
+[node name="your_stat" type="Label" parent="opp_stats/HBoxContainer"]
+margin_right = 222.0
+margin_bottom = 83.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+text = "Opponent
+(Batting)"
+
+[node name="your_stat2" type="Label" parent="opp_stats/HBoxContainer"]
+margin_left = 272.0
+margin_right = 410.0
+margin_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+text = "Score:"
+
+[node name="player" type="Sprite" parent="."]
+position = Vector2( 80, 450 )
+
+[node name="Tween" type="Tween" parent="player"]
+
+[node name="opponent" type="Sprite" parent="."]
+position = Vector2( 500, 450 )
+
+[node name="Tween" type="Tween" parent="opponent"]
+
+[node name="blue_num_bg" type="ColorRect" parent="."]
+margin_left = 10.0
+margin_top = 770.0
+margin_right = 590.0
+margin_bottom = 1000.0
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_array" type="GridContainer" parent="."]
+margin_left = 20.0
+margin_top = 780.0
+margin_right = 600.0
+margin_bottom = 995.0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 15
+columns = 5
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="button_array"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "1"
+clip_text = true
+
+[node name="Button2" type="Button" parent="button_array"]
+margin_left = 115.0
+margin_right = 215.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "2"
+clip_text = true
+
+[node name="Button3" type="Button" parent="button_array"]
+margin_left = 230.0
+margin_right = 330.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "3"
+clip_text = true
+
+[node name="Button4" type="Button" parent="button_array"]
+margin_left = 345.0
+margin_right = 445.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "4"
+clip_text = true
+
+[node name="Button5" type="Button" parent="button_array"]
+margin_left = 460.0
+margin_right = 560.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "5"
+clip_text = true
+
+[node name="Button6" type="Button" parent="button_array"]
+margin_top = 115.0
+margin_right = 100.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "6"
+clip_text = true
+
+[node name="Button7" type="Button" parent="button_array"]
+margin_left = 115.0
+margin_top = 115.0
+margin_right = 215.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "7"
+clip_text = true
+
+[node name="Button8" type="Button" parent="button_array"]
+margin_left = 230.0
+margin_top = 115.0
+margin_right = 330.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "8"
+clip_text = true
+
+[node name="Button9" type="Button" parent="button_array"]
+margin_left = 345.0
+margin_top = 115.0
+margin_right = 445.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "9"
+clip_text = true
+
+[node name="Button10" type="Button" parent="button_array"]
+margin_left = 460.0
+margin_top = 115.0
+margin_right = 560.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "10"
+clip_text = true
+
+[node name="coin_toss" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="TextureRect" parent="coin_toss"]
+margin_right = 600.0
+margin_bottom = 1024.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="toss_text" type="Label" parent="coin_toss"]
+margin_left = 180.0
+margin_top = 200.0
+margin_right = 443.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 5 )
+text = "TOSS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coinbox" type="HBoxContainer" parent="coin_toss"]
+margin_left = 100.0
+margin_top = 500.0
+margin_right = 529.0
+margin_bottom = 555.0
+theme = ExtResource( 4 )
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="heads" type="Button" parent="coin_toss/coinbox"]
+margin_right = 212.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 6 )
+text = "HEADS"
+
+[node name="tails" type="Button" parent="coin_toss/coinbox"]
+margin_left = 262.0
+margin_right = 437.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 6 )
+text = "TAILS"
+
+[node name="opp_choice" type="WindowDialog" parent="coin_toss"]
+margin_left = 50.0
+margin_top = 400.0
+margin_right = 550.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 500, 300 )
+theme = SubResource( 75 )
+
+[node name="Label" type="Label" parent="coin_toss/opp_choice"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 450.0
+margin_bottom = 80.0
+text = "You lost the toss."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="coin_toss/opp_choice"]
+margin_left = 220.0
+margin_top = 220.0
+margin_right = 320.0
+margin_bottom = 279.0
+theme = ExtResource( 4 )
+text = "OK!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player_choice" type="WindowDialog" parent="coin_toss"]
+margin_left = 40.0
+margin_top = 400.0
+margin_right = 540.0
+margin_bottom = 600.0
+window_title = "You won the toss"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="coin_toss/player_choice"]
+margin_right = 500.0
+margin_bottom = 101.0
+custom_fonts/font = SubResource( 7 )
+text = "Do you wish to bat or bowl?"
+autowrap = true
+
+[node name="Batting" type="Button" parent="coin_toss/player_choice"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 143.0
+margin_bottom = 126.0
+theme = ExtResource( 4 )
+custom_fonts/font = SubResource( 8 )
+text = "Batting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bowling" type="Button" parent="coin_toss/player_choice"]
+margin_left = 320.0
+margin_top = 100.0
+margin_right = 418.0
+margin_bottom = 126.0
+theme = ExtResource( 4 )
+custom_fonts/font = SubResource( 9 )
+text = "Bowling"
+
+[node name="you_won" type="Node2D" parent="."]
+visible = false
+position = Vector2( 100, 300 )
+
+[node name="ColorRect" type="TextureRect" parent="you_won"]
+margin_left = -100.0
+margin_top = -300.0
+margin_right = 500.0
+margin_bottom = 724.0
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="you_won"]
+margin_right = 400.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 8 )
+text = "You WON!!!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confetti" type="AnimatedSprite" parent="you_won"]
+scale = Vector2( 0.8, 0.5 )
+frames = SubResource( 74 )
+animation = "blow"
+frame = 49
+centered = false
+
+[node name="continue" type="Button" parent="you_won"]
+margin_left = 150.0
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 100, 50 )
+theme = ExtResource( 4 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="they_won" type="Node2D" parent="."]
+visible = false
+position = Vector2( 100, 300 )
+
+[node name="ColorRect" type="TextureRect" parent="they_won"]
+margin_left = -100.0
+margin_top = -300.0
+margin_right = 500.0
+margin_bottom = 724.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="they_won"]
+margin_right = 400.0
+margin_bottom = 300.0
+custom_fonts/font = ExtResource( 8 )
+text = "You lost...."
+align = 1
+valign = 1
+
+[node name="continue" type="Button" parent="they_won"]
+margin_left = 150.0
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 100, 50 )
+theme = ExtResource( 4 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="drawn" type="Node2D" parent="."]
+visible = false
+position = Vector2( 100, 300 )
+
+[node name="ColorRect" type="TextureRect" parent="drawn"]
+margin_left = -100.0
+margin_top = -300.0
+margin_right = 500.0
+margin_bottom = 724.0
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="drawn"]
+margin_right = 400.0
+margin_bottom = 300.0
+custom_fonts/font = ExtResource( 8 )
+text = "Game drawn...."
+align = 1
+valign = 1
+
+[node name="continue" type="Button" parent="drawn"]
+margin_left = 150.0
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 100, 50 )
+theme = ExtResource( 4 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="innings_over" type="Node2D" parent="."]
+visible = false
+position = Vector2( 100, 300 )
+
+[node name="ColorRect" type="ColorRect" parent="innings_over"]
+margin_left = -100.0
+margin_top = -300.0
+margin_right = 500.0
+margin_bottom = 724.0
+color = Color( 0.239216, 0.239216, 0.239216, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="innings_over"]
+margin_right = 400.0
+margin_bottom = 300.0
+custom_fonts/font = ExtResource( 8 )
+text = "Innings over"
+align = 1
+valign = 1
+
+[node name="continue2" type="Button" parent="innings_over"]
+margin_left = 150.0
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 100, 50 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="transition_anim" parent="." instance=ExtResource( 11 )]
+anims/init = SubResource( 76 )
+[connection signal="pressed" from="button_array/Button1" to="button_array" method="_on_Button1_pressed"]
+[connection signal="pressed" from="button_array/Button2" to="button_array" method="_on_Button2_pressed"]
+[connection signal="pressed" from="button_array/Button3" to="button_array" method="_on_Button3_pressed"]
+[connection signal="pressed" from="button_array/Button4" to="button_array" method="_on_Button4_pressed"]
+[connection signal="pressed" from="button_array/Button5" to="button_array" method="_on_Button5_pressed"]
+[connection signal="pressed" from="button_array/Button6" to="button_array" method="_on_Button6_pressed"]
+[connection signal="pressed" from="button_array/Button7" to="button_array" method="_on_Button7_pressed"]
+[connection signal="pressed" from="button_array/Button8" to="button_array" method="_on_Button8_pressed"]
+[connection signal="pressed" from="button_array/Button9" to="button_array" method="_on_Button9_pressed"]
+[connection signal="pressed" from="button_array/Button10" to="button_array" method="_on_Button10_pressed"]
+[connection signal="pressed" from="coin_toss/coinbox/heads" to="coin_toss" method="_on_heads_pressed"]
+[connection signal="pressed" from="coin_toss/coinbox/tails" to="coin_toss" method="_on_tails_pressed"]
+[connection signal="pressed" from="coin_toss/opp_choice/Button" to="coin_toss" method="_on_opp_choice_confirmed"]
+[connection signal="pressed" from="coin_toss/player_choice/Batting" to="coin_toss" method="_on_Batting_pressed"]
+[connection signal="pressed" from="coin_toss/player_choice/Bowling" to="coin_toss" method="_on_Bowling_pressed"]
+[connection signal="pressed" from="you_won/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="they_won/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="drawn/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="innings_over/continue2" to="." method="_on_continue2_pressed"]

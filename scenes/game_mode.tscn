@@ -74,5 +74,6 @@ __meta__ = {
 
 [node name="transition_anim" parent="." instance=ExtResource( 4 )]
 [connection signal="pressed" from="Container/single_player" to="." method="_on_single_player_pressed"]
+[connection signal="pressed" from="Container/multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="Container/tournaments" to="." method="_on_tournaments_pressed"]
 [connection signal="pressed" from="go_back" to="." method="_on_go_back_pressed"]

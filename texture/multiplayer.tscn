@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/multiplayer_menu.gd" type="Script" id=1]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=2]
+
+[node name="multiplayer" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 600, 1024 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="create_server" type="Button" parent="."]
+margin_left = 100.0
+margin_top = 300.0
+margin_right = 200.0
+margin_bottom = 400.0
+theme = ExtResource( 2 )
+text = "create server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="join_server" type="Button" parent="."]
+margin_left = 400.0
+margin_top = 300.0
+margin_right = 568.0
+margin_bottom = 400.0
+theme = ExtResource( 2 )
+text = "Join server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_left = 100.0
+margin_top = 500.0
+margin_right = 300.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 200, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="create_server" to="." method="_on_CreateButton_pressed"]
+[connection signal="pressed" from="join_server" to="." method="_on_JoinButton_pressed"]
+[connection signal="text_changed" from="TextEdit" to="." method="_on_TextField_text_changed" binds= [ "new_text" ]]

@@ -20,6 +20,10 @@ run/main_scene="res://scenes/loading_screen.tscn"
 boot_splash/image="res://sprites/loading_screen.png"
 config/icon="res://sprites/icon.png"
 
+[autoload]
+
+Multiplayer="*res://multiplayer.gd"
+
 [display]
 
 window/size/width=600

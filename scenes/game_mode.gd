@@ -23,3 +23,8 @@ func _on_go_back_pressed():
 func _on_tournaments_pressed():
 	ins = load("res://scenes/tournaments.tscn").instance()
 	self.add_child(ins)
+
+
+func _on_multiplayer_pressed():
+	ins = load("res://texture/multiplayer.tscn").instance()
+	get_node("/root/menu").add_child(ins)
