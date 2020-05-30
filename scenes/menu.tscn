@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menu.gd" type="Script" id=3]
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=4]
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/youre_not_that_funky.wav" type="AudioStream" id=6]
 
 [node name="menu" type="Node2D"]
 modulate = Color( 1, 1, 1, 0 )
@@ -79,6 +80,10 @@ __meta__ = {
 }
 
 [node name="transition_anim" parent="." instance=ExtResource( 5 )]
+
+[node name="bg_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
 [connection signal="pressed" from="Container/PLAY NOW" to="." method="_on_PLAY_NOW_pressed"]
 [connection signal="pressed" from="Container/MY PROFILE" to="." method="_on_MY_PROFILE_pressed"]
 [connection signal="pressed" from="Container/HOW TO PLAY" to="." method="_on_HOW_TO_PLAY_pressed"]

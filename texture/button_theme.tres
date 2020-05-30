@@ -2,19 +2,19 @@
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 
-[sub_resource type="StyleBoxLine" id=75]
+[sub_resource type="StyleBoxLine" id=1]
 color = Color( 0.945098, 1, 0, 1 )
 thickness = 5
 vertical = true
 
-[sub_resource type="StyleBoxLine" id=76]
+[sub_resource type="StyleBoxLine" id=2]
 color = Color( 0.105882, 0.345098, 0.00784314, 1 )
 grow_begin = 0.0
 grow_end = -1.0
 thickness = 8
 vertical = true
 
-[sub_resource type="StyleBoxLine" id=77]
+[sub_resource type="StyleBoxLine" id=3]
 color = Color( 0.384314, 0.117647, 0.117647, 1 )
 thickness = 10
 vertical = true
@@ -29,9 +29,9 @@ Button/constants/hseparation = 2
 Button/fonts/font = ExtResource( 1 )
 Button/styles/disabled = null
 Button/styles/focus = null
-Button/styles/hover = SubResource( 75 )
-Button/styles/normal = SubResource( 76 )
-Button/styles/pressed = SubResource( 77 )
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
 CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
