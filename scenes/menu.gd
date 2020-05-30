@@ -19,3 +19,18 @@ func _on_MY_PROFILE_pressed():
 func _on_HOW_TO_PLAY_pressed():
 	var ins = how_to_play.instance()
 	self.add_child(ins)
+	
+func _on_exit_pressed():
+	queue_free()
+	get_tree().quit()
+
+func _on_music_off_pressed():
+	if $bg_music.volume_db == 0:
+		$bottom_panel/panel_container/music_off.set_texture("res://sprites/music_off.png")
+		$bg_music.volume_db = -80
+	else:
+		$bottom_panel/panel_container/music_on.set_texture("res://sprites/music_on.png")
+		$bg_music.volume_db = 0
+	
+func _on_sound_off_pressed():
+	pass # Replace with function body.

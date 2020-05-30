@@ -38,7 +38,7 @@ func _ready():
 	$opponent.set_texture(hand_10)
 	$opponent.flip_h = true
 	get_node("/root/menu/bg_music").playing = false
-	
+
 func _set_toss_decision():
 	_player_batting = $coin_toss._player_batting
 	print("base_game:38: coin_toss._player_batting = " + str($coin_toss._player_batting))

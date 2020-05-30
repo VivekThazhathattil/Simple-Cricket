@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=4]
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
 [ext_resource path="res://audio/youre_not_that_funky.wav" type="AudioStream" id=6]
+[ext_resource path="res://sprites/rate_us.png" type="Texture" id=7]
+[ext_resource path="res://sprites/share.png" type="Texture" id=8]
+[ext_resource path="res://sprites/exit.png" type="Texture" id=9]
+[ext_resource path="res://sprites/music_on.png" type="Texture" id=10]
+[ext_resource path="res://sprites/sound_on.png" type="Texture" id=11]
+[ext_resource path="res://sprites/credits.png" type="Texture" id=12]
 
 [node name="menu" type="Node2D"]
 modulate = Color( 1, 1, 1, 0 )
@@ -84,6 +90,65 @@ __meta__ = {
 [node name="bg_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
+
+[node name="bottom_panel" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="bottom_panel"]
+margin_top = 924.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 600, 100 )
+color = Color( 0.0705882, 0.0901961, 0.152941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel_container" type="HBoxContainer" parent="bottom_panel"]
+margin_top = 924.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 600, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound_off" type="TextureButton" parent="bottom_panel/panel_container"]
+margin_right = 90.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 11 )
+
+[node name="music_off" type="TextureButton" parent="bottom_panel/panel_container"]
+margin_left = 94.0
+margin_right = 184.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 10 )
+
+[node name="credits" type="TextureButton" parent="bottom_panel/panel_container"]
+margin_left = 188.0
+margin_right = 278.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 12 )
+
+[node name="share" type="TextureButton" parent="bottom_panel/panel_container"]
+margin_left = 282.0
+margin_right = 372.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 8 )
+
+[node name="rate_us" type="TextureButton" parent="bottom_panel/panel_container"]
+margin_left = 376.0
+margin_right = 466.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 7 )
+
+[node name="exit" type="TextureButton" parent="bottom_panel/panel_container"]
+margin_left = 470.0
+margin_right = 560.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 9 )
 [connection signal="pressed" from="Container/PLAY NOW" to="." method="_on_PLAY_NOW_pressed"]
 [connection signal="pressed" from="Container/MY PROFILE" to="." method="_on_MY_PROFILE_pressed"]
 [connection signal="pressed" from="Container/HOW TO PLAY" to="." method="_on_HOW_TO_PLAY_pressed"]
+[connection signal="pressed" from="bottom_panel/panel_container/sound_off" to="." method="_on_sound_off_pressed"]
+[connection signal="pressed" from="bottom_panel/panel_container/music_off" to="." method="_on_music_off_pressed"]
+[connection signal="pressed" from="bottom_panel/panel_container/exit" to="." method="_on_exit_pressed"]
