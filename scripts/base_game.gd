@@ -28,12 +28,12 @@ var _match_over = false
 var player_overs = 0
 var opp_overs = 0
 
+var difficulty = 2;
+
 func _ready():	
 	print("base_game path = " + str(self.get_path()))
 	num_sides_batted_so_far += 1
 	over_max = get_node("/root/menu").no_overs
-	print("over_max =" + str(over_max))
-	print("get_node(\"/root/menu\").no_overs =  " + str(get_node("/root/menu").no_overs))
 	$player.set_texture(hand_10)
 	$opponent.set_texture(hand_10)
 	$opponent.flip_h = true

@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/windies_flag.png" type="Texture" id=2]
+[ext_resource path="res://sprites/afgan_flag.png" type="Texture" id=3]
+[ext_resource path="res://sprites/england_flag.png" type="Texture" id=4]
+[ext_resource path="res://sprites/pakistan_flag.png" type="Texture" id=5]
+[ext_resource path="res://sprites/sa_flag.png" type="Texture" id=6]
+[ext_resource path="res://sprites/bangla_flag.png" type="Texture" id=7]
+[ext_resource path="res://sprites/newzealand_flag.png" type="Texture" id=8]
+[ext_resource path="res://sprites/australia_flag.png" type="Texture" id=9]
+[ext_resource path="res://sprites/india_flag.png" type="Texture" id=10]
+[ext_resource path="res://sprites/srilanka_flag.png" type="Texture" id=11]
+
+[node name="icc" type="Node2D"]
+
+[node name="icc_bg" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 1024 )
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 1 )
+text = "Select Team:"
+align = 1
+valign = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+margin_top = 200.0
+margin_right = 600.0
+margin_bottom = 800.0
+rect_min_size = Vector2( 500, 600 )
+rect_clip_content = true
+columns = 2
+
+[node name="ind" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 93.0
+margin_top = 21.0
+margin_right = 205.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 10 )
+
+[node name="sa" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 395.0
+margin_top = 21.0
+margin_right = 507.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 6 )
+
+[node name="aus" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 93.0
+margin_top = 141.0
+margin_right = 205.0
+margin_bottom = 214.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 9 )
+
+[node name="nz" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 395.0
+margin_top = 141.0
+margin_right = 507.0
+margin_bottom = 214.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 8 )
+
+[node name="eng" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 87.0
+margin_top = 261.0
+margin_right = 211.0
+margin_bottom = 334.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 4 )
+
+[node name="pak" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 395.0
+margin_top = 261.0
+margin_right = 507.0
+margin_bottom = 334.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 5 )
+
+[node name="bng" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 93.0
+margin_top = 381.0
+margin_right = 205.0
+margin_bottom = 454.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 7 )
+
+[node name="afg" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 395.0
+margin_top = 381.0
+margin_right = 507.0
+margin_bottom = 454.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 3 )
+
+[node name="wi" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 93.0
+margin_top = 501.0
+margin_right = 205.0
+margin_bottom = 574.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 2 )
+
+[node name="sl" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 395.0
+margin_top = 501.0
+margin_right = 507.0
+margin_bottom = 574.0
+rect_min_size = Vector2( 100, 67 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+icon = ExtResource( 11 )
+
+[node name="quit_tournament" type="Button" parent="VBoxContainer"]
+margin_top = 900.0
+margin_right = 600.0
+margin_bottom = 1024.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quit tournament"
+__meta__ = {
+"_edit_use_anchors_": false
+}
