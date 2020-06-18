@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://sprites/bg.png" type="Texture" id=1]
 [ext_resource path="res://scripts/base_game.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://sprites/draw_bg.png" type="Texture" id=13]
 [ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://audio/ambient_sound.ogg" type="AudioStream" id=15]
+[ext_resource path="res://sprites/innings_over_bg.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"
@@ -475,9 +476,9 @@ animations = [ {
 "speed": 15.0
 } ]
 
+[sub_resource type="StyleBoxEmpty" id=80]
+
 [node name="base_game" type="Node2D"]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 600, 0 )
 script = ExtResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -576,6 +577,9 @@ text = "Overs:"
 
 [node name="PUMP" type="Node2D" parent="."]
 position = Vector2( -100, 100 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="pump_up" type="Label" parent="PUMP"]
 margin_right = 494.0
@@ -631,11 +635,13 @@ custom_fonts/font = SubResource( 2 )
 text = "Score:"
 
 [node name="player" type="Sprite" parent="."]
+pause_mode = 2
 position = Vector2( 80, 450 )
 
 [node name="Tween" type="Tween" parent="player"]
 
 [node name="opponent" type="Sprite" parent="."]
+pause_mode = 2
 position = Vector2( 500, 450 )
 
 [node name="Tween" type="Tween" parent="opponent"]
@@ -667,6 +673,7 @@ __meta__ = {
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -678,6 +685,7 @@ margin_left = 115.0
 margin_right = 215.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -689,6 +697,7 @@ margin_left = 230.0
 margin_right = 330.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -700,6 +709,7 @@ margin_left = 345.0
 margin_right = 445.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -711,6 +721,7 @@ margin_left = 460.0
 margin_right = 560.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -722,6 +733,7 @@ margin_top = 115.0
 margin_right = 100.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -734,6 +746,7 @@ margin_top = 115.0
 margin_right = 215.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -746,6 +759,7 @@ margin_top = 115.0
 margin_right = 330.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -758,6 +772,7 @@ margin_top = 115.0
 margin_right = 445.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -770,6 +785,7 @@ margin_top = 115.0
 margin_right = 560.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
@@ -892,6 +908,7 @@ custom_fonts/font = SubResource( 14 )
 text = "Bowling"
 
 [node name="you_won" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
@@ -926,12 +943,14 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 80 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="they_won" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
@@ -960,12 +979,14 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 80 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="drawn" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
@@ -991,24 +1012,24 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 80 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="innings_over" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
-[node name="ColorRect" type="ColorRect" parent="innings_over"]
-margin_left = -100.0
-margin_top = -300.0
-margin_right = 500.0
-margin_bottom = 724.0
-color = Color( 0.239216, 0.239216, 0.239216, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ColorRect" type="TextureRect" parent="innings_over"]
+margin_left = 19.0
+margin_top = 56.0
+margin_right = 577.0
+margin_bottom = 506.0
+rect_scale = Vector2( 0.6, 0.75 )
+texture = ExtResource( 16 )
 
 [node name="Label" type="Label" parent="innings_over"]
 margin_right = 400.0
@@ -1017,6 +1038,9 @@ custom_fonts/font = ExtResource( 7 )
 text = "Innings over"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="continue2" type="Button" parent="innings_over"]
 margin_left = 130.0
@@ -1025,6 +1049,7 @@ margin_right = 269.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 80 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false

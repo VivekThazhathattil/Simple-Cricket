@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/game_mode.gd" type="Script" id=1]
 [ext_resource path="res://sprites/game_mode.png" type="Texture" id=2]
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=3]
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="game_mode" type="Node2D"]
 modulate = Color( 1, 1, 1, 0 )
@@ -31,6 +33,7 @@ margin_right = 500.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
 text = "Single Player"
 
 [node name="multiplayer" type="Button" parent="Container"]
@@ -39,6 +42,7 @@ margin_right = 500.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
 text = "Multiplayer"
 
 [node name="tours" type="Button" parent="Container"]
@@ -47,6 +51,7 @@ margin_right = 500.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
 text = "Tours"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,6 +63,7 @@ margin_right = 500.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
 text = "Tournaments"
 
 [node name="go_back" type="Button" parent="."]
@@ -67,6 +73,7 @@ margin_right = 456.0
 margin_bottom = 877.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
 text = "Go Back"
 __meta__ = {
 "_edit_use_anchors_": false

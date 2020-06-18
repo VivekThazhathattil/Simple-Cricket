@@ -19,6 +19,7 @@ var player_wickets_rem = 10
 var opp_wickets_rem = 10
 var max_wickets = 10
 var balls_per_over = 6
+var flag = 0
 
 var num_sides_batted_so_far = 0
 var _player_batting
@@ -38,11 +39,23 @@ func _ready():
 	$opponent.set_texture(hand_10)
 	$opponent.flip_h = true
 	get_node("/root/menu/bg_music").playing = false
-	
+	$button_array.visible = true
 	var save_inst = preload("res://scenes/save.tscn")
 	self.add_child(save_inst.instance())
 	_create_n_load_save()
+	# go back to main menu upon pressing back button
+	# disable quitting on back press
+	get_tree().set_quit_on_go_back(false)
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		_on_Back_pressed()
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		_on_Back_pressed()
 	
+func _on_Back_pressed():
+	get_tree().change_scene("res://scenes/menu.tscn")
+
 func _create_n_load_save():
 	if not $save.read_save(0,"sound"):
 		$ambient_sound.stop()
@@ -52,22 +65,35 @@ func _create_n_load_save():
 
 func _set_toss_decision():
 	_player_batting = $coin_toss._player_batting
-	print("base_game:38: coin_toss._player_batting = " + str($coin_toss._player_batting))
-	print("base_game:39: _player_batting = " + str(_player_batting))
+#	print("base_game:38: coin_toss._player_batting = " + str($coin_toss._player_batting))
+#	print("base_game:39: _player_batting = " + str(_player_batting))
 
 func _end_match():
-	yield(get_tree().create_timer(1),"timeout")
+	yield(get_tree().create_timer(0.34),"timeout")
+	$button_array.visible = false
 	if _match_over:
 		if player_score > opp_score:
 			$you_won.visible = true
 			$you_won/confetti.play("blow")
+			if flag == 0:
+				flag = 1
+				$save.save(1,"games_won",$save.read_save(1,"games_won")+1)
 		elif player_score < opp_score:
 			$they_won.visible = true
+			if flag == 0:
+				flag = 1
+				$save.save(1,"games_lost",$save.read_save(1,"games_lost")+1)
 		else:
 			$drawn.visible = true
+			if flag == 0:
+				flag = 1
+				$save.save(1,"games_drawn",$save.read_save(1,"games_drawn")+1)
 	_update_labels()
 			
 func _final_action():
+	$save.save(1,"games_played",$save.read_save(1,"games_played")+1)
+	# updated games_won, games_lost and games_drawn in _end_match()
+	$save.save(1,"percent_win_rate",float($save.read_save(1,"games_won"))/$save.read_save(1,"games_played")*100)
 	queue_free()
 	
 func _check_if_won():
@@ -125,7 +151,7 @@ func _main_handler():
 			$special_event_sound.play()
 			_not_out = true
 
-	if ball_count == 6*over_max:
+	if ball_count >= 6*over_max:
 		if num_sides_batted_so_far == 1:
 			_switch_sides()
 		else:
@@ -145,6 +171,8 @@ func _switch_sides():
 	else:
 		opp_overs = str(ball_count/6) + str(ball_count%6)
 	_player_batting = not _player_batting
+	$button_array.visible = false
+
 	yield(get_tree().create_timer(1),"timeout")
 	$innings_over.visible = true
 	_reset_hands()
@@ -245,7 +273,9 @@ func _on_continue_pressed():
 	get_tree().change_scene("res://scenes/menu.tscn")
 
 func _on_continue2_pressed():
+
 	$innings_over.visible = false
+	$button_array.visible = true
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

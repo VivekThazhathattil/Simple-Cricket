@@ -101,6 +101,13 @@ func _hand_motion():
 	get_parent().get_node("player").set_texture(get_parent().hand_10)
 	get_parent().get_node("opponent").set_texture(get_parent().hand_10)
 	
+	$Button1.mouse_filter = self.MOUSE_FILTER_IGNORE
+	$Button2.mouse_filter = self.MOUSE_FILTER_IGNORE
+	$Button3.mouse_filter = self.MOUSE_FILTER_IGNORE
+	$Button4.mouse_filter = self.MOUSE_FILTER_IGNORE
+	$Button5.mouse_filter = self.MOUSE_FILTER_IGNORE
+	$Button6.mouse_filter = self.MOUSE_FILTER_IGNORE
+	
 	tween1.interpolate_property(get_parent().get_node("player"), "rotation_degrees", 0, -60, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween1.start()
 	tween2.interpolate_property(get_parent().get_node("opponent"), "rotation_degrees", 0, 60, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
@@ -112,6 +119,13 @@ func _hand_motion():
 	tween2.interpolate_property(get_parent().get_node("opponent"), "rotation_degrees", 60, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween2.start()
 	yield(tween1, "tween_completed")
+	
+	$Button1.mouse_filter = self.MOUSE_FILTER_PASS
+	$Button2.mouse_filter = self.MOUSE_FILTER_PASS
+	$Button3.mouse_filter = self.MOUSE_FILTER_PASS
+	$Button4.mouse_filter = self.MOUSE_FILTER_PASS
+	$Button5.mouse_filter = self.MOUSE_FILTER_PASS
+	$Button6.mouse_filter = self.MOUSE_FILTER_PASS
 	
 func _on_Button1_pressed():
 	instantaneous_score = 1
