@@ -14,7 +14,7 @@
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=12]
 [ext_resource path="res://sprites/draw_bg.png" type="Texture" id=13]
 [ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=14]
-[ext_resource path="res://audio/ambient_sound.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/ambient_sound.ogg" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"

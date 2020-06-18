@@ -38,6 +38,17 @@ func _ready():
 	$opponent.set_texture(hand_10)
 	$opponent.flip_h = true
 	get_node("/root/menu/bg_music").playing = false
+	
+	var save_inst = preload("res://scenes/save.tscn")
+	self.add_child(save_inst.instance())
+	_create_n_load_save()
+	
+func _create_n_load_save():
+	if not $save.read_save(0,"sound"):
+		$ambient_sound.stop()
+		$special_event_sound.set_volume_db(-80)
+	else:
+		pass
 
 func _set_toss_decision():
 	_player_batting = $coin_toss._player_batting
@@ -88,7 +99,7 @@ func _main_handler():
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
-			$special_event_sound.stream = load("res://audio/out_sound.wav")
+			$special_event_sound.stream = load("res://audio/out_sound.ogg")
 			$special_event_sound.play()
 			_not_out = true
 	else:
@@ -110,7 +121,7 @@ func _main_handler():
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
-			$special_event_sound.stream = load("res://audio/out_sound.wav")
+			$special_event_sound.stream = load("res://audio/out_sound.ogg")
 			$special_event_sound.play()
 			_not_out = true
 
@@ -152,19 +163,19 @@ func _update_labels():
 		if player_score == 0 and opp_score == 0:
 			$PUMP/pump_up.set_text("Begin!!!")
 			$PUMP/pump_up/AnimationPlayer.play("to_green")
-			$special_event_sound.stream = load("res://audio/six_sound.wav")
+			$special_event_sound.stream = load("res://audio/six_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.instantaneous_score == 1:
 			$PUMP/pump_up.set_text(str($button_array.instantaneous_score) + " run")
 		elif $button_array.instantaneous_score == 4:
 			$PUMP/pump_up.set_text(str($button_array.instantaneous_score) + " runs!")
 			$PUMP/pump_up/AnimationPlayer.play("to_yellow")
-			$special_event_sound.stream = load("res://audio/four_sound.wav")
+			$special_event_sound.stream = load("res://audio/four_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.instantaneous_score == 6:
 			$PUMP/pump_up.set_text(str($button_array.instantaneous_score) + " runs!!!")
 			$PUMP/pump_up/AnimationPlayer.play("to_green")
-			$special_event_sound.stream = load("res://audio/six_sound.wav")
+			$special_event_sound.stream = load("res://audio/six_sound.ogg")
 			$special_event_sound.play()
 		else:
 			$PUMP/pump_up.set_text(str($button_array.instantaneous_score) + " runs")
@@ -176,17 +187,17 @@ func _update_labels():
 		if player_score == 0 and opp_score == 0:
 			$PUMP/pump_up.set_text("Begin!!!")
 			$PUMP/pump_up/AnimationPlayer.play("to_green")
-			$special_event_sound.stream = load("res://audio/six_sound.wav")
+			$special_event_sound.stream = load("res://audio/six_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.opponent_move == 4:
 			$PUMP/pump_up.set_text(str($button_array.opponent_move) + " runs!")
 			$PUMP/pump_up/AnimationPlayer.play("to_yellow")
-			$special_event_sound.stream = load("res://audio/four_sound.wav")
+			$special_event_sound.stream = load("res://audio/four_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.opponent_move == 6:
 			$PUMP/pump_up.set_text(str($button_array.opponent_move) + " runs!!!")
 			$PUMP/pump_up/AnimationPlayer.play("to_green")
-			$special_event_sound.stream = load("res://audio/six_sound.wav")
+			$special_event_sound.stream = load("res://audio/six_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.opponent_move == 1:
 			$PUMP/pump_up.set_text(str($button_array.opponent_move) + " run")

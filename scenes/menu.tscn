@@ -1,17 +1,24 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menu.gd" type="Script" id=3]
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=4]
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=5]
-[ext_resource path="res://audio/youre_not_that_funky.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/bg_music.ogg" type="AudioStream" id=6]
 [ext_resource path="res://sprites/rate_us.png" type="Texture" id=7]
 [ext_resource path="res://sprites/share.png" type="Texture" id=8]
 [ext_resource path="res://sprites/exit.png" type="Texture" id=9]
 [ext_resource path="res://sprites/music_on.png" type="Texture" id=10]
 [ext_resource path="res://sprites/sound_on.png" type="Texture" id=11]
 [ext_resource path="res://sprites/credits.png" type="Texture" id=12]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+font_data = SubResource( 1 )
 
 [node name="menu" type="Node2D"]
 modulate = Color( 1, 1, 1, 0 )
@@ -31,7 +38,7 @@ margin_right = 500.0
 margin_bottom = 125.0
 rect_min_size = Vector2( 600, 100 )
 size_flags_vertical = 5
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Odd Even Hand Cricket"
 align = 1
 autowrap = true

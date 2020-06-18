@@ -5,9 +5,24 @@ var my_stats = preload("res://scenes/my_stats.tscn")
 var how_to_play = preload("res://scenes/how_to_play.tscn")
 
 func _ready():
-	print(self.get_path())
-	pass
+	var save_inst = preload("res://scenes/save.tscn")
+	self.add_child(save_inst.instance())
+	_create_load_save()
+#	print(self.get_path())
 
+func _create_load_save():
+	$save.check_n_create_save()
+	if not $save.read_save(0,"music"):
+		$bg_music.stop()
+		$bottom_panel/panel_container/music_off.set_normal_texture(preload("res://sprites/music_off.png"))
+	else:
+		$bg_music.play()
+		$bottom_panel/panel_container/music_off.set_normal_texture(preload("res://sprites/music_on.png"))
+	if not $save.read_save(0,"sound"):
+		$bottom_panel/panel_container/sound_off.set_normal_texture(preload("res://sprites/sound_off.png"))
+	else:
+		$bottom_panel/panel_container/sound_off.set_normal_texture(preload("res://sprites/sound_on.png"))
+		
 func _on_PLAY_NOW_pressed():
 	var ins = load("res://scenes/game_mode.tscn").instance()
 	self.add_child(ins)
@@ -25,12 +40,19 @@ func _on_exit_pressed():
 	get_tree().quit()
 
 func _on_music_off_pressed():
-	if $bg_music.volume_db == 0:
-		$bottom_panel/panel_container/music_off.set_texture("res://sprites/music_off.png")
-		$bg_music.volume_db = -80
+	if not $bg_music.playing:
+		$bg_music.play()
+		$save.save(0, "music", true)
+		$bottom_panel/panel_container/music_off.set_normal_texture(preload("res://sprites/music_on.png"))
 	else:
-		$bottom_panel/panel_container/music_on.set_texture("res://sprites/music_on.png")
-		$bg_music.volume_db = 0
-	
+		$bg_music.stop()
+		$save.save(0, "music", false)
+		$bottom_panel/panel_container/music_off.set_normal_texture(preload("res://sprites/music_off.png"))
+
 func _on_sound_off_pressed():
-	pass # Replace with function body.
+	if $save.read_save(0,"sound"):
+		$save.save(0, "sound", false)
+		$bottom_panel/panel_container/sound_off.set_normal_texture(preload("res://sprites/sound_off.png"))
+	else:
+		$save.save(0, "sound", true)
+		$bottom_panel/panel_container/sound_off.set_normal_texture(preload("res://sprites/sound_on.png"))
