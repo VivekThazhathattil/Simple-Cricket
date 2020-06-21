@@ -22,6 +22,20 @@ var save_data_game = {	 	 "games_played": 0,
 							 "nsr": 0,
 							 "net_economy": 0
 							} #variable to store data
+							
+var save_path_tournament = "user://save_tournament.save"
+var team_list = ["Afghanistan", "Australia", "Bangladesh", "England", "India", "New Zealand", "Pakistan", "South Africa", "Sri Lanka", "West Indies"]
+# Indices			0				1			2			3			4			5			6				7				8			9	
+var team_wins = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var team_losses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var team_draws = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+var save_data_tournament = {
+							"team_list" : team_list,
+							"team_wins" : team_wins,
+							"team_losses" : team_losses,
+							"team_draws" : team_draws
+}
 
 
 func check_n_create_save():
@@ -33,6 +47,10 @@ func check_n_create_save():
 		savegame.open(save_path_game, File.WRITE)
 		savegame.store_var(save_data_game)
 		savegame.close()
+	if not savegame.file_exists(save_path_tournament):
+		savegame.open(save_path_tournament, File.WRITE)
+		savegame.store_var(save_data_tournament)
+		savegame.close()
 
 func read_save(which_save, save_string):
 	var save_path
@@ -40,9 +58,12 @@ func read_save(which_save, save_string):
 	if which_save == 0:
 		save_path = save_path_settings
 		save_data = save_data_settings
-	else:
+	elif which_save == 1:
 		save_path = save_path_game
 		save_data = save_data_game
+	elif which_save == 2:
+		save_path = save_path_tournament
+		save_data = save_data_tournament
 		
 	savegame.open(save_path, File.READ) #open the file
 	save_data = savegame.get_var() #get the value
@@ -55,9 +76,12 @@ func save(which_save, save_string, save_val):
 	if which_save == 0:
 		save_path = save_path_settings
 		save_data = save_data_settings
-	else:
+	elif which_save == 1:
 		save_path = save_path_game
 		save_data = save_data_game
+	elif which_save == 2:
+		save_path = save_path_tournament
+		save_data = save_data_tournament
 		
 	savegame.open(save_path, File.READ) #open the file
 	save_data = savegame.get_var() #get the value

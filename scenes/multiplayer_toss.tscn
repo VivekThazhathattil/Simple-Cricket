@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://other_data/neuropol x rg.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://sprites/toss_screen.png" type="Texture" id=2]
+[ext_resource path="res://scenes/multiplayer_toss.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 1 )
+
+[node name="multiplayer_toss" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="TextureRect" parent="."]
+margin_right = 600.0
+margin_bottom = 1024.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="toss_text" type="Label" parent="."]
+margin_left = 180.0
+margin_top = 200.0
+margin_right = 443.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+text = "TOSS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="toss_event_text" type="Label" parent="."]
+margin_top = 350.0
+margin_right = 600.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 600, 50 )
+custom_fonts/font = SubResource( 4 )
+text = "Waiting for the toss..."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coinbox" type="HBoxContainer" parent="."]
+margin_left = 100.0
+margin_top = 500.0
+margin_right = 529.0
+margin_bottom = 555.0
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="heads" type="Button" parent="coinbox"]
+margin_right = 208.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 5 )
+text = "HEADS"
+
+[node name="tails" type="Button" parent="coinbox"]
+margin_left = 258.0
+margin_right = 429.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 5 )
+text = "TAILS"
+
+[node name="player_choice" type="WindowDialog" parent="."]
+margin_left = 40.0
+margin_top = 400.0
+margin_right = 540.0
+margin_bottom = 600.0
+window_title = "You won the toss"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="player_choice"]
+margin_right = 500.0
+margin_bottom = 101.0
+custom_fonts/font = SubResource( 6 )
+text = "Do you wish to bat or bowl?"
+autowrap = true
+
+[node name="Batting" type="Button" parent="player_choice"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 143.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 7 )
+text = "Batting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bowling" type="Button" parent="player_choice"]
+margin_left = 320.0
+margin_top = 100.0
+margin_right = 418.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 8 )
+text = "Bowling"
+[connection signal="pressed" from="coinbox/heads" to="." method="_on_heads_pressed"]
+[connection signal="pressed" from="coinbox/tails" to="." method="_on_tails_pressed"]
