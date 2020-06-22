@@ -8,6 +8,7 @@ func _ready():
 	var save_inst = preload("res://scenes/save.tscn")
 	self.add_child(save_inst.instance())
 	_create_load_save()
+	$save.save(2,"my_team","none")
 #	print(self.get_path())
 
 func _create_load_save():

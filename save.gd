@@ -29,12 +29,15 @@ var team_list = ["Afghanistan", "Australia", "Bangladesh", "England", "India", "
 var team_wins = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_losses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_draws = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+var my_team = "none"
+var curr_opponent = "none"
 var save_data_tournament = {
 							"team_list" : team_list,
 							"team_wins" : team_wins,
 							"team_losses" : team_losses,
-							"team_draws" : team_draws
+							"team_draws" : team_draws,
+							"my_team" : my_team,
+							"curr_opponent" : curr_opponent
 }
 
 

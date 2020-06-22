@@ -6,8 +6,6 @@
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=4]
 
 [node name="tournaments" type="Node2D"]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 600, 0 )
 script = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -76,4 +74,5 @@ __meta__ = {
 }
 
 [node name="transition_anim" parent="." instance=ExtResource( 4 )]
+[connection signal="pressed" from="VBoxContainer/T20_international_cup" to="." method="_on_T20_international_cup_pressed"]
 [connection signal="pressed" from="go_back" to="." method="_on_go_back_pressed"]

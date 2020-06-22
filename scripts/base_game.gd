@@ -31,18 +31,34 @@ var opp_overs = 0
 
 var difficulty = 2;
 
+var tournament_mode = false
+var my_name = "You"
+var opp_name = "Opponent"
+
 func _ready():	
-	print("base_game path = " + str(self.get_path()))
+#	print("base_game path = " + str(self.get_path()))
 	num_sides_batted_so_far += 1
-	over_max = get_node("/root/menu").no_overs
 	$player.set_texture(hand_10)
 	$opponent.set_texture(hand_10)
 	$opponent.flip_h = true
-	get_node("/root/menu/bg_music").playing = false
+
 	$button_array.visible = true
 	var save_inst = preload("res://scenes/save.tscn")
 	self.add_child(save_inst.instance())
 	_create_n_load_save()
+	print("my_team choice is " + $save.read_save(2,"my_team"))
+	if $save.read_save(2,"my_team") != "none":
+		tournament_mode = true
+	
+	if tournament_mode:
+		my_name = $save.read_save(2, "my_team")
+		opp_name = $save.read_save(2, "curr_opponent")
+		print("my_name is " +my_name)
+		print("curr_opponent is " + opp_name)
+		over_max = 5
+	else:
+		get_node("/root/menu/bg_music").playing = false
+		over_max = get_node("/root/menu").no_overs
 	# go back to main menu upon pressing back button
 	# disable quitting on back press
 	get_tree().set_quit_on_go_back(false)
@@ -54,6 +70,8 @@ func _notification(what):
 		_on_Back_pressed()
 	
 func _on_Back_pressed():
+	if $save.read(2,"my_team") != "none":
+		$save.save(2,"my_team","none")
 	get_tree().change_scene("res://scenes/menu.tscn")
 
 func _create_n_load_save():
@@ -78,16 +96,25 @@ func _end_match():
 			if flag == 0:
 				flag = 1
 				$save.save(1,"games_won",$save.read_save(1,"games_won")+1)
+				if tournament_mode:
+					get_parent().game_stat = "won"
+					get_parent()._my_game_results()
 		elif player_score < opp_score:
 			$they_won.visible = true
 			if flag == 0:
 				flag = 1
 				$save.save(1,"games_lost",$save.read_save(1,"games_lost")+1)
+				if tournament_mode:
+					get_parent().game_stat = "lost"
+					get_parent()._my_game_results()
 		else:
 			$drawn.visible = true
 			if flag == 0:
 				flag = 1
 				$save.save(1,"games_drawn",$save.read_save(1,"games_drawn")+1)
+				if tournament_mode:
+					get_parent().game_stat = "drawn"
+					get_parent()._my_game_results()
 	_update_labels()
 			
 func _final_action():
@@ -207,8 +234,8 @@ func _update_labels():
 			$special_event_sound.play()
 		else:
 			$PUMP/pump_up.set_text(str($button_array.instantaneous_score) + " runs")
-		$my_stats/HBoxContainer/your_stat.set_text("You\n(Batting)")
-		$opp_stats/HBoxContainer/your_stat.set_text("Opponent\n(Bowling)")
+		$my_stats/HBoxContainer/your_stat.set_text(my_name + "\n(Batting)")
+		$opp_stats/HBoxContainer/your_stat.set_text(opp_name + "\n(Bowling)")
 		$my_stats/HBoxContainer/your_stat2.set_text("Score: " + str(player_score) + "-" + str(max_wickets - player_wickets_rem))
 		$opp_stats/HBoxContainer/your_stat2.set_text("Overs: " + str(ball_count/6) + "." + str(ball_count%6))
 	else:
@@ -231,8 +258,8 @@ func _update_labels():
 			$PUMP/pump_up.set_text(str($button_array.opponent_move) + " run")
 		else:
 			$PUMP/pump_up.set_text(str($button_array.opponent_move) + " runs")
-		$my_stats/HBoxContainer/your_stat.set_text("You\n(Bowling)")
-		$opp_stats/HBoxContainer/your_stat.set_text("Opponent\n(Batting)")
+		$my_stats/HBoxContainer/your_stat.set_text(my_name +"\n(Bowling)")
+		$opp_stats/HBoxContainer/your_stat.set_text(opp_name + "\n(Batting)")
 		$my_stats/HBoxContainer/your_stat2.set_text("Overs: " + str(ball_count/6) + "." + str(ball_count%6))
 		$opp_stats/HBoxContainer/your_stat2.set_text("Score: " + str(opp_score) + "-" + str(max_wickets - opp_wickets_rem))
 	if num_sides_batted_so_far == 1:
@@ -270,7 +297,8 @@ func _update_labels():
 				$ColorRect/misc_stats.set_text("Match finished!")
 func _on_continue_pressed():
 	_final_action()
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if not tournament_mode:
+		get_tree().change_scene("res://scenes/menu.tscn")
 
 func _on_continue2_pressed():
 

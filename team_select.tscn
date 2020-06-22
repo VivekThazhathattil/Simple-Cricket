@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/windies_flag.png" type="Texture" id=2]
@@ -11,8 +11,10 @@
 [ext_resource path="res://sprites/australia_flag.png" type="Texture" id=9]
 [ext_resource path="res://sprites/india_flag.png" type="Texture" id=10]
 [ext_resource path="res://sprites/srilanka_flag.png" type="Texture" id=11]
+[ext_resource path="res://team_select.gd" type="Script" id=12]
 
 [node name="icc" type="Node2D"]
+script = ExtResource( 12 )
 
 [node name="icc_bg" type="TextureRect" parent="."]
 margin_right = 40.0
@@ -157,3 +159,13 @@ text = "Quit tournament"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="VBoxContainer/GridContainer/ind" to="." method="_on_ind_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/sa" to="." method="_on_sa_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/aus" to="." method="_on_aus_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/nz" to="." method="_on_nz_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/eng" to="." method="_on_eng_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/pak" to="." method="_on_pak_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/bng" to="." method="_on_bng_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/afg" to="." method="_on_afg_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/wi" to="." method="_on_wi_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/sl" to="." method="_on_sl_pressed"]

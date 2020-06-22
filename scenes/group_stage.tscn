@@ -14,7 +14,7 @@ font_data = SubResource( 1 )
 font_path = "res://other_data/neuropol x rg.ttf"
 
 [sub_resource type="DynamicFont" id=4]
-size = 30
+size = 20
 font_data = SubResource( 3 )
 
 [node name="group_stage" type="Node2D"]
@@ -39,6 +39,8 @@ margin_right = 500.0
 margin_bottom = 662.0
 rect_min_size = Vector2( 500, 512 )
 custom_fonts/font = SubResource( 4 )
+max_columns = 6
+fixed_column_width = 70
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -54,3 +56,4 @@ text = "Next game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
