@@ -26,6 +26,7 @@ var save_data_game = {	 	 "games_played": 0,
 var save_path_tournament = "user://save_tournament.save"
 var team_list = ["Afghanistan", "Australia", "Bangladesh", "England", "India", "New Zealand", "Pakistan", "South Africa", "Sri Lanka", "West Indies"]
 # Indices			0				1			2			3			4			5			6				7				8			9	
+var team_list_short = ["AFG", "AUS", "BAN", "ENG", "IND", "NZ", "PAK", "SA", "SL", "WI"]
 var team_wins = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_losses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_draws = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

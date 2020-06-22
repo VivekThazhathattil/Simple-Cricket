@@ -3,6 +3,7 @@ extends Node2D
 var team_roster
 var idx = -1
 var team_list
+var team_list_short
 var team_wins
 var team_losses
 var team_draws
@@ -12,6 +13,7 @@ func _ready():
 	var inst = preload("res://scenes/save.tscn")
 	self.add_child(inst.instance())
 	team_list = $save.read_save(2,"team_list")
+	team_list_short = $save.team_list_short
 	team_wins = $save.read_save(2,"team_wins")
 	team_losses = $save.read_save(2,"team_losses")
 	team_draws = $save.read_save(2,"team_draws")
@@ -25,15 +27,39 @@ func _reset_tournament_save_file():
 func _print_table():
 	$ItemList.clear()
 	var sorted_idx_arr = _sort_table()
+	var j = 0
+	var my_team = $save.read_save(2,"my_team")
+	var new_my_team_idx
+	$ItemList.add_item("S.no")
+	$ItemList.add_item("Team")
+	$ItemList.add_item("W")
+	$ItemList.add_item("D")
+	$ItemList.add_item("L")
+	$ItemList.add_item("Pts")
+#	$ItemList.fixed_icon_size = Vector2(32,32)
 	for i in sorted_idx_arr:
-		$ItemList.add_item(str(i+1)+".")
-		$ItemList.add_item(team_list[i])
+		if my_team == team_list[i]:
+			print("my_team = " + my_team + " and team_list[i] = " + team_list[i])
+			new_my_team_idx = j
+		$ItemList.add_item(str(j+1)+".")
+		$ItemList.add_item(team_list_short[i])
 		$ItemList.add_item(str(team_wins[i]))
 		$ItemList.add_item(str(team_draws[i]))
 		$ItemList.add_item(str(team_losses[i]))
 		$ItemList.add_item(str(team_wins[i]*3+team_draws[i]))
+		j = j + 1
 #		$ItemList.add_item(str(i+1)+ ") " + team_list[i] + "\\t" +str(team_wins[i]) + "    " + str(team_draws[i]) + "    " + str(team_losses[i]) + "    " + str(team_wins[i]*3+team_draws[i]))
-
+	_highlight_my_team(new_my_team_idx+1)
+	
+func _highlight_my_team(new_idx):
+#	var new_idx = _find_idx_of_team($save.read_save(2,"my_team"))
+	$ItemList.set_item_custom_bg_color((new_idx)*6,Color(0,1,0.4,0.5))
+	$ItemList.set_item_custom_bg_color((new_idx)*6+1,Color(0,1,0.4,0.5))
+	$ItemList.set_item_custom_bg_color((new_idx)*6+2,Color(0,1,0.4,0.5))
+	$ItemList.set_item_custom_bg_color((new_idx)*6+3,Color(0,1,0.4,0.5))
+	$ItemList.set_item_custom_bg_color((new_idx)*6+4,Color(0,1,0.4,0.5))
+	$ItemList.set_item_custom_bg_color((new_idx)*6+5,Color(0,1,0.4,0.5))	
+	
 func _sort_table():
 	var point_arr = []
 	var idx_arr = []
