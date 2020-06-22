@@ -29,6 +29,7 @@ var team_list = ["Afghanistan", "Australia", "Bangladesh", "England", "India", "
 var team_wins = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_losses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_draws = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var team_probs = [0,8,0,10,10,8,7,6,6,4]
 var my_team = "none"
 var curr_opponent = "none"
 var save_data_tournament = {

@@ -24,7 +24,8 @@ func _reset_tournament_save_file():
 	
 func _print_table():
 	$ItemList.clear()
-	for i in range(10):
+	var sorted_idx_arr = _sort_table()
+	for i in sorted_idx_arr:
 		$ItemList.add_item(str(i+1)+".")
 		$ItemList.add_item(team_list[i])
 		$ItemList.add_item(str(team_wins[i]))
@@ -32,6 +33,28 @@ func _print_table():
 		$ItemList.add_item(str(team_losses[i]))
 		$ItemList.add_item(str(team_wins[i]*3+team_draws[i]))
 #		$ItemList.add_item(str(i+1)+ ") " + team_list[i] + "\\t" +str(team_wins[i]) + "    " + str(team_draws[i]) + "    " + str(team_losses[i]) + "    " + str(team_wins[i]*3+team_draws[i]))
+
+func _sort_table():
+	var point_arr = []
+	var idx_arr = []
+	for i in range(10):
+		point_arr.append(team_wins[i]*3+team_draws[i])
+	var dup_arr = [] + point_arr
+	point_arr.sort()
+	var i = 0
+	var j
+	while i < 10:
+		j = 0
+		while j < 10:
+			if dup_arr[j] == point_arr[i]:
+				idx_arr.append(j)
+				dup_arr[j] = -1
+				break
+			else:
+				j += 1
+		i += 1
+	idx_arr.invert()
+	return idx_arr
 
 func _group_stage_handler():
 	if idx == -1:
@@ -49,6 +72,10 @@ func _get_all_match_results():
 	var opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
 	var i = 0
 	var j = 9
+	var les
+	var hi
+	var les_idx
+
 	while true:
 		if i == j:
 			break;
@@ -57,16 +84,39 @@ func _get_all_match_results():
 		elif j == my_idx or j == opp_idx:
 			j -= 1
 		else:
-			var res = randi()%11
-			if res == 5: # drawn
+			if $save.team_probs[i] < $save.team_probs[j]:
+				les = $save.team_probs[i]
+				hi = $save.team_probs[j]
+				les = float(les)/(les+hi)
+				hi = float(hi)/(les + hi)
+				les_idx = i
+			else:
+				les = $save.team_probs[j]
+				hi = $save.team_probs[i]
+				les = float(les)/(les+hi)
+				hi = float(hi)/(les+hi)
+				les_idx = j
+			var res = randf()
+			print("res = " + str(res) + " for teams " + $save.team_list[i] + " and " + $save.team_list[j])
+			print("team_probs : " + $save.team_list[i] + " " + str($save.team_probs[i]))
+			print("team_probs : " + $save.team_list[j] + " " + str($save.team_probs[j]))
+			if int(res) == 0.5: # drawn
 				team_draws[i] += 1
 				team_draws[j] += 1
-			elif res < 5: # 'i' won
-				team_wins[i] += 1
-				team_losses[j] += 1
+			elif res > les:
+				if les_idx == i:
+					team_wins[j] += 1
+					team_losses[i] += 1
+				else:
+					team_wins[i] += 1
+					team_losses[j] += 1
 			else:
-				team_wins[j] += 1
-				team_losses[i] += 1
+				if les_idx == i:
+					team_wins[i] += 1
+					team_losses[j] += 1
+				else:
+					team_wins[j] += 1
+					team_losses[i] += 1
 			if abs(i-j) == 1:
 				break;
 			i += 1

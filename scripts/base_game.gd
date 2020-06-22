@@ -55,7 +55,7 @@ func _ready():
 		opp_name = $save.read_save(2, "curr_opponent")
 		print("my_name is " +my_name)
 		print("curr_opponent is " + opp_name)
-		over_max = 5
+		over_max = 1
 	else:
 		get_node("/root/menu/bg_music").playing = false
 		over_max = get_node("/root/menu").no_overs
