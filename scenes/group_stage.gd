@@ -8,6 +8,8 @@ var team_wins
 var team_losses
 var team_draws
 var game_stat = "none"
+var my_idx 
+var opp_idx
 
 func _ready():
 	var inst = preload("res://scenes/save.tscn")
@@ -94,8 +96,8 @@ func _group_stage_handler():
 	
 func _get_all_match_results():
 	randomize()
-	var my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
-	var opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
+	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
+	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
 	var i = 0
 	var j = 9
 	var les
@@ -149,8 +151,8 @@ func _get_all_match_results():
 			j -= 1
 
 func _my_game_results():
-	var my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
-	var opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
+	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
+	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
 	if game_stat == "won":
 		team_wins[my_idx] += 1
 		team_losses[opp_idx] += 1

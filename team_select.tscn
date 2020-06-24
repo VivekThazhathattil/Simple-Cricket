@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/windies_flag.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sprites/india_flag.png" type="Texture" id=10]
 [ext_resource path="res://sprites/srilanka_flag.png" type="Texture" id=11]
 [ext_resource path="res://team_select.gd" type="Script" id=12]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=13]
 
 [node name="icc" type="Node2D"]
 script = ExtResource( 12 )
@@ -155,6 +156,7 @@ margin_right = 600.0
 margin_bottom = 1024.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 13 )
 text = "Quit tournament"
 __meta__ = {
 "_edit_use_anchors_": false

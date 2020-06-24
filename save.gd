@@ -30,7 +30,7 @@ var team_list_short = ["AFG", "AUS", "BAN", "ENG", "IND", "NZ", "PAK", "SA", "SL
 var team_wins = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_losses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_draws = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-var team_probs = [0,8,0,10,10,8,7,6,6,4]
+var team_probs = [1,8,2,10,10,8,7,6,6,4]
 var my_team = "none"
 var curr_opponent = "none"
 var save_data_tournament = {
@@ -41,7 +41,16 @@ var save_data_tournament = {
 							"my_team" : my_team,
 							"curr_opponent" : curr_opponent
 }
-
+var team_icon_arr = [preload("res://sprites/afgan_flag.png"),
+					preload("res://sprites/australia_flag.png"),
+					preload("res://sprites/bangla_flag.png"),
+					preload("res://sprites/england_flag.png"),
+					preload("res://sprites/india_flag.png"),
+					preload("res://sprites/newzealand_flag.png"),
+					preload("res://sprites/pakistan_flag.png"),
+					preload("res://sprites/sa_flag.png"),
+					preload("res://sprites/srilanka_flag.png"),
+					preload("res://sprites/windies_flag.png")]
 
 func check_n_create_save():
 	if not savegame.file_exists(save_path_settings):

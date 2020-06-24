@@ -51,12 +51,17 @@ func _ready():
 		tournament_mode = true
 	
 	if tournament_mode:
+		var idx1 = get_parent()._find_idx_of_team($save.read_save(2,"my_team"))
+		var idx2 = get_parent()._find_idx_of_team($save.read_save(2,"curr_opponent"))
+		$team_logo/my_team_logo.set_texture($save.team_icon_arr[idx1])
+		$team_logo/opp_team_logo.set_texture($save.team_icon_arr[idx2])
 		my_name = $save.read_save(2, "my_team")
 		opp_name = $save.read_save(2, "curr_opponent")
 		print("my_name is " +my_name)
 		print("curr_opponent is " + opp_name)
 		over_max = 1
 	else:
+		$team_logo.visible = false
 		get_node("/root/menu/bg_music").playing = false
 		over_max = get_node("/root/menu").no_overs
 	# go back to main menu upon pressing back button
@@ -136,6 +141,7 @@ func _main_handler():
 	if _player_batting:
 		if _not_out:
 			player_score += $button_array.instantaneous_score
+			$squads._if_runs_scored($button_array.instantaneous_score,"player")
 			$PUMP/pump_up.set_text("")
 			_update_labels()
 			_check_if_won()
@@ -149,6 +155,7 @@ func _main_handler():
 					_end_match()
 			else:
 				player_wickets_rem -= 1
+				$squads._if_out()
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
@@ -158,6 +165,7 @@ func _main_handler():
 	else:
 		if _not_out:
 			opp_score += $button_array.opponent_move
+			$squads._if_runs_scored($button_array.opponent_move,"opponent")
 			$PUMP/pump_up.set_text("")
 			_update_labels()
 			_check_if_won()
@@ -171,6 +179,7 @@ func _main_handler():
 					_end_match()
 			else:
 				opp_wickets_rem -= 1
+				$squads._if_out()
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
@@ -184,6 +193,8 @@ func _main_handler():
 		else:
 			_match_over = true
 			_end_match()
+	if ball_count > 0 and ball_count%6 == 0:
+		$squads._if_over_over()
 
 func _reset_hands():
 		$player.set_texture(hand_10)
@@ -354,3 +365,12 @@ func _on_Button_pressed():
 			$ColorRect/misc_stats.set_text("Odd or Even Hand Cricket")
 	else:
 		$ColorRect/misc_stats.set_text("Match finished!")
+
+
+func _on_MenuButton_pressed():
+	pass # Replace with function body.
+
+
+func _on_scorecard_button_pressed():
+	$squads._print_scorecard()
+	$squads.visible = true
