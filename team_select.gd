@@ -16,8 +16,8 @@ func _notification(what):
 func _on_Back_pressed():
 	if $save.read(2,"my_team") != "none":
 		$save.save(2,"my_team","none")
-	get_tree().change_scene("res://scenes/menu.tscn")
-
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")
 func _on_ind_pressed():
 	$save.save(2,"my_team","India")
 	if get_tree().change_scene("res://scenes/group_stage.tscn") != OK:

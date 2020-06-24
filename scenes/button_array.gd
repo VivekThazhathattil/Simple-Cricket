@@ -32,19 +32,19 @@ func _get_req_runrate():
 	else:
 		return 6
 		
-func adjust_for_player_difficulty(opponent_move, instantaneous_score):
-	if instantaneous_score == opponent_move:
+func adjust_for_player_difficulty(opp_move, inst_score):
+	if inst_score == opp_move:
 		if not get_parent()._player_batting:
 			if(randi()%get_parent().difficulty == 0):
 				get_parent()._not_out = false
 			else:
-				if opponent_move == 6:
-					opponent_move = randi()%5 + 1
+				if opp_move == 6:
+					opp_move = randi()%5 + 1
 				else:
-					opponent_move += 1
+					opp_move += 1
 		else:
 			get_parent()._not_out = false
-	return opponent_move
+	return opp_move
 	
 func get_opponent_action():
 	randomize()
@@ -72,26 +72,26 @@ func get_opponent_action():
 	set_opponent_move(opponent_move)
 	get_parent()._main_handler()
 
-func set_opponent_move(opponent_move):
-	if opponent_move == 1:
+func set_opponent_move(opp_move):
+	if opp_move == 1:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_1)
-	elif opponent_move == 2:
+	elif opp_move == 2:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_2)
-	elif opponent_move == 3:
+	elif opp_move == 3:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_3)
-	elif opponent_move == 4:
+	elif opp_move == 4:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_4)
-	elif opponent_move == 5:
+	elif opp_move == 5:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_5)
-	elif opponent_move == 6:
+	elif opp_move == 6:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_6)
-	elif opponent_move == 7:
+	elif opp_move == 7:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_7)
-	elif opponent_move == 8:
+	elif opp_move == 8:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_8)
-	elif opponent_move == 9:
+	elif opp_move == 9:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_9)
-	elif opponent_move == 10:
+	elif opp_move == 10:
 		get_parent().get_node("opponent").set_texture(get_parent().hand_10)
 
 func _hand_motion():

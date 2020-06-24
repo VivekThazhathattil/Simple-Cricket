@@ -1,5 +1,8 @@
 extends Node2D
 
+#TODO: Add the semifinal and finals and the winner's screen
+#TODO: Add save tournament feature
+
 var team_roster
 var idx = -1
 var team_list
@@ -41,7 +44,7 @@ func _print_table():
 #	$ItemList.fixed_icon_size = Vector2(32,32)
 	for i in sorted_idx_arr:
 		if my_team == team_list[i]:
-			print("my_team = " + my_team + " and team_list[i] = " + team_list[i])
+#			print("my_team = " + my_team + " and team_list[i] = " + team_list[i])
 			new_my_team_idx = j
 		$ItemList.add_item(str(j+1)+".")
 		$ItemList.add_item(team_list_short[i])
@@ -125,9 +128,9 @@ func _get_all_match_results():
 				hi = float(hi)/(les+hi)
 				les_idx = j
 			var res = randf()
-			print("res = " + str(res) + " for teams " + $save.team_list[i] + " and " + $save.team_list[j])
-			print("team_probs : " + $save.team_list[i] + " " + str($save.team_probs[i]))
-			print("team_probs : " + $save.team_list[j] + " " + str($save.team_probs[j]))
+#			print("res = " + str(res) + " for teams " + $save.team_list[i] + " and " + $save.team_list[j])
+#			print("team_probs : " + $save.team_list[i] + " " + str($save.team_probs[i]))
+#			print("team_probs : " + $save.team_list[j] + " " + str($save.team_probs[j]))
 			if int(res) == 0.5: # drawn
 				team_draws[i] += 1
 				team_draws[j] += 1
@@ -180,7 +183,8 @@ func _notification(what):
 func _on_Back_pressed():
 	if $save.read(2,"my_team") != "none":
 		$save.save(2,"my_team","none")
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")
 
 func _on_Button_pressed():
 	var game_inst = preload("res://scenes/base_game.tscn")

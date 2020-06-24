@@ -27,4 +27,5 @@ func _ready():
 
 
 func _on_go_back_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if get_tree().change_scene("res://scenes/menu.tscn")!= OK:
+		print("change scene error")

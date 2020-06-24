@@ -5,8 +5,8 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_go_back_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
-
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")
 
 func _on_T20_international_cup_pressed():
 	$VBoxContainer.visible = false

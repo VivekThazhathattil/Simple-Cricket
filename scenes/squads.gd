@@ -1,3 +1,8 @@
+# TODO: Add bowling stats to the score card
+# TODO: Add other stats to the scorecard
+# TODO: Add option to edit the squad and save the change permanently
+# TODO: Add option to load the squads from the local save file
+
 extends Node2D
 
 var IND_squad = [
@@ -155,15 +160,22 @@ func _ready():
 		score_arr_ply.append(0)
 #		is_out_arr.append(false)
 	_load_squad()
+	_print_scorecard()
 
 func _print_scorecard():
 	$rich_text_label.clear()
+	$rich_text_label.push_table(2)
 	_update_scorecard(my_team_idx,"player")
 	_update_scorecard(curr_opp_idx,"opponent")
+	$rich_text_label.pop()
+	
 
 func _load_squad(): # call this just once
-	my_team_idx = get_parent().get_parent().my_idx
-	curr_opp_idx = get_parent().get_parent().opp_idx
+	if get_node("/root/group_stage").is_inside_tree():
+		my_team_idx = get_parent().get_parent().my_idx
+		curr_opp_idx = get_parent().get_parent().opp_idx
+	else:
+		pass
 
 func _if_out(): # this function needs to be called before _if_over_over
 	print("_if_out_invoked")
@@ -189,22 +201,30 @@ func _if_runs_scored(runs,id):
 		score_arr_opp[curr_ply_idx] += runs
 
 func _update_scorecard(idx,id):
-	$rich_text_label.push_table(2)
-	_push_pop("Player",$rich_text_label.ALIGN_LEFT)
-	_push_pop("Runs",$rich_text_label.ALIGN_RIGHT)
 	if id == "player":
+		_push_pop(get_parent().my_name,$rich_text_label.ALIGN_LEFT)
+		_push_pop("Runs",$rich_text_label.ALIGN_RIGHT)
+		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
+		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
 		for i in range(11):
 			_push_pop(squad[idx][i],$rich_text_label.ALIGN_LEFT)
 			_push_pop(score_arr_ply[i],$rich_text_label.ALIGN_RIGHT)
 	else:
+		_push_pop(get_parent().opp_name,$rich_text_label.ALIGN_LEFT)
+		_push_pop("Runs",$rich_text_label.ALIGN_RIGHT)
+		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
+		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
 		for i in range(11):
 			_push_pop(squad[idx][i],$rich_text_label.ALIGN_LEFT)
 			_push_pop(score_arr_opp[i],$rich_text_label.ALIGN_RIGHT)
-	$rich_text_label.pop()
+	_push_pop("\n\n\n",$rich_text_label.ALIGN_LEFT)
+	_push_pop("\n\n\n",$rich_text_label.ALIGN_LEFT)
 
 func _push_pop(val,align_var):
+	$rich_text_label.push_cell()
 	$rich_text_label.push_align(align_var)
 	$rich_text_label.add_text(str(val))
+	$rich_text_label.pop()
 	$rich_text_label.pop()
 
 func _on_hide_pressed():

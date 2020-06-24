@@ -18,7 +18,8 @@ func _on_single_player_pressed():
 
 
 func _on_go_back_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("error")
 
 func _on_tournaments_pressed():
 	ins = load("res://scenes/tournaments.tscn").instance()

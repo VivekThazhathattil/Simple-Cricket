@@ -49,7 +49,7 @@ func _ready():
 	print("my_team choice is " + $save.read_save(2,"my_team"))
 	if $save.read_save(2,"my_team") != "none":
 		tournament_mode = true
-	
+	print("Tournament mode = " + str(tournament_mode))
 	if tournament_mode:
 		var idx1 = get_parent()._find_idx_of_team($save.read_save(2,"my_team"))
 		var idx2 = get_parent()._find_idx_of_team($save.read_save(2,"curr_opponent"))
@@ -59,7 +59,7 @@ func _ready():
 		opp_name = $save.read_save(2, "curr_opponent")
 		print("my_name is " +my_name)
 		print("curr_opponent is " + opp_name)
-		over_max = 1
+		over_max = 5
 	else:
 		$team_logo.visible = false
 		get_node("/root/menu/bg_music").playing = false
@@ -77,7 +77,8 @@ func _notification(what):
 func _on_Back_pressed():
 	if $save.read(2,"my_team") != "none":
 		$save.save(2,"my_team","none")
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")
 
 func _create_n_load_save():
 	if not $save.read_save(0,"sound"):
@@ -141,7 +142,8 @@ func _main_handler():
 	if _player_batting:
 		if _not_out:
 			player_score += $button_array.instantaneous_score
-			$squads._if_runs_scored($button_array.instantaneous_score,"player")
+			if tournament_mode:
+				$squads._if_runs_scored($button_array.instantaneous_score,"player")
 			$PUMP/pump_up.set_text("")
 			_update_labels()
 			_check_if_won()
@@ -149,13 +151,18 @@ func _main_handler():
 			if player_wickets_rem == 1:
 				if num_sides_batted_so_far == 1:
 					_switch_sides()
+					if tournament_mode:
+						$squads.curr_ply_idx = 0
+						$squads.ply1_idx = 0
+						$squads.ply2_idx = 1
 				else:
 					_match_over = true
 					_update_labels()
 					_end_match()
 			else:
 				player_wickets_rem -= 1
-				$squads._if_out()
+				if tournament_mode:
+					$squads._if_out()
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
@@ -164,8 +171,11 @@ func _main_handler():
 			_not_out = true
 	else:
 		if _not_out:
+			if $button_array.opponent_move == null:
+				$button_array.opponent_move = 0
 			opp_score += $button_array.opponent_move
-			$squads._if_runs_scored($button_array.opponent_move,"opponent")
+			if tournament_mode:
+				$squads._if_runs_scored($button_array.opponent_move,"opponent")
 			$PUMP/pump_up.set_text("")
 			_update_labels()
 			_check_if_won()
@@ -173,13 +183,18 @@ func _main_handler():
 			if opp_wickets_rem == 1:
 				if num_sides_batted_so_far == 1:
 					_switch_sides()
+					if tournament_mode:
+						$squads.curr_ply_idx = 0
+						$squads.ply1_idx = 0
+						$squads.ply2_idx = 1
 				else:
 					_match_over = true
 					_update_labels()
 					_end_match()
 			else:
 				opp_wickets_rem -= 1
-				$squads._if_out()
+				if tournament_mode:
+					$squads._if_out()
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
@@ -190,11 +205,16 @@ func _main_handler():
 	if ball_count >= 6*over_max:
 		if num_sides_batted_so_far == 1:
 			_switch_sides()
+			if tournament_mode:
+				$squads.curr_ply_idx = 0
+				$squads.ply1_idx = 0
+				$squads.ply2_idx = 1
 		else:
 			_match_over = true
 			_end_match()
 	if ball_count > 0 and ball_count%6 == 0:
-		$squads._if_over_over()
+		if tournament_mode:
+			$squads._if_over_over()
 
 func _reset_hands():
 		$player.set_texture(hand_10)
@@ -228,7 +248,7 @@ func _update_labels():
 	if _player_batting:
 		if player_score == 0 and opp_score == 0:
 			$PUMP/pump_up.set_text("Begin!!!")
-			$PUMP/pump_up/AnimationPlayer.play("to_green")
+			$PUMP/pump_up/AnimationPlayer.play("to_white")
 			$special_event_sound.stream = load("res://audio/six_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.instantaneous_score == 1:
@@ -252,7 +272,7 @@ func _update_labels():
 	else:
 		if player_score == 0 and opp_score == 0:
 			$PUMP/pump_up.set_text("Begin!!!")
-			$PUMP/pump_up/AnimationPlayer.play("to_green")
+			$PUMP/pump_up/AnimationPlayer.play("to_white")
 			$special_event_sound.stream = load("res://audio/six_sound.ogg")
 			$special_event_sound.play()
 		elif $button_array.opponent_move == 4:
@@ -309,15 +329,15 @@ func _update_labels():
 func _on_continue_pressed():
 	_final_action()
 	if not tournament_mode:
-		get_tree().change_scene("res://scenes/menu.tscn")
+		if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+			print("change scene error")
 
 func _on_continue2_pressed():
 
 	$innings_over.visible = false
 	$button_array.visible = true
 
-
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	$PUMP/pump_up.set("custom_colors/font_color", Color(1,1,1,1))
 	$PUMP/pump_up.set("custom_fonts/font:size", str(50))
 	print("animatiom finished")

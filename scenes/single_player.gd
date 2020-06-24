@@ -42,4 +42,5 @@ func _on_Test_pressed():
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")

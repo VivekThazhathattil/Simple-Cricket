@@ -8,7 +8,7 @@
 font_path = "res://other_data/helvetica.ttf"
 
 [sub_resource type="DynamicFont" id=2]
-size = 20
+size = 25
 font_data = SubResource( 1 )
 
 [node name="squads" type="Node2D"]
@@ -40,6 +40,8 @@ margin_left = 25.0
 margin_top = 100.0
 margin_right = 575.0
 margin_bottom = 924.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

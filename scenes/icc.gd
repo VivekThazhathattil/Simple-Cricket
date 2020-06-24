@@ -11,7 +11,8 @@ func _notification(what):
 		_on_Back_pressed()
 	
 func _on_Back_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("scene change error")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
