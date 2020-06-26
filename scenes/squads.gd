@@ -2,147 +2,148 @@
 # TODO: Add other stats to the scorecard
 # TODO: Add option to edit the squad and save the change permanently
 # TODO: Add option to load the squads from the local save file
+# TODO: Add loading screen for tournament 
 
 extends Node2D
 
 var IND_squad = [
-"Row hit Sharmma",
-"Sicker the van",
-"V Rat K holi",
-"M Es Donny",
-"K Dawg Jatav",
-"D Nesh Car thick",
-"Hardy Pandia",
-"Sir Ravi Jad-a-ja",
-"Bhuvan Eeshwar Kumar",
-"Yujeendra Chai halwa",
-"Jaspirath Boomraah"
+"Rwohit Shwarma",
+"Shwikar Dhwawan",
+"Vwirat Kwohli",
+"M S Dhwoni",
+"Kwedar Jwadav",
+"Dwinesh Kwarthik",
+"Hwardik Pwandia",
+"Rwavi Jwadeja",
+"Bhwuvaneshwar Kwumar",
+"Ywujveendra Chwahal",
+"Jwasprith Bwumrah"
 ]
 
 var PAK_squad = [
-"Surfer Raj",
-"A Bit Alle",
-"Bubbar Azum",
-"Fashame Ashruff",
-"Fukker Zameen",
-"Harees Sohale",
-"Hussaan Ally",
-"Im mad  Wajeem",
-"Imum-ul-hack",
-"Joony Khan",
-"Mohmd Half ez" 
+"Swarfaraz Ahwmed",
+"Fwakhar Zwaman ",
+"Imwam-ul-Hwaq",
+"Bwabar Awzam",
+"Shwoaib Mwalik",
+"Shahween Awfridi",
+"Mwohammad Hwafeez",
+"Imwad Wwasim",
+"Jwunaid Khwan",
+"Mwohammad Hwasnain",
+"Hwaris Swohail"
 ]
 
 var ENG_squad = [
-"Ion More Gant",
-"Maiden Alley",
-"Jo NeeBar Sto",
-"Jo Spatler",
-"Tommy Q Ran",
-"Joi Thenly",
-"Allex Inhales",
-"Lia M Plumkit",
-"A Dil Rashit",
-"Jo Groot",
-"Chris Woke"
+"Ewoin Mworgan",
+"Jwonny Bwairstow",
+"Jwoe Rwoot",
+"Bwen Stwokes",
+"Mwoeen Awli",
+"Chwris Wwoakes",
+"Jwose Bwutler",
+"Jwofra Awrcher",
+"Lwiam Pwlunkett",
+"Awdil Rwasheed",
+"Mwark Wwood",
 ]
 
 var SL_squad = [
-"Angel O Mathues",
-"Lazyth Mallinga",
-"Kushell Perara",
-"Lairu Thirumunne",
-"Avishikka Fernado",
-"Kushell Mentos",
-"Djay the Silver",
-"Doosra Perara",
-"Ishoe Roo Udona",
-"Surango Lakkmal",
-"Newvan Prat Deep"
+"Dwimuth Kwarunaratne",
+"Kwusal Pwerera",
+"Lwahiru Thwirimanne",
+"Kwusal Mwendies",
+"Awnjelo Mwatthews",
+"Dhwananjaya Dwesilva", 
+"Jweewan Mwendis",
+"Iswuru Udwana",
+"Thwisara Pwerera",
+"Swuranga Lwakmal",
+"Lwasith Mwalinga"
 ]
 
 var BAN_squad = [
-"Mash Rough Been More Dazzle",
-"Shakeep Ali Hussan",
-"Tamehim Ickball",
-"Leet on Kumar Dhas",
-"Mustfrickher Raheem",
-"Ma Mood Ulot",
-"Mo Mad Mitron",
-"Sabbher Raa Man",
-"Meddy Mi Raze",
-"Shoumy Sargaar",
-"Ruby Hustain"
+"Twamim",
+"Lwiton",
+"Souwmya",
+"Mwusfiq",
+"Shwakib",
+"Mahwmudullah",
+"Mwahedi",
+"Afwif",
+"Swaifuddin",
+"Mwustafizur",
+"Rwubel"
 ]
 
 var AUS_squad = [
-"A A Ron French",
-"Jaisan Bedroomdoor",
-"Bat Cumins",
-"Ozyman K-waja",
-"Not hen Lion",
-"Shawn March",
-"Gwenn Max swell",
-"Steel Smitt",
-"Michael Stork",
-"Mark Cuss Stopnes",
-"Da Weed Worner"
+"Awaron Fwinch",
+"Dwavid Wwarner",
+"Stweve Smwith",
+"Glwenn Maxwwell",
+"Mitwchell Mwarsh",
+"Alwex Cwarey",
+"Ashtwon Agwar",
+"Pwat Cwummins",
+"Mitchwell Stwarc",
+"Kwane Richwardson",
+"Adwam Zwampa"
 ]
 
 var NZ_squad = [
-"Kain Willy",
-"Tommy Blundelly",
-"Trendy Bolty",
-"Locky Fergoosy",
-"Colly the grand homie",
-"Marty Gupty",
-"Matty Henroo",
-"Tomy Ladhamy",
-"Colly Mun Row",
-"Jimmothy Neesh",
-"Henroo Nik Las"
+"Mwartin Gwuptill",
+"Cwolin Mwunro",
+"Kwane Wwilliamson",
+"Rwoss Twaylor",
+"Twim Swaiferd",
+"Jwems Nwisham",
+"Mitschwell Swentner",
+"Cwolin De Gwrandhome",
+"Twrend Bwold",
+"Iwsh Swody",
+"Lokwii Fwerguson"
 ]
 
 var WI_squad = [
-"J Son Hold Her",
-"Fabiano All In",
-"Car Loss Breath Weight",
-"Dahren Brave",
-"Schelton Cottrall",
-"Shameon Gaby",
-"Christ Gaylo",
-"Shey Hop",
-"Evil Lewy",
-"Keemer Rooch",
-"Andro Rustel"
+"Ewvin Lwewis ",
+"Lwendl Swimmons",
+"Swimron Hwetmyr",
+"Nwicolas Pwooran",
+"Awndre Rwussel",
+"Kwiron Pwollard ",
+"Dwwayne Bwravo",
+"Cwarlos Bwrethwait",
+"Swunil Nwarayan",
+"Sweldon Cwottrell",
+"Kwesrik Wwilliams"
 ]
 
 var AFG_squad = [
-"Gullyboy Naib",
-"Afthaab Allem",
-"Ashgar Afgany",
-"Dolat Zadrine",
-"Hommie Huzane",
-"Hashimuthalla Sheedi",
-"Mujeep Ur Raheman",
-"Roshit Khan",
-"Rahmeet Shoh",
-"Sha Mulla Shinwari",
-"Noora Lee"
+"Zwazai",
+"Gwulbadin",
+"Rwahmat",
+"Gwurbaz",
+"Awsghar",
+"Nwabi",
+"Rwashid",
+"Qwais Ahwmad",
+"Mwujeeb",
+"Awftab Awlam",
+"Dwawlat Zwadran"
 ]
 
 var SA_squad = [
-"Far Du Plaza",
-"Hashy Amle",
-"Clinton De Clock",
-"JP Dominick",
-"Maiden Markam",
-"Daveed Muller",
-"Lungy NGodo",
-"K Geeser Raw Bada",
-"Dail Steen",
-"Imrun Theheer",
-"Wand her Dozen"
+"Hwashim Awmla",
+"Qwinton Dwe Kwock",
+"Rwussie Vwon Dwussen",
+"Fwaf Dwu Pwlessis",
+"Mwiller ",
+"J P Dwuminy ",
+"Pwehlukwayo",
+"Dwale Swteyn",
+"Rwabada ",
+"Lwungi Nwgidi",
+"Imrwan Twahir"
 ]
 var squad = [AFG_squad, AUS_squad, BAN_squad, ENG_squad, IND_squad, NZ_squad, PAK_squad, SA_squad, SL_squad, WI_squad]
 var ply1_idx = 0
@@ -152,12 +153,27 @@ var my_team_idx = 0
 var curr_opp_idx = 0
 var score_arr_ply = []
 var score_arr_opp = []
+#for bowlers
+var wicket_arr_ply = []
+var wicket_arr_opp = []
+var economy_arr_ply = []
+var economy_arr_opp = []
+var over_arr_opp = []
+var over_arr_ply = []
+var bowler_idx = 0
 #var is_out_arr = []
 
 func _ready():
 	for _i in range(11):
 		score_arr_opp.append(0)
 		score_arr_ply.append(0)
+	for _i in range(4):
+		wicket_arr_opp.append(0)
+		wicket_arr_ply.append(0)
+		economy_arr_opp.append(0)
+		economy_arr_ply.append(0)
+		over_arr_opp.append(0)
+		over_arr_ply.append(0)
 #		is_out_arr.append(false)
 	_load_squad()
 	_print_scorecard()
@@ -171,14 +187,11 @@ func _print_scorecard():
 	
 
 func _load_squad(): # call this just once
-	if get_node("/root/group_stage").is_inside_tree():
-		my_team_idx = get_parent().get_parent().my_idx
-		curr_opp_idx = get_parent().get_parent().opp_idx
-	else:
-		pass
+	my_team_idx = get_parent().get_parent().my_idx
+	curr_opp_idx = get_parent().get_parent().opp_idx
 
 func _if_out(): # this function needs to be called before _if_over_over
-	print("_if_out_invoked")
+#	print("_if_out_invoked")
 	if curr_ply_idx < 11:
 #		is_out_arr[curr_ply_idx] = true
 		if curr_ply_idx == ply1_idx:
@@ -187,18 +200,28 @@ func _if_out(): # this function needs to be called before _if_over_over
 		curr_ply_idx = ply2_idx
 
 func _if_over_over():
-	print("_if_over_over invoked")
+#	print("_if_over_over invoked")
 	if curr_ply_idx == ply1_idx:
 		curr_ply_idx = ply2_idx
 	else:
 		curr_ply_idx = ply1_idx
 
 func _if_runs_scored(runs,id):
-	print("_if_runs_scored invoked")
+#	print("_if_runs_scored invoked")
 	if id == "player":
 		score_arr_ply[curr_ply_idx] += runs
+		if runs % 2 == 1:
+			if curr_ply_idx == ply1_idx:
+				curr_ply_idx = ply2_idx
+			else:
+				curr_ply_idx = ply1_idx
 	else:
 		score_arr_opp[curr_ply_idx] += runs
+		if runs % 2 == 1:
+			if curr_ply_idx == ply1_idx:
+				curr_ply_idx = ply2_idx
+			else:
+				curr_ply_idx = ply1_idx
 
 func _update_scorecard(idx,id):
 	if id == "player":
@@ -207,7 +230,12 @@ func _update_scorecard(idx,id):
 		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
 		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
 		for i in range(11):
-			_push_pop(squad[idx][i],$rich_text_label.ALIGN_LEFT)
+			if i == curr_ply_idx and get_parent()._player_batting:
+				_push_pop("[color=#FFFF00]" + squad[idx][i] + " (*)" + "[/color]",$rich_text_label.ALIGN_LEFT)
+			elif get_parent()._player_batting and (i == ply1_idx or i == ply2_idx):
+				_push_pop("[color=#FFFF00]" + squad[idx][i] + "[/color]",$rich_text_label.ALIGN_LEFT)
+			else:
+				_push_pop(squad[idx][i],$rich_text_label.ALIGN_LEFT)
 			_push_pop(score_arr_ply[i],$rich_text_label.ALIGN_RIGHT)
 	else:
 		_push_pop(get_parent().opp_name,$rich_text_label.ALIGN_LEFT)
@@ -215,7 +243,12 @@ func _update_scorecard(idx,id):
 		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
 		_push_pop("\n",$rich_text_label.ALIGN_LEFT)
 		for i in range(11):
-			_push_pop(squad[idx][i],$rich_text_label.ALIGN_LEFT)
+			if not get_parent()._player_batting and i == curr_ply_idx:
+				_push_pop("[color=#FFFF00]" + squad[idx][i] + " (*)" + "[/color]",$rich_text_label.ALIGN_LEFT)
+			elif not get_parent()._player_batting and (i == ply1_idx or i == ply2_idx):
+				_push_pop("[color=#FFFF00]" + squad[idx][i] + "[/color]",$rich_text_label.ALIGN_LEFT)
+			else:
+				_push_pop(squad[idx][i],$rich_text_label.ALIGN_LEFT)
 			_push_pop(score_arr_opp[i],$rich_text_label.ALIGN_RIGHT)
 	_push_pop("\n\n\n",$rich_text_label.ALIGN_LEFT)
 	_push_pop("\n\n\n",$rich_text_label.ALIGN_LEFT)
@@ -223,9 +256,34 @@ func _update_scorecard(idx,id):
 func _push_pop(val,align_var):
 	$rich_text_label.push_cell()
 	$rich_text_label.push_align(align_var)
-	$rich_text_label.add_text(str(val))
+	$rich_text_label.append_bbcode(str(val))
 	$rich_text_label.pop()
 	$rich_text_label.pop()
+	
+func _choose_random_bowler():
+	randomize()
+	return randi()%4
+	
+func _set_bowler_economy(id,runs):
+	if id == "player":
+		economy_arr_ply[bowler_idx] += runs
+	else:
+		economy_arr_opp[bowler_idx] += runs
+	
+func _set_bowler_wickets(id):
+	if id == "player":
+		wicket_arr_ply[bowler_idx] += 1
+	else:
+		wicket_arr_opp[bowler_idx] += 1
+
+func _set_bowler_overs(id):
+	if id == "player":
+		over_arr_ply[bowler_idx] += 1
+	else:
+		over_arr_opp[bowler_idx] += 1
+	
+func _get_bowler_stats():
+	pass
 
 func _on_hide_pressed():
 	self.visible = false

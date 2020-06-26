@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/group_stage.tscn" type="PackedScene" id=1]
+
+[node name="nations_league" type="Node2D"]
+
+[node name="group_stage" parent="." instance=ExtResource( 1 )]

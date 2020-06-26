@@ -12,7 +12,7 @@ func _ready():
 
 
 func _on_single_player_pressed():
-	ins = load("res://scenes/single_player.tscn").instance()
+	ins = preload("res://scenes/single_player.tscn").instance()
 	self.add_child(ins)
 #	get_tree().change_scene("res://scenes/single_player.tscn")
 
@@ -22,7 +22,7 @@ func _on_go_back_pressed():
 		print("error")
 
 func _on_tournaments_pressed():
-	ins = load("res://scenes/tournaments.tscn").instance()
+	ins = preload("res://scenes/tournaments.tscn").instance()
 	self.add_child(ins)
 
 

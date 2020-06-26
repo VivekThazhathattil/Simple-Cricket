@@ -10,8 +10,6 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-
-
 func _on_TextureButton_pressed():
 	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
 		print("change scene error")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://sprites/bg.png" type="Texture" id=1]
 [ext_resource path="res://scripts/base_game.gd" type="Script" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://audio/ambient_sound.ogg" type="AudioStream" id=15]
 [ext_resource path="res://sprites/innings_over_bg.png" type="Texture" id=16]
-[ext_resource path="res://scenes/squads.tscn" type="PackedScene" id=17]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"
@@ -572,22 +571,21 @@ rect_min_size = Vector2( 500, 100 )
 custom_constants/separation = 50
 
 [node name="your_stat" type="Label" parent="my_stats/HBoxContainer"]
-margin_right = 183.0
+margin_right = 327.0
 margin_bottom = 65.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Team1
-(Bat/Bowl)"
+text = "Press any number 
+to begin the game"
 
 [node name="your_stat2" type="Label" parent="my_stats/HBoxContainer"]
-margin_left = 233.0
-margin_right = 344.0
+margin_left = 377.0
+margin_right = 377.0
 margin_bottom = 31.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Overs:"
 
 [node name="PUMP" type="Node2D" parent="."]
 position = Vector2( -100, 100 )
@@ -631,22 +629,18 @@ rect_min_size = Vector2( 500, 100 )
 custom_constants/separation = 50
 
 [node name="your_stat" type="Label" parent="opp_stats/HBoxContainer"]
-margin_right = 183.0
-margin_bottom = 65.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = SubResource( 2 )
-text = "Team2
-(Bat/Bowl)"
-
-[node name="your_stat2" type="Label" parent="opp_stats/HBoxContainer"]
-margin_left = 233.0
-margin_right = 342.0
 margin_bottom = 31.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Score:"
+
+[node name="your_stat2" type="Label" parent="opp_stats/HBoxContainer"]
+margin_left = 50.0
+margin_right = 50.0
+margin_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
 
 [node name="player" type="Sprite" parent="."]
 pause_mode = 2
@@ -1112,9 +1106,6 @@ autoplay = true
 [node name="ambient_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 15 )
 autoplay = true
-
-[node name="squads" parent="." instance=ExtResource( 17 )]
-visible = false
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_Button_pressed"]
 [connection signal="animation_finished" from="PUMP/pump_up/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="team_logo/scorecard_button" to="." method="_on_scorecard_button_pressed"]

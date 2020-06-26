@@ -4,7 +4,7 @@ extends Node2D
 #TODO: Add save tournament feature
 
 var team_roster
-var idx = -1
+var idx
 var team_list
 var team_list_short
 var team_wins
@@ -13,21 +13,21 @@ var team_draws
 var game_stat = "none"
 var my_idx 
 var opp_idx
+var tourn_type
 
 func _ready():
 	var inst = preload("res://scenes/save.tscn")
 	self.add_child(inst.instance())
+	idx = $save.read_save(2,"match_idx")
 	team_list = $save.read_save(2,"team_list")
 	team_list_short = $save.team_list_short
 	team_wins = $save.read_save(2,"team_wins")
 	team_losses = $save.read_save(2,"team_losses")
 	team_draws = $save.read_save(2,"team_draws")
+	$save.save(2,"tournament_mode",true)
+	tourn_type = $save.read_save(2,"tourn_type")
 	_print_table()
 	get_tree().set_quit_on_go_back(false)
-	
-func _reset_tournament_save_file():
-#	set my_team = none and curr_opponent = none
-	pass
 	
 func _print_table():
 	$ItemList.clear()
@@ -88,15 +88,31 @@ func _sort_table():
 	return idx_arr
 
 func _group_stage_handler():
-	if idx == -1:
-		team_roster = team_list + team_list
-		team_roster.erase($save.read_save(2,"my_team"))
-	elif idx == 18:
-		pass # change this to proceed to semi final
+	if tourn_type == "tourn":
+		team_roster = [] + team_list
+	elif tourn_type == "league":
+		team_roster = [] + team_list + team_list + team_list + team_list
+	team_roster.erase($save.read_save(2,"my_team"))
 	idx += 1
-	$save.save(2,"curr_opponent",team_roster[idx])
-	_get_all_match_results()
-	
+#	print("team roster = " + str(team_roster))
+#	print("idx = " + str(idx))
+	if idx < 9 and tourn_type == "tourn":
+		$save.save(2,"curr_opponent",team_roster[idx])
+		_get_all_match_results()
+	elif idx < 36 and tourn_type == "league":
+		$save.save(2,"curr_opponent",team_roster[idx])
+		_get_all_match_results()
+	elif idx == 36 and tourn_type == "league":
+		_league_results_decider()
+	else:
+		_semi_final_handler()
+		
+func _league_results_decider():
+	pass
+
+func _semi_final_handler():
+	pass
+		
 func _get_all_match_results():
 	randomize()
 	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
@@ -170,7 +186,10 @@ func _my_game_results():
 	_print_table()
 
 func _find_idx_of_team(team_name):
+#	print("team_name = " + team_name)
 	for i in range(10):
+#		print("i = " + str(i))
+#		print("team_list[i] = " + team_list[i])
 		if team_name == team_list[i]:
 			return i
 		
@@ -181,8 +200,8 @@ func _notification(what):
 		_on_Back_pressed()
 	
 func _on_Back_pressed():
-	if $save.read(2,"my_team") != "none":
-		$save.save(2,"my_team","none")
+	if $save.read(2,"tournament_mode"):
+		$save.save(2,"tournament_mode",false)
 	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
 		print("change scene error")
 
@@ -190,3 +209,10 @@ func _on_Button_pressed():
 	var game_inst = preload("res://scenes/base_game.tscn")
 	_group_stage_handler()
 	add_child(game_inst.instance())
+
+
+func _on_save_tourn_pressed():
+	$save.save(2,"match_idx",idx)
+	$save.save(2,"team_wins", team_wins)
+	$save.save(2,"team_losses", team_losses)
+	$save.save(2,"team_draws", team_draws)

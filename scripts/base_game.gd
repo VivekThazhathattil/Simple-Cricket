@@ -1,3 +1,4 @@
+# TODO: notification back request not working. Fix it
 extends Node2D
 var hand_1 = preload("res://sprites/1.png")
 var hand_2 = preload("res://sprites/2.png")
@@ -46,10 +47,10 @@ func _ready():
 	var save_inst = preload("res://scenes/save.tscn")
 	self.add_child(save_inst.instance())
 	_create_n_load_save()
-	print("my_team choice is " + $save.read_save(2,"my_team"))
-	if $save.read_save(2,"my_team") != "none":
+#	print("my_team choice is " + $save.read_save(2,"my_team"))
+	if $save.read_save(2,"tournament_mode"):
 		tournament_mode = true
-	print("Tournament mode = " + str(tournament_mode))
+#	print("Tournament mode = " + str(tournament_mode))
 	if tournament_mode:
 		var idx1 = get_parent()._find_idx_of_team($save.read_save(2,"my_team"))
 		var idx2 = get_parent()._find_idx_of_team($save.read_save(2,"curr_opponent"))
@@ -57,9 +58,14 @@ func _ready():
 		$team_logo/opp_team_logo.set_texture($save.team_icon_arr[idx2])
 		my_name = $save.read_save(2, "my_team")
 		opp_name = $save.read_save(2, "curr_opponent")
-		print("my_name is " +my_name)
-		print("curr_opponent is " + opp_name)
-		over_max = 5
+#		print("my_name is " +my_name)
+#		print("curr_opponent is " + opp_name)
+		over_max = $save.read_save(2,"overs")
+		# load squads if in tournament mode
+		var squad_inst = preload("res://scenes/squads.tscn")
+		add_child(squad_inst.instance())
+		$squads.visible = false
+		
 	else:
 		$team_logo.visible = false
 		get_node("/root/menu/bg_music").playing = false
@@ -131,11 +137,11 @@ func _final_action():
 	
 func _check_if_won():
 	if _player_batting and player_score > opp_score and num_sides_batted_so_far == 2:
-		print("base_game:59: player has scored more than the opponent")
+#		print("base_game:59: player has scored more than the opponent")
 		_match_over = true
 		_end_match()
 	elif not _player_batting and opp_score > player_score and num_sides_batted_so_far == 2:
-		print("base_game:62: opponent has scored more than the player")
+#		print("base_game:62: opponent has scored more than the player")
 		_match_over = true
 		_end_match()
 func _main_handler():
@@ -298,13 +304,13 @@ func _update_labels():
 			if ball_count == 0:
 				$ColorRect/misc_stats.set_text("Current runrate: -")
 			else:
-				print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
+#				print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
 				$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(player_score)/ball_count*balls_per_over,0.01)))
 		else:
 			if ball_count == 0:
 				$ColorRect/misc_stats.set_text("Current runrate: -")
 			else:
-				print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
+#				print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
 				$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(opp_score)/ball_count*balls_per_over,0.01)))
 	elif num_sides_batted_so_far == 2:
 		if randi()%2 == 0:
@@ -340,21 +346,21 @@ func _on_continue2_pressed():
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	$PUMP/pump_up.set("custom_colors/font_color", Color(1,1,1,1))
 	$PUMP/pump_up.set("custom_fonts/font:size", str(50))
-	print("animatiom finished")
+#	print("animatiom finished")
 
 
 func _on_Button_pressed():
-	print("button pressed")
+#	print("button pressed")
 	if not _match_over and num_sides_batted_so_far == 2:
-		print("match not over")
+#		print("match not over")
 		if not "Current" in $ColorRect/misc_stats.get_text():
-			print("current in misc_stats")
+#			print("current in misc_stats")
 			if _player_batting:
-				print("player batting")
+#				print("player batting")
 				if ball_count == 0 or ball_count == over_max*balls_per_over:
 					$ColorRect/misc_stats.set_text("Current runrate: -")
 				else:
-					print("printing current run rate")
+#					print("printing current run rate")
 					$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(player_score)/ball_count*balls_per_over,0.01)) + "\n required runrate: " + str(stepify(float(opp_score-player_score)/(balls_per_over*over_max-ball_count)*balls_per_over,0.01)))
 			else:
 				if ball_count == 0 or ball_count == over_max*balls_per_over:
@@ -362,26 +368,26 @@ func _on_Button_pressed():
 				else:
 					$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(opp_score)/ball_count*balls_per_over,0.01)) + "\n required runrate: " + str(stepify(float(player_score-opp_score)/(balls_per_over*over_max-ball_count)*balls_per_over,0.01)))
 		else:
-			print("current not in misc_stats")
+#			print("current not in misc_stats")
 			$ColorRect/misc_stats.set_text("Need " + str(abs(player_score-opp_score)+1) + " runs from " + str(over_max*6 - ball_count) + " balls to win.")
 	elif not _match_over and num_sides_batted_so_far == 1:
-		print("match not over and num_sides is 1")
+#		print("match not over and num_sides is 1")
 		if not "Current" in $ColorRect/misc_stats.get_text():
-					print("current found in misc_stats")
+#					print("current found in misc_stats")
 					if _player_batting:
 						if ball_count == 0:
 							$ColorRect/misc_stats.set_text("Current runrate: -")
 						else:
-							print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
+#							print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
 							$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(player_score)/ball_count*balls_per_over,0.01)))
 					else:
 						if ball_count == 0:
 							$ColorRect/misc_stats.set_text("Current runrate: -")
 						else:
-							print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
+#							print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
 							$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(opp_score)/ball_count*balls_per_over,0.01)))
 		else:
-			print("current not in misc_stats")
+#			print("current not in misc_stats")
 			$ColorRect/misc_stats.set_text("Odd or Even Hand Cricket")
 	else:
 		$ColorRect/misc_stats.set_text("Match finished!")

@@ -43,6 +43,7 @@ margin_bottom = 924.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

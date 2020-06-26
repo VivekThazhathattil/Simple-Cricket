@@ -31,15 +31,25 @@ var team_wins = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_losses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_draws = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var team_probs = [1,8,2,10,10,8,7,6,6,4]
+var match_idx = -1
 var my_team = "none"
 var curr_opponent = "none"
+var saved_tourn = false
+var tournament_mode = false
+var tourn_type = "tourn" # alts = "league","tourn"
+var overs = 5 # alts = 10 for T10 tourn, 5 for T5 tourn, 5 for super_league
 var save_data_tournament = {
 							"team_list" : team_list,
 							"team_wins" : team_wins,
 							"team_losses" : team_losses,
 							"team_draws" : team_draws,
 							"my_team" : my_team,
-							"curr_opponent" : curr_opponent
+							"curr_opponent" : curr_opponent,
+							"saved_tourn" : saved_tourn,
+							"tournament_mode" : tournament_mode,
+							"match_idx" : match_idx,
+							"tourn_type" : tourn_type,
+							"overs" : overs
 }
 var team_icon_arr = [preload("res://sprites/afgan_flag.png"),
 					preload("res://sprites/australia_flag.png"),
