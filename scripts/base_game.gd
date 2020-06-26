@@ -150,6 +150,7 @@ func _main_handler():
 			player_score += $button_array.instantaneous_score
 			if tournament_mode:
 				$squads._if_runs_scored($button_array.instantaneous_score,"player")
+				$squads._set_bowler_economy("opponent",$button_array.instantaneous_score)
 			$PUMP/pump_up.set_text("")
 			_update_labels()
 			_check_if_won()
@@ -161,6 +162,7 @@ func _main_handler():
 						$squads.curr_ply_idx = 0
 						$squads.ply1_idx = 0
 						$squads.ply2_idx = 1
+						$squads._choose_random_bowler()
 				else:
 					_match_over = true
 					_update_labels()
@@ -169,6 +171,7 @@ func _main_handler():
 				player_wickets_rem -= 1
 				if tournament_mode:
 					$squads._if_out()
+					$squads._set_bowler_wickets("opponent")
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
@@ -182,6 +185,7 @@ func _main_handler():
 			opp_score += $button_array.opponent_move
 			if tournament_mode:
 				$squads._if_runs_scored($button_array.opponent_move,"opponent")
+				$squads._set_bowler_economy("player",$button_array.opponent_move)
 			$PUMP/pump_up.set_text("")
 			_update_labels()
 			_check_if_won()
@@ -193,6 +197,7 @@ func _main_handler():
 						$squads.curr_ply_idx = 0
 						$squads.ply1_idx = 0
 						$squads.ply2_idx = 1
+						$squads._choose_random_bowler()
 				else:
 					_match_over = true
 					_update_labels()
@@ -201,6 +206,7 @@ func _main_handler():
 				opp_wickets_rem -= 1
 				if tournament_mode:
 					$squads._if_out()
+					$squads._set_bowler_wickets("player")
 				_update_labels()
 			$PUMP/pump_up.set_text("OUT!")
 			$PUMP/pump_up/AnimationPlayer.play("to_red")
@@ -215,12 +221,14 @@ func _main_handler():
 				$squads.curr_ply_idx = 0
 				$squads.ply1_idx = 0
 				$squads.ply2_idx = 1
+				$squads._choose_random_bowler()
 		else:
 			_match_over = true
 			_end_match()
 	if ball_count > 0 and ball_count%6 == 0:
 		if tournament_mode:
 			$squads._if_over_over()
+			$squads._choose_random_bowler()
 
 func _reset_hands():
 		$player.set_texture(hand_10)

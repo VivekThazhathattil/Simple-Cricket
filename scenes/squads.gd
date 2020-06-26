@@ -177,6 +177,7 @@ func _ready():
 #		is_out_arr.append(false)
 	_load_squad()
 	_print_scorecard()
+	_choose_random_bowler()
 
 func _print_scorecard():
 	$rich_text_label.clear()
@@ -184,6 +185,8 @@ func _print_scorecard():
 	_update_scorecard(my_team_idx,"player")
 	_update_scorecard(curr_opp_idx,"opponent")
 	$rich_text_label.pop()
+	_print_bowler_stats("player",my_team_idx)
+	_print_bowler_stats("opponent",curr_opp_idx)
 	
 
 func _load_squad(): # call this just once
@@ -262,28 +265,72 @@ func _push_pop(val,align_var):
 	
 func _choose_random_bowler():
 	randomize()
-	return randi()%4
+	var new_idx = randi()%4
+	if bowler_idx == new_idx:
+		if new_idx + 1 < 4:
+			bowler_idx = new_idx + 1
+		elif new_idx - 1 >= 0:
+			bowler_idx = new_idx - 1
+		else:
+			print("Error: cannot decide new bowler index!")
+	else:
+		bowler_idx = new_idx
 	
 func _set_bowler_economy(id,runs):
 	if id == "player":
 		economy_arr_ply[bowler_idx] += runs
+		over_arr_ply[bowler_idx] += 1
 	else:
 		economy_arr_opp[bowler_idx] += runs
+		over_arr_opp[bowler_idx] += 1
 	
 func _set_bowler_wickets(id):
 	if id == "player":
 		wicket_arr_ply[bowler_idx] += 1
-	else:
-		wicket_arr_opp[bowler_idx] += 1
-
-func _set_bowler_overs(id):
-	if id == "player":
 		over_arr_ply[bowler_idx] += 1
 	else:
+		wicket_arr_opp[bowler_idx] += 1
 		over_arr_opp[bowler_idx] += 1
 	
-func _get_bowler_stats():
-	pass
-
+func _print_bowler_stats(id,idx):
+#	player		overs		wickets		runs		economy
+	$rich_text_label.push_table(5)
+	_push_pop("Player\n",$rich_text_label.ALIGN_LEFT)
+	_push_pop("  Ovr   \n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("W   \n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("Runs   \n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("Eco   \n",$rich_text_label.ALIGN_CENTER)
+	if id == "player":
+		for i in range(4):
+			if i == bowler_idx and not get_parent()._player_batting:
+				_push_pop("[color=#FFFF00]" + squad[idx][10-i] + "(*)" + "[/color]",$rich_text_label.ALIGN_LEFT)
+			else:
+				_push_pop(squad[idx][10-i],$rich_text_label.ALIGN_LEFT)
+			_push_pop(str(over_arr_ply[i]/6) + "." + str(over_arr_ply[i]%6),$rich_text_label.ALIGN_CENTER)
+			_push_pop(str(wicket_arr_ply[i]),$rich_text_label.ALIGN_CENTER)
+			_push_pop(str(economy_arr_ply[i]),$rich_text_label.ALIGN_CENTER)
+			if over_arr_ply[i] != 0:
+				_push_pop(str("%0.1f"%(float(economy_arr_ply[i])*6/over_arr_ply[i])),$rich_text_label.ALIGN_CENTER)
+			else:
+				_push_pop(str(0),$rich_text_label.ALIGN_CENTER)
+	else:
+		for i in range(4):
+			if i == bowler_idx and get_parent()._player_batting:
+				_push_pop("[color=#FFFF00]" + squad[idx][10-i] + "(*)" + "[/color]",$rich_text_label.ALIGN_LEFT)
+			else:
+				_push_pop(squad[idx][10-i],$rich_text_label.ALIGN_LEFT)
+			_push_pop(str(over_arr_opp[i]/6) + "." + str(over_arr_opp[i]%6),$rich_text_label.ALIGN_CENTER)
+			_push_pop(str(wicket_arr_opp[i]),$rich_text_label.ALIGN_CENTER)
+			_push_pop(str(economy_arr_opp[i]),$rich_text_label.ALIGN_CENTER)
+			if over_arr_opp[i] != 0:
+				_push_pop(str("%0.1f"%(float(economy_arr_opp[i])*6/over_arr_opp[i])),$rich_text_label.ALIGN_CENTER)
+			else:
+				_push_pop(str(0),$rich_text_label.ALIGN_CENTER)
+	_push_pop("\n\n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("\n\n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("\n\n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("\n\n",$rich_text_label.ALIGN_CENTER)
+	_push_pop("\n\n",$rich_text_label.ALIGN_CENTER)
+	$rich_text_label.pop()
 func _on_hide_pressed():
 	self.visible = false
