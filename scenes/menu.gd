@@ -25,6 +25,8 @@ func _create_load_save():
 		$bottom_panel/panel_container/sound_off.set_normal_texture(preload("res://sprites/sound_on.png"))
 		
 func _on_PLAY_NOW_pressed():
+	$Sprite.visible = true
+	yield(get_tree().create_timer(0.5),"timeout")
 	var ins = load("res://scenes/game_mode.tscn").instance()
 	self.add_child(ins)
 

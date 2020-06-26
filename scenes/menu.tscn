@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sprites/music_on.png" type="Texture" id=10]
 [ext_resource path="res://sprites/sound_on.png" type="Texture" id=11]
 [ext_resource path="res://sprites/credits.png" type="Texture" id=12]
+[ext_resource path="res://sprites/loading_sprite.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"
@@ -193,6 +194,12 @@ texture_normal = ExtResource( 9 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "menu_funk"
 anims/menu_funk = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 311.273, 582.786 )
+scale = Vector2( 1.96126, 2.25315 )
+texture = ExtResource( 13 )
 [connection signal="pressed" from="Container/PLAY NOW" to="." method="_on_PLAY_NOW_pressed"]
 [connection signal="pressed" from="Container/MY PROFILE" to="." method="_on_MY_PROFILE_pressed"]
 [connection signal="pressed" from="Container/HOW TO PLAY" to="." method="_on_HOW_TO_PLAY_pressed"]

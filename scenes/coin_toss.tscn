@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://other_data/neuropol x rg.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/coin_toss.gd" type="Script" id=2]
@@ -11,19 +11,43 @@ font_path = "res://other_data/neuropol x rg.ttf"
 size = 72
 font_data = SubResource( 1 )
 
+[sub_resource type="StyleBoxLine" id=11]
+color = Color( 0.239216, 0.470588, 0.0705882, 1 )
+grow_begin = 0.0
+thickness = 7
+vertical = true
+
 [sub_resource type="DynamicFont" id=3]
 size = 40
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0313726, 0.0705882, 0.137255, 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.309804, 0.0352941, 0.0352941, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 1 )
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+font_data = SubResource( 9 )
 
 [node name="coin_toss" type="Node2D"]
 script = ExtResource( 2 )
@@ -32,6 +56,9 @@ script = ExtResource( 2 )
 margin_right = 600.0
 margin_bottom = 1024.0
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="toss_text" type="Label" parent="."]
 margin_left = 180.0
@@ -56,19 +83,22 @@ __meta__ = {
 }
 
 [node name="heads" type="Button" parent="coinbox"]
-margin_right = 208.0
-margin_bottom = 55.0
+margin_right = 210.0
+margin_bottom = 69.0
+custom_styles/normal = SubResource( 11 )
 custom_fonts/font = SubResource( 3 )
 text = "HEADS"
 
 [node name="tails" type="Button" parent="coinbox"]
-margin_left = 258.0
-margin_right = 429.0
-margin_bottom = 55.0
+margin_left = 260.0
+margin_right = 433.0
+margin_bottom = 69.0
+custom_styles/normal = SubResource( 11 )
 custom_fonts/font = SubResource( 3 )
 text = "TAILS"
 
 [node name="opp_choice" type="AcceptDialog" parent="."]
+visible = true
 margin_left = 50.0
 margin_top = 400.0
 margin_right = 350.0
@@ -77,11 +107,11 @@ popup_exclusive = true
 window_title = ""
 
 [node name="player_choice" type="WindowDialog" parent="."]
-visible = true
-margin_left = 40.0
+margin_left = 37.7279
 margin_top = 400.0
-margin_right = 540.0
-margin_bottom = 600.0
+margin_right = 564.728
+margin_bottom = 789.0
+custom_styles/panel = SubResource( 5 )
 window_title = "You won the toss"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -95,23 +125,28 @@ text = "Do you wish to bat or bowl?"
 autowrap = true
 
 [node name="Batting" type="Button" parent="player_choice"]
-margin_left = 50.0
-margin_top = 100.0
-margin_right = 143.0
-margin_bottom = 126.0
-custom_fonts/font = SubResource( 5 )
+margin_left = 122.978
+margin_top = 113.632
+margin_right = 388.978
+margin_bottom = 182.632
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "Batting"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bowling" type="Button" parent="player_choice"]
-margin_left = 320.0
-margin_top = 100.0
-margin_right = 418.0
-margin_bottom = 126.0
-custom_fonts/font = SubResource( 6 )
+margin_left = 117.441
+margin_top = 247.544
+margin_right = 400.441
+margin_bottom = 328.544
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
 text = "Bowling"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="coinbox/heads" to="." method="_on_heads_pressed"]
 [connection signal="pressed" from="coinbox/tails" to="." method="_on_tails_pressed"]
 [connection signal="confirmed" from="opp_choice" to="." method="_on_opp_choice_confirmed"]

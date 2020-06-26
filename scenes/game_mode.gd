@@ -22,6 +22,8 @@ func _on_go_back_pressed():
 		print("error")
 
 func _on_tournaments_pressed():
+	$loading_sprite.visible = true
+	yield(get_tree().create_timer(0.5),"timeout")
 	ins = preload("res://scenes/tournaments.tscn").instance()
 	self.add_child(ins)
 
