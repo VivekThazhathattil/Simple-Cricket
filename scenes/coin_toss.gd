@@ -27,10 +27,16 @@ func _pop_up_select_batting():
 	
 
 func _on_heads_pressed():
+	$PopupPanel.popup()
+	yield(get_tree().create_timer(1),"timeout")
+	$PopupPanel.hide()
 	my_dec = 0
 	_final_judger()
 
 func _on_tails_pressed():
+	$PopupPanel.popup()
+	yield(get_tree().create_timer(1),"timeout")
+	$PopupPanel.hide()
 	my_dec = 1
 	_final_judger()
 	

@@ -14,6 +14,7 @@ var game_stat = "none"
 var my_idx 
 var opp_idx
 var tourn_type
+var my_team
 
 func _ready():
 	var inst = preload("res://scenes/save.tscn")
@@ -25,6 +26,7 @@ func _ready():
 	team_losses = $save.read_save(2,"team_losses")
 	team_draws = $save.read_save(2,"team_draws")
 	$save.save(2,"tournament_mode",true)
+	my_team = $save.read_save(2,"my_team")
 	tourn_type = $save.read_save(2,"tourn_type")
 	_print_table()
 	get_tree().set_quit_on_go_back(false)
@@ -33,7 +35,7 @@ func _print_table():
 	$ItemList.clear()
 	var sorted_idx_arr = _sort_table()
 	var j = 0
-	var my_team = $save.read_save(2,"my_team")
+#	var my_team = $save.read_save(2,"my_team")
 	var new_my_team_idx
 	$ItemList.add_item("S.no")
 	$ItemList.add_item("Team")
@@ -92,7 +94,14 @@ func _group_stage_handler():
 		team_roster = [] + team_list
 	elif tourn_type == "league":
 		team_roster = [] + team_list + team_list + team_list + team_list
-	team_roster.erase($save.read_save(2,"my_team"))
+	var roster_size = team_roster.size()
+	var i = 0
+	while i < roster_size:
+		if team_roster[i] == my_team:
+			team_roster.remove(i)
+			roster_size -= 1
+		i += 1
+	print(str(team_roster))
 	idx += 1
 #	print("team roster = " + str(team_roster))
 #	print("idx = " + str(idx))
@@ -212,6 +221,9 @@ func _on_Button_pressed():
 
 
 func _on_save_tourn_pressed():
+	$PopupPanel.popup()
+	yield(get_tree().create_timer(0.5),"timeout")
+	$PopupPanel.hide()
 	$save.save(2,"match_idx",idx)
 	$save.save(2,"team_wins", team_wins)
 	$save.save(2,"team_losses", team_losses)
