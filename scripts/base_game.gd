@@ -105,6 +105,7 @@ func _end_match():
 		if player_score > opp_score:
 			$you_won.visible = true
 			$you_won/confetti.play("blow")
+			$you_won/Label.set_text(my_name + " WON!!")
 			if flag == 0:
 				flag = 1
 				$save.save(1,"games_won",$save.read_save(1,"games_won")+1)
@@ -113,6 +114,7 @@ func _end_match():
 					get_parent()._my_game_results()
 		elif player_score < opp_score:
 			$they_won.visible = true
+			$they_won/Label.set_text(my_name + " lost...")
 			if flag == 0:
 				flag = 1
 				$save.save(1,"games_lost",$save.read_save(1,"games_lost")+1)
@@ -121,6 +123,7 @@ func _end_match():
 					get_parent()._my_game_results()
 		else:
 			$drawn.visible = true
+			$drawn/Label.set_text(my_name + " and " + opp_name + " drew the match...")
 			if flag == 0:
 				flag = 1
 				$save.save(1,"games_drawn",$save.read_save(1,"games_drawn")+1)

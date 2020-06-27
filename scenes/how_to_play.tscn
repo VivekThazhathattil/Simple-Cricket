@@ -1,3 +1,82 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/how_to_play.gd" type="Script" id=1]
+[ext_resource path="res://scenes/guide.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://other_data/helvetica.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+extra_spacing_top = 10
+extra_spacing_char = 2
+extra_spacing_space = 4
+font_data = SubResource( 1 )
 
 [node name="how_to_play" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 800.0
+rect_min_size = Vector2( 500, 824 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "Menu:
+
+Tap on 'PLAY NOW' to enter the secondary menu, where you can select any of the following game modes:
+
+* Single Player :- In this game mode, you play against the AI opponent. You get to choose the number of overs from the available presets or choose them on your own by selecting 'Custom' button. In Limitless mode, you get to play unlimited number of overs until you/opponent lose all the  wickets.
+
+TODO: fix Test mode
+
+* Multiplayer :- In this mode, you'll be able to connect with your peer via internet using public IP addresses and play against them. By clicking create server in Multiplayer mode, you create a server to which clients can connect. This mode supports only two player games. Your peer can use your IP address to connect to your server and begin the match. The server has to choose the number of overs. The server also gets to choose heads or tails in coin toss phase, and the winner of the toss gets to make their decision to bat or bowl.
+
+TODO: add option to select overs in multiplayer mode
+
+* Tours :- In tours mode, an international team plays against another international team for a few games. The winner will be decided on the basis of the number of games won by each team. In this mode,  you can select your team, your opponent, number of overs per match and number of matches. By clicking 'Proceed' button, you'll be redirected to the Tour arena and proceed as you wish. Make sure you save the tour progress by clicking the 'Save' button.
+
+* Tournaments :- 
+Tournament mode showcases two cups, a league and a custom tournament. In T5 International Cup, your team will play for glory along with 9 other teams in a 5-over per match format. Each team faces the other exactly once. So your team gets to play 9 games. If you make it to the top four of the leaderboard, you'll advance to the semifinals where you'll face one of the other leaders from the group stage.  If you win, you proceed to the finals where you'll play against the winner of the second semifinals. Winning the tournament will unlock the 'T5 Champion' Achievement and add a T5 trophy to your trophy case (accessible via My Stats in the main menu). Always make sure to save your tournament progress by clicking the 'Save tournament' button.
+ T10 International Cup is exactly the same as T5 international Cup, but every match will be of 10-over per match format. Winning the tournament would unlock the 'T10 Champion achievement' and add a 'T10 trophy' to your trophy case(accessible via My Stats in the main menu). Always make sure to save your tournament by clicking 'Save tournament' option.
+Cricket Champions League is another exciting long term tournament which will be held in a league format. This is similar to the popular football/soccer leagues like English Premier League, Liga BBVA etc. But here you get to select an international team among ten other teams and you play against them 4 times throughout the league. So, you play a total of 36 games (4 games x 9 other teams) and compete to get to the top of the leaderboard. There are no semifinals or finals. After every team finishes their 36 games, the number one team at the leaderboard will be the adjudged winner of the league. Winning the league will unlock the 'Skilled perseverance' Achievement and add a 'Cricket Champions League Winner' trophy to your trophy case (accessible via My Stats in the main menu). Always make sure to save the tournament progress by tapping on the 'Save Tournament' button.
+
+How to play the game:
+Coin Toss: Initially, a coin toss is held to decide who gets to bat/bowl first. Upon selecting your choice (heads or tails), coin is tossed (well, virtually!) to see whether your choice was correct or not. If the coin landed in your favor (i.e. for eg., if you chose heads and the coin show heads), you win the toss. Else you lose the toss. The winner of the toss gets to choose who will bat/bowl first. So if you lost the toss, the AI/ multiplayer opponent will make their choice to bat or bowl. If you won the toss, you get to make that decision.
+Basic Game Idea: Basic game idea follows the rules of Cricket. Each side (you and your opponent) gets to bat and bowl once. So for example, if you won the toss and elected to bat first, the opponent will bowl. At the end of the side's innings (which will happen if the side run out of overs, or lose all their wickets), the role of the sides switch. The batting team would bowl and the bowling team would bat.
+
+Game play: Click any one of the available runs (numbers in black circles) to bat/bowl. If you are batting, the number corresponds to your run in that ball of the over. If you are batting and opponent team bowls the same number, then you will be out and lose a wicket. Else your number (i.e. runs) will be added to your team's score. If you are bowling and the opponent team plays the same number, then the opponent team will lose a wicket. If the opponent played a different number, then that number will be added to their score.
+
+TODO: Achievements for tournaments and leagues 'Skilled Perseverance', trophy case in MY STATS"
+text = "Menu:
+
+Tap on 'PLAY NOW' to enter the secondary menu, where you can select any of the following game modes:
+
+* Single Player :- In this game mode, you play against the AI opponent. You get to choose the number of overs from the available presets or choose them on your own by selecting 'Custom' button. In Limitless mode, you get to play unlimited number of overs until you/opponent lose all the  wickets.
+
+TODO: fix Test mode
+
+* Multiplayer :- In this mode, you'll be able to connect with your peer via internet using public IP addresses and play against them. By clicking create server in Multiplayer mode, you create a server to which clients can connect. This mode supports only two player games. Your peer can use your IP address to connect to your server and begin the match. The server has to choose the number of overs. The server also gets to choose heads or tails in coin toss phase, and the winner of the toss gets to make their decision to bat or bowl.
+
+TODO: add option to select overs in multiplayer mode
+
+* Tours :- In tours mode, an international team plays against another international team for a few games. The winner will be decided on the basis of the number of games won by each team. In this mode,  you can select your team, your opponent, number of overs per match and number of matches. By clicking 'Proceed' button, you'll be redirected to the Tour arena and proceed as you wish. Make sure you save the tour progress by clicking the 'Save' button.
+
+* Tournaments :- 
+Tournament mode showcases two cups, a league and a custom tournament. In T5 International Cup, your team will play for glory along with 9 other teams in a 5-over per match format. Each team faces the other exactly once. So your team gets to play 9 games. If you make it to the top four of the leaderboard, you'll advance to the semifinals where you'll face one of the other leaders from the group stage.  If you win, you proceed to the finals where you'll play against the winner of the second semifinals. Winning the tournament will unlock the 'T5 Champion' Achievement and add a T5 trophy to your trophy case (accessible via My Stats in the main menu). Always make sure to save your tournament progress by clicking the 'Save tournament' button.
+ T10 International Cup is exactly the same as T5 international Cup, but every match will be of 10-over per match format. Winning the tournament would unlock the 'T10 Champion achievement' and add a 'T10 trophy' to your trophy case(accessible via My Stats in the main menu). Always make sure to save your tournament by clicking 'Save tournament' option.
+Cricket Champions League is another exciting long term tournament which will be held in a league format. This is similar to the popular football/soccer leagues like English Premier League, Liga BBVA etc. But here you get to select an international team among ten other teams and you play against them 4 times throughout the league. So, you play a total of 36 games (4 games x 9 other teams) and compete to get to the top of the leaderboard. There are no semifinals or finals. After every team finishes their 36 games, the number one team at the leaderboard will be the adjudged winner of the league. Winning the league will unlock the 'Skilled perseverance' Achievement and add a 'Cricket Champions League Winner' trophy to your trophy case (accessible via My Stats in the main menu). Always make sure to save the tournament progress by tapping on the 'Save Tournament' button.
+
+How to play the game:
+Coin Toss: Initially, a coin toss is held to decide who gets to bat/bowl first. Upon selecting your choice (heads or tails), coin is tossed (well, virtually!) to see whether your choice was correct or not. If the coin landed in your favor (i.e. for eg., if you chose heads and the coin show heads), you win the toss. Else you lose the toss. The winner of the toss gets to choose who will bat/bowl first. So if you lost the toss, the AI/ multiplayer opponent will make their choice to bat or bowl. If you won the toss, you get to make that decision.
+Basic Game Idea: Basic game idea follows the rules of Cricket. Each side (you and your opponent) gets to bat and bowl once. So for example, if you won the toss and elected to bat first, the opponent will bowl. At the end of the side's innings (which will happen if the side run out of overs, or lose all their wickets), the role of the sides switch. The batting team would bowl and the bowling team would bat.
+
+Game play: Click any one of the available runs (numbers in black circles) to bat/bowl. If you are batting, the number corresponds to your run in that ball of the over. If you are batting and opponent team bowls the same number, then you will be out and lose a wicket. Else your number (i.e. runs) will be added to your team's score. If you are bowling and the opponent team plays the same number, then the opponent team will lose a wicket. If the opponent played a different number, then that number will be added to their score.
+
+TODO: Achievements for tournaments and leagues 'Skilled Perseverance', trophy case in MY STATS"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

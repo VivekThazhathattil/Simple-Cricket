@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://texture/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/bg_menu.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://sprites/sound_on.png" type="Texture" id=11]
 [ext_resource path="res://sprites/credits.png" type="Texture" id=12]
 [ext_resource path="res://sprites/loading_sprite.png" type="Texture" id=13]
+[ext_resource path="res://sprites/cup_icon.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"
@@ -200,9 +201,21 @@ visible = false
 position = Vector2( 311.273, 582.786 )
 scale = Vector2( 1.96126, 2.25315 )
 texture = ExtResource( 13 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 470.319
+margin_top = 749.784
+margin_right = 582.319
+margin_bottom = 905.784
+icon = ExtResource( 14 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Container/PLAY NOW" to="." method="_on_PLAY_NOW_pressed"]
 [connection signal="pressed" from="Container/MY PROFILE" to="." method="_on_MY_PROFILE_pressed"]
 [connection signal="pressed" from="Container/HOW TO PLAY" to="." method="_on_HOW_TO_PLAY_pressed"]
 [connection signal="pressed" from="bottom_panel/panel_container/sound_off" to="." method="_on_sound_off_pressed"]
 [connection signal="pressed" from="bottom_panel/panel_container/music_off" to="." method="_on_music_off_pressed"]
 [connection signal="pressed" from="bottom_panel/panel_container/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -59,3 +59,8 @@ func _on_sound_off_pressed():
 	else:
 		$save.save(0, "sound", true)
 		$bottom_panel/panel_container/sound_off.set_normal_texture(preload("res://sprites/sound_on.png"))
+
+
+func _on_Button_pressed():
+	var trophy_inst = preload("res://scenes/trophy_case.tscn")
+	add_child(trophy_inst.instance())

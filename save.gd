@@ -2,10 +2,15 @@ extends Node2D
 
 var savegame = File.new() #file
 var save_path_settings = "user://save_settings.save" #place of the file
-
+var CCL_cups = 0
+var T5_cups = 0
+var T10_cups = 0
 var save_data_settings = {	 "music": true,
 							 "sound": true,
-							 "animation": true
+							 "animation": true,
+							 "T5_cups" : T5_cups,
+							 "T10_cups" : T10_cups,
+							 "CCL_cups" : CCL_cups
 							} #variable to store data
 
 var save_path_game = "user://save_game.save"
