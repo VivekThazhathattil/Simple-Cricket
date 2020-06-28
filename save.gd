@@ -2,15 +2,13 @@ extends Node2D
 
 var savegame = File.new() #file
 var save_path_settings = "user://save_settings.save" #place of the file
-var CCL_cups = 0
-var T5_cups = 0
-var T10_cups = 0
+var trophy_unlock_arr = [0,0,0]
+var achievement_unlock_arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var save_data_settings = {	 "music": true,
 							 "sound": true,
 							 "animation": true,
-							 "T5_cups" : T5_cups,
-							 "T10_cups" : T10_cups,
-							 "CCL_cups" : CCL_cups
+							 "trophy_unlock_arr" : trophy_unlock_arr,
+							 "achievement_unlock_arr" : achievement_unlock_arr
 							} #variable to store data
 
 var save_path_game = "user://save_game.save"

@@ -39,7 +39,8 @@ func adjust_for_player_difficulty(opp_move, inst_score):
 				get_parent()._not_out = false
 			else:
 				if opp_move == 6:
-					opp_move = randi()%5 + 1
+#					opp_move = randi()%5 + 1
+					opp_move = randi()%2 + 4
 				else:
 					opp_move += 1
 		else:
@@ -50,12 +51,16 @@ func get_opponent_action():
 	randomize()
 	if classic_mode:
 		if get_parent()._player_batting:
-			opponent_move = _get_opponent_move([2, 4, 7, 12, 25, 50])
+#			opponent_move = _get_opponent_move([2, 4, 7, 12, 25, 50])
+			opponent_move = _get_opponent_move([2,3,5,25,30,35])
 		elif not get_parent()._player_batting and get_parent().num_sides_batted_so_far == 1:
-			opponent_move = _get_opponent_move([8, 12, 16, 18, 20, 25])
+			if get_parent().over_max*6 - get_parent().ball_count <= 12:
+				opponent_move = _get_opponent_move([1,2,3,30,31,33])
+			else:
+				opponent_move = _get_opponent_move([8, 12, 16, 18, 20, 25])
 		elif not get_parent()._player_batting and get_parent().num_sides_batted_so_far == 2:
 			var rr = _get_req_runrate()
-			if rr >= 6:
+			if rr > 6:
 				opponent_move = randi()%6 + 1
 			elif int(rr) == 0:
 				opponent_move = randi()%6 + 1

@@ -49,6 +49,6 @@ func _on_international_cup_pressed():
 	$save.save(2,"team_draws",$save.team_draws)
 	$save.save(2,"saved_tourn",true)
 	$save.save(2,"match_idx",-1)
-	$save.save(2,"overs",1)
+	$save.save(2,"overs",5)
 	$save.save(2,"tourn_type","tourn")
 	add_child(inst.instance())
