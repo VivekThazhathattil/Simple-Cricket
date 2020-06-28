@@ -141,22 +141,18 @@ func _get_all_match_results():
 			j -= 1
 		else:
 			if $save.team_probs[i] < $save.team_probs[j]:
-				les = $save.team_probs[i]
-				hi = $save.team_probs[j]
-				les = float(les)/(les+hi)
-				hi = float(hi)/(les + hi)
+				les = float($save.team_probs[i])/($save.team_probs[i] + $save.team_probs[j])
+				hi = float($save.team_probs[j])/($save.team_probs[i] + $save.team_probs[j])
 				les_idx = i
 			else:
-				les = $save.team_probs[j]
-				hi = $save.team_probs[i]
-				les = float(les)/(les+hi)
-				hi = float(hi)/(les+hi)
+				les = float($save.team_probs[j])/($save.team_probs[i] + $save.team_probs[j])
+				hi = float($save.team_probs[i])/($save.team_probs[i] + $save.team_probs[j])
 				les_idx = j
 			var res = randf()
 #			print("res = " + str(res) + " for teams " + $save.team_list[i] + " and " + $save.team_list[j])
 #			print("team_probs : " + $save.team_list[i] + " " + str($save.team_probs[i]))
 #			print("team_probs : " + $save.team_list[j] + " " + str($save.team_probs[j]))
-			if int(res) == 0.5: # drawn
+			if res > 0.45 and res < 0.55: # drawn
 				team_draws[i] += 1
 				team_draws[j] += 1
 			elif res > les:

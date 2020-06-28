@@ -31,7 +31,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 294.532, 736.329 )
-scale = Vector2( 2.05378, 2.4829 )
+position = Vector2( 296.244, 837.36 )
+scale = Vector2( 1.09221, 1.01766 )
 texture = ExtResource( 5 )
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

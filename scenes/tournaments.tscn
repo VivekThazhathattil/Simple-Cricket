@@ -6,7 +6,7 @@
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=4]
 [ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=6]
 
-[sub_resource type="StyleBoxFlat" id=50]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.105882, 0.282353, 0.109804, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -76,7 +76,7 @@ margin_top = 320.0
 margin_right = 500.0
 margin_bottom = 370.0
 rect_min_size = Vector2( 0, 50 )
-custom_styles/normal = SubResource( 50 )
+custom_styles/normal = SubResource( 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "Continue Tournament"
 
