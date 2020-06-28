@@ -122,7 +122,7 @@ func _league_results_decider():
 func _semi_final_handler():
 	pass
 		
-func _get_all_match_results():
+func _get_all_match_results_stub():
 	randomize()
 	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
 	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
@@ -173,6 +173,49 @@ func _get_all_match_results():
 				break;
 			i += 1
 			j -= 1
+
+func _get_all_match_results():
+	randomize()
+	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
+	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
+	var temp_arr = []
+	for i in range(10):
+		temp_arr.append(i)
+	var i = 0
+	var j = 1
+	var token_rand = 0
+	temp_arr[my_idx] = -1
+	temp_arr[opp_idx] = -1
+	for _i in 4: # change hardcoded 4 to the relative team list size
+		i = randi()%10
+		while i < 10:
+			if temp_arr[i] == -1:
+				i += 1
+				if i == 10:
+					i = 0
+			else:
+				temp_arr[i] = -1
+				break
+		j = randi()%10
+		while j < 10:
+			if temp_arr[j] == -1:
+				j += 1
+				if j == 10:
+					j = 0
+			else:
+				temp_arr[j] = -1
+				break
+		print("i = " + str(i) + " and j = " + str(j))
+		token_rand = randf()
+		if token_rand < 0.55 and token_rand > 0.50:
+			team_draws[i] += 1
+			team_draws[j] += 1
+		elif $save.team_probs[i] < $save.team_probs[j] and token_rand < 0.9:
+			team_wins[j] += 1
+			team_losses[i] += 1
+		else:
+			team_wins[i] += 1
+			team_losses[j] += 1
 
 func _my_game_results():
 	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))

@@ -82,8 +82,8 @@ __meta__ = {
 
 [node name="loading_sprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 311.818, 547.804 )
-scale = Vector2( 1.90697, 1.78217 )
+position = Vector2( 301.565, 659.559 )
+scale = Vector2( 1.00788, 0.862594 )
 texture = ExtResource( 5 )
 [connection signal="pressed" from="Container/single_player" to="." method="_on_single_player_pressed"]
 [connection signal="pressed" from="Container/multiplayer" to="." method="_on_multiplayer_pressed"]

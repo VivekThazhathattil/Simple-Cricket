@@ -198,8 +198,8 @@ anims/menu_funk = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 311.273, 582.786 )
-scale = Vector2( 1.96126, 2.25315 )
+position = Vector2( 302.185, 721.382 )
+scale = Vector2( 0.982521, 1.01171 )
 texture = ExtResource( 13 )
 
 [node name="Button" type="Button" parent="."]
