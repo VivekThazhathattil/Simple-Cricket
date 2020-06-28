@@ -1,0 +1,319 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://sprites/australia_flag.png" type="Texture" id=1]
+[ext_resource path="res://sprites/afgan_flag.png" type="Texture" id=2]
+[ext_resource path="res://sprites/bangla_flag.png" type="Texture" id=3]
+[ext_resource path="res://sprites/england_flag.png" type="Texture" id=4]
+[ext_resource path="res://sprites/india_flag.png" type="Texture" id=5]
+[ext_resource path="res://sprites/pakistan_flag.png" type="Texture" id=6]
+[ext_resource path="res://sprites/newzealand_flag.png" type="Texture" id=7]
+[ext_resource path="res://sprites/windies_flag.png" type="Texture" id=8]
+[ext_resource path="res://sprites/sa_flag.png" type="Texture" id=9]
+[ext_resource path="res://sprites/srilanka_flag.png" type="Texture" id=10]
+[ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=11]
+[ext_resource path="res://scenes/tour.gd" type="Script" id=12]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.141176, 0.129412, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.141176, 0.129412, 0.141176, 1 )
+
+[node name="tour" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="tour_bg" type="ColorRect" parent="."]
+margin_left = 1.948
+margin_right = 601.948
+margin_bottom = 1024.0
+color = Color( 0.105882, 0.0980392, 0.105882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="select_options" type="VBoxContainer" parent="."]
+rect_min_size = Vector2( 600, 1024 )
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="select_team_text" type="Label" parent="select_options"]
+margin_right = 600.0
+margin_bottom = 37.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "Select team:"
+
+[node name="select_team" type="GridContainer" parent="select_options"]
+margin_top = 87.0
+margin_right = 600.0
+margin_bottom = 387.0
+rect_min_size = Vector2( 600, 300 )
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 4
+
+[node name="afg" type="Button" parent="select_options/select_team"]
+margin_right = 150.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+
+[node name="aus" type="Button" parent="select_options/select_team"]
+margin_left = 150.0
+margin_right = 300.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 1 )
+flat = true
+expand_icon = true
+
+[node name="ban" type="Button" parent="select_options/select_team"]
+margin_left = 300.0
+margin_right = 450.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+flat = true
+expand_icon = true
+
+[node name="eng" type="Button" parent="select_options/select_team"]
+margin_left = 450.0
+margin_right = 600.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+
+[node name="ind" type="Button" parent="select_options/select_team"]
+margin_top = 100.0
+margin_right = 150.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 5 )
+flat = true
+expand_icon = true
+
+[node name="nz" type="Button" parent="select_options/select_team"]
+margin_left = 150.0
+margin_top = 100.0
+margin_right = 300.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 7 )
+flat = true
+align = 2
+expand_icon = true
+
+[node name="pak" type="Button" parent="select_options/select_team"]
+margin_left = 300.0
+margin_top = 100.0
+margin_right = 450.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 6 )
+flat = true
+align = 2
+expand_icon = true
+
+[node name="sa" type="Button" parent="select_options/select_team"]
+margin_left = 450.0
+margin_top = 100.0
+margin_right = 600.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 9 )
+flat = true
+align = 2
+expand_icon = true
+
+[node name="sl" type="Button" parent="select_options/select_team"]
+margin_top = 200.0
+margin_right = 150.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 10 )
+flat = true
+align = 2
+expand_icon = true
+
+[node name="wi" type="Button" parent="select_options/select_team"]
+margin_left = 150.0
+margin_top = 200.0
+margin_right = 300.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 8 )
+flat = true
+align = 2
+expand_icon = true
+
+[node name="display_selected_teams" type="HBoxContainer" parent="select_options"]
+margin_top = 437.0
+margin_right = 600.0
+margin_bottom = 637.0
+rect_min_size = Vector2( 600, 200 )
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="player_team" type="VBoxContainer" parent="select_options/display_selected_teams"]
+margin_right = 194.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="team_logo" type="TextureRect" parent="select_options/display_selected_teams/player_team"]
+margin_right = 194.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+expand = true
+
+[node name="team_name" type="Label" parent="select_options/display_selected_teams/player_team"]
+margin_top = 102.0
+margin_right = 194.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "Player"
+align = 1
+valign = 1
+
+[node name="vs_text" type="Label" parent="select_options/display_selected_teams"]
+margin_left = 198.0
+margin_right = 392.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 11 )
+text = "vs "
+align = 1
+valign = 1
+
+[node name="opponent_team" type="VBoxContainer" parent="select_options/display_selected_teams"]
+margin_left = 396.0
+margin_right = 600.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="team_logo" type="TextureRect" parent="select_options/display_selected_teams/opponent_team"]
+margin_right = 204.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+
+[node name="team_name" type="Label" parent="select_options/display_selected_teams/opponent_team"]
+margin_top = 102.0
+margin_right = 204.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "opponent"
+align = 1
+valign = 1
+
+[node name="select_overs" type="HBoxContainer" parent="select_options"]
+margin_top = 687.0
+margin_right = 600.0
+margin_bottom = 757.0
+rect_min_size = Vector2( 600, 50 )
+custom_constants/separation = 100
+
+[node name="select_text" type="Label" parent="select_options/select_overs"]
+margin_top = 16.0
+margin_right = 367.0
+margin_bottom = 53.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "Number of overs: "
+
+[node name="SpinBox" type="SpinBox" parent="select_options/select_overs"]
+margin_left = 466.0
+margin_right = 566.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 100, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="select_num_matches" type="HBoxContainer" parent="select_options"]
+margin_top = 807.0
+margin_right = 600.0
+margin_bottom = 877.0
+rect_min_size = Vector2( 600, 50 )
+custom_constants/separation = 44
+
+[node name="select_text" type="Label" parent="select_options/select_num_matches"]
+margin_top = 16.0
+margin_right = 426.0
+margin_bottom = 53.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "Number of matches :"
+
+[node name="SpinBox2" type="SpinBox" parent="select_options/select_num_matches"]
+margin_left = 469.0
+margin_right = 569.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 100, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="button_container" type="HBoxContainer" parent="select_options"]
+margin_top = 927.0
+margin_right = 600.0
+margin_bottom = 964.0
+custom_constants/separation = 200
+alignment = 1
+
+[node name="back_button" type="Button" parent="select_options/button_container"]
+margin_left = 97.0
+margin_right = 203.0
+margin_bottom = 37.0
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 11 )
+text = "Back"
+
+[node name="next_button" type="Button" parent="select_options/button_container"]
+margin_left = 403.0
+margin_right = 502.0
+margin_bottom = 37.0
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 11 )
+text = "Next"
+[connection signal="pressed" from="select_options/select_team/afg" to="." method="_on_afg_pressed"]
+[connection signal="pressed" from="select_options/select_team/aus" to="." method="_on_aus_pressed"]
+[connection signal="pressed" from="select_options/select_team/ban" to="." method="_on_ban_pressed"]
+[connection signal="pressed" from="select_options/select_team/eng" to="." method="_on_eng_pressed"]
+[connection signal="pressed" from="select_options/select_team/ind" to="." method="_on_ind_pressed"]
+[connection signal="pressed" from="select_options/select_team/nz" to="." method="_on_nz_pressed"]
+[connection signal="pressed" from="select_options/select_team/pak" to="." method="_on_pak_pressed"]
+[connection signal="pressed" from="select_options/select_team/sa" to="." method="_on_sa_pressed"]
+[connection signal="pressed" from="select_options/select_team/sl" to="." method="_on_sl_pressed"]
+[connection signal="pressed" from="select_options/select_team/wi" to="." method="_on_wi_pressed"]
+[connection signal="pressed" from="select_options/button_container/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="select_options/button_container/next_button" to="." method="_on_next_button_pressed"]

@@ -20,6 +20,7 @@ func _ready():
 	var inst = preload("res://scenes/save.tscn")
 	self.add_child(inst.instance())
 	idx = $save.read_save(2,"match_idx")
+	$next_opp_display/TextureRect.set_texture($save.team_icon_arr[idx+1])
 	team_list = $save.read_save(2,"team_list")
 	team_list_short = $save.team_list_short
 	team_wins = $save.read_save(2,"team_wins")
@@ -103,6 +104,7 @@ func _group_stage_handler():
 		i += 1
 	print(str(team_roster))
 	idx += 1
+	$next_opp_display/TextureRect.set_texture($save.team_icon_arr[idx+1])
 #	print("team roster = " + str(team_roster))
 #	print("idx = " + str(idx))
 	if idx < 9 and tourn_type == "tourn":
@@ -248,7 +250,7 @@ func _notification(what):
 		_on_Back_pressed()
 	
 func _on_Back_pressed():
-	if $save.read(2,"tournament_mode"):
+	if $save.read_save(2,"tournament_mode"):
 		$save.save(2,"tournament_mode",false)
 	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
 		print("change scene error")
@@ -267,3 +269,10 @@ func _on_save_tourn_pressed():
 	$save.save(2,"team_wins", team_wins)
 	$save.save(2,"team_losses", team_losses)
 	$save.save(2,"team_draws", team_draws)
+
+
+func _on_Button2_pressed():
+	if $save.read_save(2,"tournament_mode"):
+		$save.save(2,"tournament_mode",false)
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")

@@ -76,3 +76,8 @@ func _on_sl_pressed():
 	$save.save(2,"my_team","Sri Lanka")
 	if get_tree().change_scene("res://scenes/group_stage.tscn") != OK:
 		print("change_scene error")
+
+
+func _on_quit_tournament_pressed():
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change_scene error")

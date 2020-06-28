@@ -31,3 +31,8 @@ func _on_tournaments_pressed():
 func _on_multiplayer_pressed():
 	ins = load("res://texture/multiplayer.tscn").instance()
 	get_node("/root/menu").add_child(ins)
+
+
+func _on_tours_pressed():
+	ins = load("res://scenes/tour.tscn").instance()
+	get_node("/root/menu").add_child(ins)

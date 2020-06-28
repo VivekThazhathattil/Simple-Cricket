@@ -87,5 +87,6 @@ scale = Vector2( 1.00788, 0.862594 )
 texture = ExtResource( 5 )
 [connection signal="pressed" from="Container/single_player" to="." method="_on_single_player_pressed"]
 [connection signal="pressed" from="Container/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="Container/tours" to="." method="_on_tours_pressed"]
 [connection signal="pressed" from="Container/tournaments" to="." method="_on_tournaments_pressed"]
 [connection signal="pressed" from="go_back" to="." method="_on_go_back_pressed"]

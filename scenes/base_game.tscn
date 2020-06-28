@@ -932,7 +932,6 @@ text = "10"
 clip_text = true
 
 [node name="coin_toss" type="Node2D" parent="."]
-visible = false
 script = ExtResource( 4 )
 
 [node name="ColorRect" type="TextureRect" parent="coin_toss"]

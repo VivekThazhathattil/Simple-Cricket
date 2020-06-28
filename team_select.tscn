@@ -171,3 +171,4 @@ __meta__ = {
 [connection signal="pressed" from="VBoxContainer/GridContainer/afg" to="." method="_on_afg_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/wi" to="." method="_on_wi_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/sl" to="." method="_on_sl_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit_tournament" to="." method="_on_quit_tournament_pressed"]
