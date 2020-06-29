@@ -33,6 +33,7 @@ var opp_overs = 0
 var difficulty = 2;
 
 var tournament_mode = false
+var tours_mode = false
 var my_name = "You"
 var opp_name = "Opponent"
 
@@ -50,6 +51,8 @@ func _ready():
 #	print("my_team choice is " + $save.read_save(2,"my_team"))
 	if $save.read_save(2,"tournament_mode"):
 		tournament_mode = true
+	elif $save.read_save(3,"tours_mode"):
+		tours_mode = true
 #	print("Tournament mode = " + str(tournament_mode))
 	if tournament_mode:
 		var idx1 = get_parent()._find_idx_of_team($save.read_save(2,"my_team"))
@@ -65,6 +68,21 @@ func _ready():
 		var squad_inst = preload("res://scenes/squads.tscn")
 		add_child(squad_inst.instance())
 		$squads.visible = false
+	elif tours_mode:
+		var idx1 = get_parent().ply_idx
+		var idx2 = get_parent().opp_idx
+		$team_logo/my_team_logo.set_texture($save.team_icon_arr[idx1])
+		$team_logo/opp_team_logo.set_texture($save.team_icon_arr[idx2])
+		my_name = $save.team_list[idx1]
+		opp_name = $save.team_list[idx2]
+#		print("my_name is " +my_name)
+#		print("curr_opponent is " + opp_name)
+		over_max = $save.read_save(3,"num_overs")
+		# load squads if in tournament mode
+		var squad_inst = preload("res://scenes/squads.tscn")
+		add_child(squad_inst.instance())
+		$squads.visible = false
+		
 		
 	else:
 		$team_logo.visible = false
@@ -112,6 +130,9 @@ func _end_match():
 				if tournament_mode:
 					get_parent().game_stat = "won"
 					get_parent()._my_game_results()
+				elif tours_mode:
+					get_parent().ply_score += 1
+					get_parent()._update_scores()
 		elif player_score < opp_score:
 			$they_won.visible = true
 			$they_won/Label.set_text(my_name + " lost...")
@@ -121,6 +142,9 @@ func _end_match():
 				if tournament_mode:
 					get_parent().game_stat = "lost"
 					get_parent()._my_game_results()
+				elif tours_mode:
+					get_parent().opp_score += 1
+					get_parent()._update_scores()
 		else:
 			$drawn.visible = true
 			$drawn/Label.set_text(my_name + " and " + opp_name + " drew the match...")
@@ -136,6 +160,8 @@ func _final_action():
 	$save.save(1,"games_played",$save.read_save(1,"games_played")+1)
 	# updated games_won, games_lost and games_drawn in _end_match()
 	$save.save(1,"percent_win_rate",float($save.read_save(1,"games_won"))/$save.read_save(1,"games_played")*100)
+	if tours_mode:
+		$"../transition_anim".play("sec")
 	queue_free()
 	
 func _check_if_won():
@@ -151,7 +177,7 @@ func _main_handler():
 	if _player_batting:
 		if _not_out:
 			player_score += $button_array.instantaneous_score
-			if tournament_mode:
+			if tournament_mode or tours_mode:
 				$squads._if_runs_scored($button_array.instantaneous_score,"player")
 				$squads._set_bowler_economy("opponent",$button_array.instantaneous_score)
 			$PUMP/pump_up.set_text("")
@@ -161,7 +187,7 @@ func _main_handler():
 			if player_wickets_rem == 1:
 				if num_sides_batted_so_far == 1:
 					_switch_sides()
-					if tournament_mode:
+					if tournament_mode or tours_mode:
 						$squads.curr_ply_idx = 0
 						$squads.ply1_idx = 0
 						$squads.ply2_idx = 1
@@ -172,7 +198,7 @@ func _main_handler():
 					_end_match()
 			else:
 				player_wickets_rem -= 1
-				if tournament_mode:
+				if tournament_mode or tours_mode:
 					$squads._if_out()
 					$squads._set_bowler_wickets("opponent")
 				_update_labels()
@@ -186,7 +212,7 @@ func _main_handler():
 			if $button_array.opponent_move == null:
 				$button_array.opponent_move = 0
 			opp_score += $button_array.opponent_move
-			if tournament_mode:
+			if tournament_mode or tours_mode:
 				$squads._if_runs_scored($button_array.opponent_move,"opponent")
 				$squads._set_bowler_economy("player",$button_array.opponent_move)
 			$PUMP/pump_up.set_text("")
@@ -196,7 +222,7 @@ func _main_handler():
 			if opp_wickets_rem == 1:
 				if num_sides_batted_so_far == 1:
 					_switch_sides()
-					if tournament_mode:
+					if tournament_mode or tours_mode:
 						$squads.curr_ply_idx = 0
 						$squads.ply1_idx = 0
 						$squads.ply2_idx = 1
@@ -207,7 +233,7 @@ func _main_handler():
 					_end_match()
 			else:
 				opp_wickets_rem -= 1
-				if tournament_mode:
+				if tournament_mode or tours_mode:
 					$squads._if_out()
 					$squads._set_bowler_wickets("player")
 				_update_labels()
@@ -220,7 +246,7 @@ func _main_handler():
 	if ball_count >= 6*over_max:
 		if num_sides_batted_so_far == 1:
 			_switch_sides()
-			if tournament_mode:
+			if tournament_mode or tours_mode:
 				$squads.curr_ply_idx = 0
 				$squads.ply1_idx = 0
 				$squads.ply2_idx = 1
@@ -229,7 +255,7 @@ func _main_handler():
 			_match_over = true
 			_end_match()
 	if ball_count > 0 and ball_count%6 == 0:
-		if tournament_mode:
+		if tournament_mode or tours_mode:
 			$squads._if_over_over()
 			$squads._choose_random_bowler()
 
@@ -345,7 +371,7 @@ func _update_labels():
 				$ColorRect/misc_stats.set_text("Match finished!")
 func _on_continue_pressed():
 	_final_action()
-	if not tournament_mode:
+	if not tournament_mode and not tours_mode:
 		if get_tree().change_scene("res://scenes/menu.tscn") != OK:
 			print("change scene error")
 

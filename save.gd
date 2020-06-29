@@ -65,6 +65,29 @@ var team_icon_arr = [preload("res://sprites/afgan_flag.png"),
 					preload("res://sprites/srilanka_flag.png"),
 					preload("res://sprites/windies_flag.png")]
 
+# Tours
+var num_matches = 1
+var num_overs = 1
+var ply_idx = 0
+var opp_idx = 1
+var ply_score = 0
+var opp_score = 0
+var matches_played = 0
+var save_path_tours = "user://save_tours.save"
+var saved_tours = false
+var tours_mode = false
+var save_data_tours = {
+	"num_matches" : num_matches,
+	"num_overs" : num_overs,
+	"ply_idx" : ply_idx,
+	"opp_idx" : opp_idx,
+	"ply_score" : ply_score,
+	"opp_score" : opp_score,
+	"matches_played" : matches_played,
+	"tours_mode" : tours_mode,
+	"saved_tours" : saved_tours
+}
+
 func check_n_create_save():
 	if not savegame.file_exists(save_path_settings):
 		savegame.open(save_path_settings, File.WRITE)
@@ -77,6 +100,10 @@ func check_n_create_save():
 	if not savegame.file_exists(save_path_tournament):
 		savegame.open(save_path_tournament, File.WRITE)
 		savegame.store_var(save_data_tournament)
+		savegame.close()
+	if not savegame.file_exists(save_path_tours):
+		savegame.open(save_path_tours, File.WRITE)
+		savegame.store_var(save_data_tours)
 		savegame.close()
 
 func read_save(which_save, save_string):
@@ -91,6 +118,9 @@ func read_save(which_save, save_string):
 	elif which_save == 2:
 		save_path = save_path_tournament
 		save_data = save_data_tournament
+	elif which_save == 3:
+		save_path = save_path_tours
+		save_data = save_data_tours
 		
 	savegame.open(save_path, File.READ) #open the file
 	save_data = savegame.get_var() #get the value
@@ -109,6 +139,9 @@ func save(which_save, save_string, save_val):
 	elif which_save == 2:
 		save_path = save_path_tournament
 		save_data = save_data_tournament
+	elif which_save == 3:
+		save_path = save_path_tours
+		save_data = save_data_tours
 		
 	savegame.open(save_path, File.READ) #open the file
 	save_data = savegame.get_var() #get the value

@@ -188,11 +188,14 @@ func _print_scorecard():
 	_print_bowler_stats("player",my_team_idx)
 	_print_bowler_stats("opponent",curr_opp_idx)
 	
-
 func _load_squad(): # call this just once
-	my_team_idx = get_parent().get_parent().my_idx
-	curr_opp_idx = get_parent().get_parent().opp_idx
-
+	if get_parent().tournament_mode:
+		my_team_idx = get_parent().get_parent().my_idx
+		curr_opp_idx = get_parent().get_parent().opp_idx
+	elif get_parent().tours_mode:
+		my_team_idx = get_parent().get_parent().ply_idx
+		curr_opp_idx = get_parent().get_parent().opp_idx
+		
 func _if_out(): # this function needs to be called before _if_over_over
 #	print("_if_out_invoked")
 	if curr_ply_idx < 11:

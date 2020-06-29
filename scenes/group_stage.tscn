@@ -20,26 +20,26 @@ font_path = "res://other_data/neuropol x rg.ttf"
 size = 20
 font_data = SubResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=1445]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.0117647, 0.00784314, 0.00784314, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id=2129]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.054902, 0.262745, 0.286275, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="DynamicFontData" id=2130]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=2131]
+[sub_resource type="DynamicFont" id=8]
 size = 26
-font_data = SubResource( 2130 )
+font_data = SubResource( 7 )
 
 [node name="group_stage" type="Node2D"]
 script = ExtResource( 1 )
@@ -86,7 +86,7 @@ margin_left = 190.016
 margin_top = 646.434
 margin_right = 436.016
 margin_bottom = 745.434
-custom_styles/panel = SubResource( 1445 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,8 +118,8 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 200, 150 )
-custom_styles/normal = SubResource( 2129 )
-custom_fonts/font = SubResource( 2131 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "Next Opponent:"
 align = 1
 valign = 1

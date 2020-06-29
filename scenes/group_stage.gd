@@ -124,57 +124,57 @@ func _league_results_decider():
 func _semi_final_handler():
 	pass
 		
-func _get_all_match_results_stub():
-	randomize()
-	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
-	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
-	var i = 0
-	var j = 9
-	var les
-	var hi
-	var les_idx
-
-	while true:
-		if i == j:
-			break;
-		elif i  == my_idx or i == opp_idx:
-			i += 1
-		elif j == my_idx or j == opp_idx:
-			j -= 1
-		else:
-			if $save.team_probs[i] < $save.team_probs[j]:
-				les = float($save.team_probs[i])/($save.team_probs[i] + $save.team_probs[j])
-				hi = float($save.team_probs[j])/($save.team_probs[i] + $save.team_probs[j])
-				les_idx = i
-			else:
-				les = float($save.team_probs[j])/($save.team_probs[i] + $save.team_probs[j])
-				hi = float($save.team_probs[i])/($save.team_probs[i] + $save.team_probs[j])
-				les_idx = j
-			var res = randf()
-#			print("res = " + str(res) + " for teams " + $save.team_list[i] + " and " + $save.team_list[j])
-#			print("team_probs : " + $save.team_list[i] + " " + str($save.team_probs[i]))
-#			print("team_probs : " + $save.team_list[j] + " " + str($save.team_probs[j]))
-			if res > 0.45 and res < 0.55: # drawn
-				team_draws[i] += 1
-				team_draws[j] += 1
-			elif res > les:
-				if les_idx == i:
-					team_wins[j] += 1
-					team_losses[i] += 1
-				else:
-					team_wins[i] += 1
-					team_losses[j] += 1
-			else:
-				if les_idx == i:
-					team_wins[i] += 1
-					team_losses[j] += 1
-				else:
-					team_wins[j] += 1
-					team_losses[i] += 1
-			if abs(i-j) == 1:
-				break;
-			i += 1
-			j -= 1
+#func _get_all_match_results_stub():
+#	randomize()
+#	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
+#	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
+#	var i = 0
+#	var j = 9
+#	var les
+#	var hi
+#	var les_idx
+#
+#	while true:
+#		if i == j:
+#			break;
+#		elif i  == my_idx or i == opp_idx:
+#			i += 1
+#		elif j == my_idx or j == opp_idx:
+#			j -= 1
+#		else:
+#			if $save.team_probs[i] < $save.team_probs[j]:
+#				les = float($save.team_probs[i])/($save.team_probs[i] + $save.team_probs[j])
+#				hi = float($save.team_probs[j])/($save.team_probs[i] + $save.team_probs[j])
+#				les_idx = i
+#			else:
+#				les = float($save.team_probs[j])/($save.team_probs[i] + $save.team_probs[j])
+#				hi = float($save.team_probs[i])/($save.team_probs[i] + $save.team_probs[j])
+#				les_idx = j
+#			var res = randf()
+##			print("res = " + str(res) + " for teams " + $save.team_list[i] + " and " + $save.team_list[j])
+##			print("team_probs : " + $save.team_list[i] + " " + str($save.team_probs[i]))
+##			print("team_probs : " + $save.team_list[j] + " " + str($save.team_probs[j]))
+#			if res > 0.45 and res < 0.55: # drawn
+#				team_draws[i] += 1
+#				team_draws[j] += 1
+#			elif res > les:
+#				if les_idx == i:
+#					team_wins[j] += 1
+#					team_losses[i] += 1
+#				else:
+#					team_wins[i] += 1
+#					team_losses[j] += 1
+#			else:
+#				if les_idx == i:
+#					team_wins[i] += 1
+#					team_losses[j] += 1
+#				else:
+#					team_wins[j] += 1
+#					team_losses[i] += 1
+#			if abs(i-j) == 1:
+#				break;
+#			i += 1
+#			j -= 1
 
 func _get_all_match_results():
 	randomize()

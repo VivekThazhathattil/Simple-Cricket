@@ -150,404 +150,404 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxEmpty" id=93]
+[sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="DynamicFontData" id=13]
+[sub_resource type="DynamicFontData" id=14]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=14]
-size = 72
-font_data = SubResource( 13 )
-
 [sub_resource type="DynamicFont" id=15]
+size = 72
+font_data = SubResource( 14 )
+
+[sub_resource type="DynamicFont" id=16]
 size = 40
 font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=16]
+[sub_resource type="Theme" id=17]
 default_font = ExtResource( 7 )
 
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.027451, 0.0235294, 0.0235294, 0.752941 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="DynamicFontData" id=18]
+[sub_resource type="DynamicFontData" id=19]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=20]
 size = 50
-font_data = SubResource( 18 )
+font_data = SubResource( 19 )
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=21]
 bg_color = Color( 0, 0, 0, 0.592157 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=22]
 size = 30
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFontData" id=22]
+[sub_resource type="DynamicFontData" id=23]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="DynamicFont" id=24]
 size = 50
-font_data = SubResource( 22 )
+font_data = SubResource( 23 )
 
-[sub_resource type="DynamicFontData" id=24]
+[sub_resource type="DynamicFontData" id=25]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=25]
+[sub_resource type="DynamicFont" id=26]
 size = 50
-font_data = SubResource( 24 )
+font_data = SubResource( 25 )
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0, 0, 0, 0.717647 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id=27]
+[sub_resource type="AtlasTexture" id=28]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=29]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=30]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=31]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=32]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=33]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=34]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=34]
+[sub_resource type="AtlasTexture" id=35]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=35]
+[sub_resource type="AtlasTexture" id=36]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=36]
+[sub_resource type="AtlasTexture" id=37]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=37]
+[sub_resource type="AtlasTexture" id=38]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=39]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=39]
+[sub_resource type="AtlasTexture" id=40]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=40]
+[sub_resource type="AtlasTexture" id=41]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=41]
+[sub_resource type="AtlasTexture" id=42]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=42]
+[sub_resource type="AtlasTexture" id=43]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 512, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=43]
+[sub_resource type="AtlasTexture" id=44]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=44]
+[sub_resource type="AtlasTexture" id=45]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=45]
+[sub_resource type="AtlasTexture" id=46]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=46]
+[sub_resource type="AtlasTexture" id=47]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=47]
+[sub_resource type="AtlasTexture" id=48]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=48]
+[sub_resource type="AtlasTexture" id=49]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=49]
+[sub_resource type="AtlasTexture" id=50]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=50]
+[sub_resource type="AtlasTexture" id=51]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 1024, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=52]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=53]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=54]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=54]
+[sub_resource type="AtlasTexture" id=55]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=55]
+[sub_resource type="AtlasTexture" id=56]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=56]
+[sub_resource type="AtlasTexture" id=57]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=57]
+[sub_resource type="AtlasTexture" id=58]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=58]
+[sub_resource type="AtlasTexture" id=59]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 1536, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=60]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=60]
+[sub_resource type="AtlasTexture" id=61]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=61]
+[sub_resource type="AtlasTexture" id=62]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=62]
+[sub_resource type="AtlasTexture" id=63]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=64]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=65]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=66]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=66]
+[sub_resource type="AtlasTexture" id=67]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 2048, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=67]
+[sub_resource type="AtlasTexture" id=68]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=68]
+[sub_resource type="AtlasTexture" id=69]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=69]
+[sub_resource type="AtlasTexture" id=70]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=70]
+[sub_resource type="AtlasTexture" id=71]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=71]
+[sub_resource type="AtlasTexture" id=72]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=72]
+[sub_resource type="AtlasTexture" id=73]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=73]
+[sub_resource type="AtlasTexture" id=74]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=74]
+[sub_resource type="AtlasTexture" id=75]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 2560, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=75]
+[sub_resource type="AtlasTexture" id=76]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=76]
+[sub_resource type="AtlasTexture" id=77]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=77]
+[sub_resource type="AtlasTexture" id=78]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=78]
+[sub_resource type="AtlasTexture" id=79]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=79]
+[sub_resource type="AtlasTexture" id=80]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=80]
+[sub_resource type="AtlasTexture" id=81]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=81]
+[sub_resource type="AtlasTexture" id=82]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=82]
+[sub_resource type="AtlasTexture" id=83]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 3072, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=83]
+[sub_resource type="AtlasTexture" id=84]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=84]
+[sub_resource type="AtlasTexture" id=85]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 512, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=85]
+[sub_resource type="AtlasTexture" id=86]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1024, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=86]
+[sub_resource type="AtlasTexture" id=87]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1536, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=87]
+[sub_resource type="AtlasTexture" id=88]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2048, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=88]
+[sub_resource type="AtlasTexture" id=89]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2560, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=89]
+[sub_resource type="AtlasTexture" id=90]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3072, 3584, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=90]
+[sub_resource type="AtlasTexture" id=91]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3584, 3584, 512, 512 )
 
-[sub_resource type="SpriteFrames" id=91]
+[sub_resource type="SpriteFrames" id=92]
 animations = [ {
-"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ) ],
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ) ],
 "loop": true,
 "name": "blow",
 "speed": 15.0
 } ]
 
-[sub_resource type="StyleBoxEmpty" id=92]
+[sub_resource type="StyleBoxEmpty" id=93]
 
 [node name="base_game" type="Node2D"]
 script = ExtResource( 2 )
@@ -777,8 +777,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "1"
 clip_text = true
@@ -793,8 +793,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "2"
 clip_text = true
@@ -809,8 +809,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "3"
 clip_text = true
@@ -825,8 +825,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "4"
 clip_text = true
@@ -841,8 +841,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "5"
 clip_text = true
@@ -857,8 +857,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "6"
 clip_text = true
@@ -874,8 +874,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "7"
 clip_text = true
@@ -891,8 +891,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "8"
 clip_text = true
@@ -908,8 +908,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "9"
 clip_text = true
@@ -925,8 +925,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 7 )
 text = "10"
 clip_text = true
@@ -947,7 +947,7 @@ margin_left = 180.0
 margin_top = 200.0
 margin_right = 443.0
 margin_bottom = 288.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 15 )
 text = "TOSS"
 align = 1
 __meta__ = {
@@ -968,14 +968,14 @@ __meta__ = {
 [node name="heads" type="Button" parent="coin_toss/coinbox"]
 margin_right = 212.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
 text = "HEADS"
 
 [node name="tails" type="Button" parent="coin_toss/coinbox"]
 margin_left = 262.0
 margin_right = 437.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
 text = "TAILS"
 
 [node name="opp_choice" type="WindowDialog" parent="coin_toss"]
@@ -984,15 +984,15 @@ margin_top = 267.0
 margin_right = 550.0
 margin_bottom = 952.0
 rect_min_size = Vector2( 500, 300 )
-theme = SubResource( 16 )
-custom_styles/panel = SubResource( 17 )
+theme = SubResource( 17 )
+custom_styles/panel = SubResource( 18 )
 
 [node name="Label" type="Label" parent="coin_toss/opp_choice"]
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 450.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 20 )
 text = "You lost the toss."
 align = 1
 valign = 1
@@ -1017,7 +1017,7 @@ margin_left = 38.0
 margin_top = 281.0
 margin_right = 581.0
 margin_bottom = 711.0
-custom_styles/panel = SubResource( 20 )
+custom_styles/panel = SubResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1027,7 +1027,7 @@ margin_left = 24.2169
 margin_top = 24.2169
 margin_right = 524.217
 margin_bottom = 125.217
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 22 )
 text = "Do you wish to bat or bowl?"
 autowrap = true
 __meta__ = {
@@ -1040,7 +1040,7 @@ margin_top = 170.229
 margin_right = 407.181
 margin_bottom = 247.229
 theme = ExtResource( 12 )
-custom_fonts/font = SubResource( 23 )
+custom_fonts/font = SubResource( 24 )
 text = "Batting"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1052,7 +1052,7 @@ margin_top = 274.361
 margin_right = 418.109
 margin_bottom = 351.361
 theme = ExtResource( 12 )
-custom_fonts/font = SubResource( 25 )
+custom_fonts/font = SubResource( 26 )
 text = "Bowling"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1063,7 +1063,7 @@ margin_left = 155.0
 margin_top = 838.0
 margin_right = 439.0
 margin_bottom = 986.0
-custom_styles/panel = SubResource( 26 )
+custom_styles/panel = SubResource( 27 )
 
 [node name="Label" type="Label" parent="coin_toss/PopupPanel"]
 margin_right = 284.0
@@ -1097,7 +1097,7 @@ __meta__ = {
 
 [node name="confetti" type="AnimatedSprite" parent="you_won"]
 scale = Vector2( 0.8, 0.5 )
-frames = SubResource( 91 )
+frames = SubResource( 92 )
 animation = "blow"
 frame = 49
 centered = false
@@ -1109,7 +1109,7 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
-custom_styles/focus = SubResource( 92 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1145,7 +1145,7 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
-custom_styles/focus = SubResource( 92 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1178,7 +1178,7 @@ margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
-custom_styles/focus = SubResource( 92 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1215,7 +1215,7 @@ margin_right = 269.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
 theme = ExtResource( 12 )
-custom_styles/focus = SubResource( 92 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false

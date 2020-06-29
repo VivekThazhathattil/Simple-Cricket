@@ -9,6 +9,7 @@ func _ready():
 	self.add_child(save_inst.instance())
 	_create_load_save()
 	$save.save(2,"tournament_mode",false)
+	$save.save(3,"tours_mode",false)
 #	print(self.get_path())
 
 func _create_load_save():
