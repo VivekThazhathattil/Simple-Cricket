@@ -31,8 +31,11 @@ func _on_tournaments_pressed():
 func _on_multiplayer_pressed():
 	ins = load("res://texture/multiplayer.tscn").instance()
 	get_node("/root/menu").add_child(ins)
-
+#	if get_tree().change_scene("res://texture/multiplayer.tscn") != OK:
+#		print("change scene error - multiplayer")
 
 func _on_tours_pressed():
-	ins = load("res://scenes/tour.tscn").instance()
-	get_node("/root/menu").add_child(ins)
+#	ins = load("res://scenes/tour.tscn").instance()
+#	get_node("/root/menu").add_child(ins)
+	if get_tree().change_scene("res://scenes/tour.tscn") != OK:
+		print("change scene error")

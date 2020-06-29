@@ -49,6 +49,17 @@ rect_min_size = Vector2( 200, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="start" type="Button" parent="."]
+margin_left = 288.403
+margin_top = 694.444
+margin_right = 388.403
+margin_bottom = 794.444
+text = "start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="create_server" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="join_server" to="." method="_on_JoinButton_pressed"]
 [connection signal="text_changed" from="TextEdit" to="." method="_on_TextField_text_changed" binds= [ "new_text" ]]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]

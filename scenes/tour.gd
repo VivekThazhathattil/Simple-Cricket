@@ -20,7 +20,6 @@ func _ready():
 		_save_tour()
 	_second_screen_handler()
 	tours_mode = true
-	$save.save(3,"tours_mode",tours_mode)
 	pass
 
 func _save_tour():
@@ -116,6 +115,9 @@ func _on_next_button_pressed():
 	if (typeof(num_matches) == TYPE_INT or typeof(num_matches) == TYPE_REAL) and (typeof(num_overs) == TYPE_INT or typeof(num_overs) == TYPE_REAL):
 		$transition_anim.play("sec")
 		_second_screen_handler()
+		_save_tour()
+#		print("local num_overs = " + str(num_overs))
+#		print("num_overs_saved  = " + str($save.read_save(3,"num_overs")))
 	else:
 		pass
 		
@@ -163,6 +165,7 @@ func _on_SpinBox_value_changed(value): #overs
 
 
 func _on_next_match_pressed():
+	$save.save(3,"tours_mode",true)
 	if num_matches == matches_played:
 		_on_all_matches_completion()
 	else:

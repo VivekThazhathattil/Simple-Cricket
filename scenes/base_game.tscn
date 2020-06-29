@@ -15,7 +15,6 @@
 [ext_resource path="res://sprites/draw_bg.png" type="Texture" id=13]
 [ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://audio/ambient_sound.ogg" type="AudioStream" id=15]
-[ext_resource path="res://sprites/innings_over_bg.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"
@@ -548,6 +547,13 @@ animations = [ {
 } ]
 
 [sub_resource type="StyleBoxEmpty" id=93]
+
+[sub_resource type="StyleBoxFlat" id=94]
+bg_color = Color( 0.054902, 0.0509804, 0.0627451, 0.792157 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="base_game" type="Node2D"]
 script = ExtResource( 2 )
@@ -1189,13 +1195,13 @@ pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
-[node name="ColorRect" type="TextureRect" parent="innings_over"]
+[node name="ColorRect" type="Panel" parent="innings_over"]
 margin_left = 19.0
 margin_top = 56.0
 margin_right = 577.0
 margin_bottom = 506.0
 rect_scale = Vector2( 0.6, 0.75 )
-texture = ExtResource( 16 )
+custom_styles/panel = SubResource( 94 )
 
 [node name="Label" type="Label" parent="innings_over"]
 margin_right = 400.0

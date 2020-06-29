@@ -5,11 +5,13 @@ const DEFAULT_PORT = 31400
 const MAX_CLIENTS = 2
 
 func create_server():
+	print("create server pressed")
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(DEFAULT_PORT, MAX_CLIENTS)
 	get_tree().set_network_peer(peer)
 	
 func join_server(txt):
+	print("join server pressed")
 	var peer = NetworkedMultiplayerENet.new()
 	if txt == "":
 		peer.create_client(DEFAULT_IP, DEFAULT_PORT)
@@ -25,15 +27,49 @@ remote func get_val(val):
 	
 ## COIN TOSS EVENT ##
 
-func coin_toss():
-	if get_tree().is_network_server():
-		get_node("/root/menu/multiplayer_toss").server_coin_toss_action()
-	else:
-		get_node("/root/menu/multiplayer_toss").client_coin_toss_action()
+func coin_toss_init():
+	print("coin_toss_init invoked")
+	rpc("cti")
 
-func ask_opponent_choice_rpc():
-	rpc("ask_opponent_choice")
+func load_game_for_each_other():
+	rpc("lgfeo")
+
+remotesync func lgfeo():
+	get_node("/root/menu/multiplayer")._load_game()
 	
-remote func ask_opponent_choice():
-	get_node("/root/menu/multiplayer_toss").their_choice()
+remote func cti():
+	print("cti invoked")
+	if not get_tree().is_network_server():
+		get_node("/root/menu/multiplayer")._change_coinbox_visibility()
 
+func server_toss_win():
+	rpc("stw")
+
+func client_toss_win():
+	rpc("ctw")
+	
+remotesync func stw():
+	if get_tree().is_network_server():
+		get_node("/root/menu/multiplayer")._exec_stw()
+
+remotesync func ctw():
+	if not get_tree().is_network_server():
+		get_node("/root/menu/multiplayer")._exec_ctw()
+
+func _set_opp_bat_or_bowl(val):
+	rpc("sobob",val)
+
+remote func sobob(val):
+	get_node("/root/menu/multiplayer/mp")._exec_sobob(val)
+
+func _start_game():
+	rpc("_sg")
+
+remotesync func _sg():
+	get_node("/root/menu/multiplayer/mp")._exec_sg()
+
+func _pass_val_to_opp(val):
+	rpc("pvto",val)
+
+remote func pvto(val):
+	get_node("/root/menu/multiplayer/mp")._exec_pvto(val)

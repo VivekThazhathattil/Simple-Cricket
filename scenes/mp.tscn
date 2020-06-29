@@ -1,0 +1,363 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/mp.gd" type="Script" id=1]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=2]
+[ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.027451, 0.027451, 0.027451, 0.505882 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0.0941176 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0.0588235 )
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 40
+font_data = SubResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.00392157, 0.00392157, 0.00392157, 0.298039 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://other_data/neuropol x rg.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = SubResource( 5 )
+
+[node name="mp" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="bg" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 600, 1024 )
+color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin_toss" type="Node2D" parent="."]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="coin_toss"]
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 600, 1024 )
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin_toss_header" type="Label" parent="coin_toss/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 157.0
+custom_fonts/font = ExtResource( 3 )
+text = "
+
+TOSS
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin_toss_text" type="Label" parent="coin_toss/VBoxContainer"]
+margin_top = 207.0
+margin_right = 600.0
+margin_bottom = 324.0
+custom_fonts/font = ExtResource( 3 )
+text = "
+
+Choose Heads or Tails"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="coin_toss/VBoxContainer"]
+margin_top = 374.0
+margin_right = 600.0
+margin_bottom = 427.0
+size_flags_horizontal = 5
+custom_constants/separation = 100
+alignment = 1
+
+[node name="heads" type="Button" parent="coin_toss/VBoxContainer/HBoxContainer"]
+margin_left = 118.0
+margin_right = 270.0
+margin_bottom = 53.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Heads"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tails" type="Button" parent="coin_toss/VBoxContainer/HBoxContainer"]
+margin_left = 370.0
+margin_right = 482.0
+margin_bottom = 53.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Tails"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="decider" type="PopupPanel" parent="coin_toss/VBoxContainer"]
+margin_left = 49.0
+margin_top = 477.0
+margin_right = 549.0
+margin_bottom = 877.0
+rect_min_size = Vector2( 500, 400 )
+size_flags_horizontal = 4
+size_flags_vertical = 5
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="coin_toss/VBoxContainer/decider"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 496.0
+margin_bottom = 396.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="coin_toss/VBoxContainer/decider/VBoxContainer"]
+margin_top = -1.0
+margin_right = 492.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 0, 200 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "You wont the toss"
+align = 1
+valign = 1
+
+[node name="batting" type="Button" parent="coin_toss/VBoxContainer/decider/VBoxContainer"]
+margin_left = 162.0
+margin_top = 230.0
+margin_right = 330.0
+margin_bottom = 283.0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Batting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bowling" type="Button" parent="coin_toss/VBoxContainer/decider/VBoxContainer"]
+margin_left = 157.0
+margin_top = 313.0
+margin_right = 335.0
+margin_bottom = 366.0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Bowling"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="base_game" type="Node2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="base_game"]
+margin_top = 50.0
+margin_right = 600.0
+margin_bottom = 974.0
+rect_min_size = Vector2( 600, 924 )
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player" type="Label" parent="base_game/VBoxContainer"]
+margin_left = 49.0
+margin_top = -1.0
+margin_right = 549.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 500, 100 )
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
+text = "Player"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="action" type="HBoxContainer" parent="base_game/VBoxContainer"]
+margin_top = 150.0
+margin_right = 600.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 500, 200 )
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ply" type="Label" parent="base_game/VBoxContainer/action"]
+margin_left = 30.0
+margin_top = -1.0
+margin_right = 196.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 166, 200 )
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
+align = 1
+valign = 1
+
+[node name="action" type="Label" parent="base_game/VBoxContainer/action"]
+margin_left = 216.0
+margin_top = -1.0
+margin_right = 382.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 166, 200 )
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
+align = 1
+valign = 1
+
+[node name="opp" type="Label" parent="base_game/VBoxContainer/action"]
+margin_left = 402.0
+margin_top = -1.0
+margin_right = 568.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 166, 200 )
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
+align = 1
+valign = 1
+
+[node name="opponent" type="Label" parent="base_game/VBoxContainer"]
+margin_left = 49.0
+margin_top = 399.0
+margin_right = 549.0
+margin_bottom = 499.0
+rect_min_size = Vector2( 500, 100 )
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
+text = "Opponent"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_array" type="GridContainer" parent="base_game/VBoxContainer"]
+margin_left = 45.0
+margin_top = 550.0
+margin_right = 555.0
+margin_bottom = 880.0
+rect_min_size = Vector2( 500, 300 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="Button" parent="base_game/VBoxContainer/button_array"]
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+text = "1"
+
+[node name="2" type="Button" parent="base_game/VBoxContainer/button_array"]
+margin_left = 180.0
+margin_right = 330.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+text = "2"
+
+[node name="3" type="Button" parent="base_game/VBoxContainer/button_array"]
+margin_left = 360.0
+margin_right = 510.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+text = "3"
+
+[node name="4" type="Button" parent="base_game/VBoxContainer/button_array"]
+margin_top = 180.0
+margin_right = 150.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+text = "4"
+
+[node name="5" type="Button" parent="base_game/VBoxContainer/button_array"]
+margin_left = 180.0
+margin_top = 180.0
+margin_right = 330.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+text = "5"
+
+[node name="6" type="Button" parent="base_game/VBoxContainer/button_array"]
+margin_left = 360.0
+margin_top = 180.0
+margin_right = 510.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+text = "6"
+[connection signal="pressed" from="coin_toss/VBoxContainer/HBoxContainer/heads" to="." method="_on_heads_or_tails_pressed"]
+[connection signal="pressed" from="coin_toss/VBoxContainer/HBoxContainer/tails" to="." method="_on_heads_or_tails_pressed"]
+[connection signal="pressed" from="coin_toss/VBoxContainer/decider/VBoxContainer/batting" to="." method="_on_batting_pressed"]
+[connection signal="pressed" from="coin_toss/VBoxContainer/decider/VBoxContainer/bowling" to="." method="_on_bowling_pressed"]
+[connection signal="pressed" from="base_game/VBoxContainer/button_array/1" to="." method="_on_1_pressed"]
+[connection signal="pressed" from="base_game/VBoxContainer/button_array/2" to="." method="_on_2_pressed"]
+[connection signal="pressed" from="base_game/VBoxContainer/button_array/3" to="." method="_on_3_pressed"]
+[connection signal="pressed" from="base_game/VBoxContainer/button_array/4" to="." method="_on_4_pressed"]
+[connection signal="pressed" from="base_game/VBoxContainer/button_array/5" to="." method="_on_5_pressed"]
+[connection signal="pressed" from="base_game/VBoxContainer/button_array/6" to="." method="_on_6_pressed"]

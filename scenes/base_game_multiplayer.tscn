@@ -1,439 +1,606 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=110 format=2]
 
-[ext_resource path="res://scenes/coin_toss_multiplayer.gd" type="Script" id=1]
-[ext_resource path="res://scenes/button_array_multiplayer.gd" type="Script" id=2]
-[ext_resource path="res://scripts/base_game_multiplayer.gd" type="Script" id=3]
-[ext_resource path="res://texture/button_theme.tres" type="Theme" id=4]
-[ext_resource path="res://sprites/bg.png" type="Texture" id=5]
-[ext_resource path="res://sprites/win_bg.png" type="Texture" id=6]
-[ext_resource path="res://sprites/toss_screen.png" type="Texture" id=7]
-[ext_resource path="res://texture/font.tres" type="DynamicFont" id=8]
-[ext_resource path="res://other_data/neuropol x rg.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://sprites/bg.png" type="Texture" id=1]
+[ext_resource path="res://scripts/base_game.gd" type="Script" id=2]
+[ext_resource path="res://scenes/button_array.gd" type="Script" id=3]
+[ext_resource path="res://scenes/coin_toss.gd" type="Script" id=4]
+[ext_resource path="res://other_data/neuropol x rg.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://sprites/confetti.png" type="Texture" id=6]
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://sprites/toss_screen.png" type="Texture" id=8]
+[ext_resource path="res://sprites/win_bg.png" type="Texture" id=9]
 [ext_resource path="res://sprites/lose_bg.png" type="Texture" id=10]
 [ext_resource path="res://transition_anim.tscn" type="PackedScene" id=11]
-[ext_resource path="res://sprites/draw_bg.png" type="Texture" id=12]
-[ext_resource path="res://sprites/confetti.png" type="Texture" id=13]
+[ext_resource path="res://texture/button_theme.tres" type="Theme" id=12]
+[ext_resource path="res://sprites/draw_bg.png" type="Texture" id=13]
+[ext_resource path="res://texture/smaller_font.tres" type="DynamicFont" id=14]
+[ext_resource path="res://audio/ambient_sound.ogg" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://other_data/neuropol x rg.ttf"
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
+size = 25
 font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
-font_data = ExtResource( 9 )
+font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFontData" id=4]
+[sub_resource type="Animation" id=4]
+resource_name = "to_green"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0117647, 1, 0.0980392, 1 ), Color( 0.0117647, 1, 0.0980392, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 50, 150, 50 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "to_red"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.709804, 0, 0, 1 ), Color( 0.709804, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 50, 150, 50 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "to_white"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.882353, 0.980392, 0.027451, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "to_yellow"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.882353, 0.980392, 0.027451, 1 ), Color( 0.882353, 0.980392, 0.027451, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 50, 150, 50 ]
+}
+
+[sub_resource type="DynamicFontData" id=8]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=5]
-size = 72
-font_data = SubResource( 4 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 40
-font_data = ExtResource( 9 )
-
-[sub_resource type="Theme" id=7]
-default_font = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 30
-font_data = ExtResource( 9 )
-
 [sub_resource type="DynamicFont" id=9]
-font_data = ExtResource( 9 )
+size = 25
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 8 )
 
-[sub_resource type="DynamicFont" id=10]
-font_data = ExtResource( 9 )
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0862745, 0.239216, 0.0196078, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 512, 512 )
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 0, 512, 512 )
+[sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 0, 512, 512 )
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 0, 512, 512 )
+[sub_resource type="DynamicFontData" id=14]
+font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 0, 512, 512 )
+[sub_resource type="DynamicFont" id=15]
+size = 72
+font_data = SubResource( 14 )
 
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 0, 512, 512 )
+[sub_resource type="DynamicFont" id=16]
+size = 40
+font_data = ExtResource( 5 )
 
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 0, 512, 512 )
+[sub_resource type="Theme" id=17]
+default_font = ExtResource( 7 )
 
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 0, 512, 512 )
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.027451, 0.0235294, 0.0235294, 0.752941 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 512, 512, 512 )
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 512, 512, 512 )
+[sub_resource type="DynamicFont" id=20]
+size = 50
+font_data = SubResource( 19 )
 
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 512, 512, 512 )
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0, 0, 0, 0.592157 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 512, 512, 512 )
+[sub_resource type="DynamicFont" id=22]
+size = 30
+font_data = ExtResource( 5 )
 
-[sub_resource type="AtlasTexture" id=23]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 512, 512, 512 )
+[sub_resource type="DynamicFontData" id=23]
+font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="AtlasTexture" id=24]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 512, 512, 512 )
+[sub_resource type="DynamicFont" id=24]
+size = 50
+font_data = SubResource( 23 )
 
-[sub_resource type="AtlasTexture" id=25]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 512, 512, 512 )
+[sub_resource type="DynamicFontData" id=25]
+font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 512, 512, 512 )
+[sub_resource type="DynamicFont" id=26]
+size = 50
+font_data = SubResource( 25 )
 
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 1024, 512, 512 )
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 0, 0, 0, 0.717647 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 512, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 1024, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=37]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 512, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=39]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=40]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=41]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=42]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 1536, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=43]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 512, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=44]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=45]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 512, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=46]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=47]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=48]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=49]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=50]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 2048, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=51]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 1024, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=52]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=53]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 512, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=54]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=55]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=56]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=57]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=58]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 2560, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=59]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 1536, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=60]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=61]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 512, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=62]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=63]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=64]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=65]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=66]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3584, 3072, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=67]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 2048, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=68]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 512, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 2560, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=69]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1024, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 512, 2560, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=70]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 1536, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 2560, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=71]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2048, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 2560, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=72]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 2560, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 2560, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=73]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 3072, 3584, 512, 512 )
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 2560, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=74]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 2560, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 512, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=79]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=80]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=81]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=82]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=83]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 3584, 3072, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=84]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=85]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 512, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=86]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1024, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=87]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1536, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=88]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2048, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=89]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2560, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=90]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 3072, 3584, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=91]
+flags = 4
+atlas = ExtResource( 6 )
 region = Rect2( 3584, 3584, 512, 512 )
 
-[sub_resource type="SpriteFrames" id=75]
+[sub_resource type="SpriteFrames" id=92]
 animations = [ {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ) ],
 "loop": true,
 "name": "blow",
 "speed": 15.0
 } ]
 
-[sub_resource type="Animation" id=76]
-resource_name = "init"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 600, 0 ), Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
+[sub_resource type="StyleBoxEmpty" id=93]
 
-[node name="base_game_multiplayer" type="Node2D"]
-script = ExtResource( 3 )
+[sub_resource type="StyleBoxFlat" id=94]
+bg_color = Color( 0.054902, 0.0509804, 0.0627451, 0.792157 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="base_game" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 600.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 600, 1024 )
-texture = ExtResource( 5 )
+texture = ExtResource( 1 )
 stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="game_name" type="Label" parent="."]
-margin_left = 50.0
-margin_top = 30.0
-margin_right = 571.0
-margin_bottom = 110.0
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 600, 80 )
+color = Color( 0.0690308, 0.089859, 0.152344, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ColorRect"]
+margin_right = 600.0
+margin_bottom = 80.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="misc_stats" type="Label" parent="ColorRect"]
+margin_left = 40.0
+margin_right = 561.0
+margin_bottom = 80.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 2 )
-text = "Odd-Even Hand Cricket"
+custom_fonts/font = ExtResource( 14 )
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="my_stats_cover" type="ColorRect" parent="."]
-margin_left = 50.0
 margin_top = 200.0
-margin_right = 550.0
+margin_right = 600.0
 margin_bottom = 300.0
 rect_pivot_offset = Vector2( -1901.3, -275.55 )
 color = Color( 0, 0.47451, 0.419608, 1 )
@@ -442,9 +609,8 @@ __meta__ = {
 }
 
 [node name="opp_stats_cover" type="ColorRect" parent="."]
-margin_left = 50.0
 margin_top = 650.0
-margin_right = 550.0
+margin_right = 600.0
 margin_bottom = 750.0
 rect_pivot_offset = Vector2( -1901.3, -275.55 )
 color = Color( 1, 0.321569, 0.321569, 1 )
@@ -469,35 +635,46 @@ rect_min_size = Vector2( 500, 100 )
 custom_constants/separation = 50
 
 [node name="your_stat" type="Label" parent="my_stats/HBoxContainer"]
-margin_right = 207.0
-margin_bottom = 83.0
+margin_right = 327.0
+margin_bottom = 65.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "You
-(Bowling)"
+text = "Press any number 
+to begin the game"
 
 [node name="your_stat2" type="Label" parent="my_stats/HBoxContainer"]
-margin_left = 257.0
-margin_right = 398.0
-margin_bottom = 40.0
+margin_left = 377.0
+margin_right = 377.0
+margin_bottom = 31.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Overs:"
 
-[node name="pump_up" type="Label" parent="."]
-margin_left = 200.0
-margin_top = 350.0
-margin_right = 400.0
-margin_bottom = 400.0
+[node name="PUMP" type="Node2D" parent="."]
+position = Vector2( -100, 100 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="pump_up" type="Label" parent="PUMP"]
+margin_right = 494.0
+margin_bottom = 121.0
+rect_min_size = Vector2( 800, 500 )
 custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Begin!!!"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PUMP/pump_up"]
+anims/to_green = SubResource( 4 )
+anims/to_red = SubResource( 5 )
+anims/to_white = SubResource( 6 )
+anims/to_yellow = SubResource( 7 )
 
 [node name="opp_stats" type="Container" parent="."]
 margin_left = 50.0
@@ -516,29 +693,27 @@ rect_min_size = Vector2( 500, 100 )
 custom_constants/separation = 50
 
 [node name="your_stat" type="Label" parent="opp_stats/HBoxContainer"]
-margin_right = 222.0
-margin_bottom = 83.0
+margin_bottom = 31.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Opponent
-(Batting)"
 
 [node name="your_stat2" type="Label" parent="opp_stats/HBoxContainer"]
-margin_left = 272.0
-margin_right = 410.0
-margin_bottom = 40.0
+margin_left = 50.0
+margin_right = 50.0
+margin_bottom = 31.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 2 )
-text = "Score:"
 
 [node name="player" type="Sprite" parent="."]
+pause_mode = 2
 position = Vector2( 80, 450 )
 
 [node name="Tween" type="Tween" parent="player"]
 
 [node name="opponent" type="Sprite" parent="."]
+pause_mode = 2
 position = Vector2( 500, 450 )
 
 [node name="Tween" type="Tween" parent="opponent"]
@@ -548,10 +723,43 @@ margin_left = 10.0
 margin_top = 770.0
 margin_right = 590.0
 margin_bottom = 1000.0
-color = Color( 0.192157, 0.192157, 0.192157, 1 )
+color = Color( 1, 1, 1, 0.305882 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="team_logo" type="HBoxContainer" parent="."]
+margin_top = 80.0
+margin_right = 600.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 600, 120 )
+rect_scale = Vector2( 1.0024, 1 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="my_team_logo" type="TextureRect" parent="team_logo"]
+margin_left = 152.0
+margin_right = 152.0
+margin_bottom = 120.0
+
+[node name="scorecard_button" type="Button" parent="team_logo"]
+margin_left = 202.0
+margin_right = 397.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Scorecard"
+flat = true
+
+[node name="opp_team_logo" type="TextureRect" parent="team_logo"]
+margin_left = 447.0
+margin_right = 447.0
+margin_bottom = 120.0
 
 [node name="button_array" type="GridContainer" parent="."]
 margin_left = 20.0
@@ -561,7 +769,7 @@ margin_bottom = 995.0
 custom_constants/vseparation = 15
 custom_constants/hseparation = 15
 columns = 5
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -570,9 +778,14 @@ __meta__ = {
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "1"
 clip_text = true
 
@@ -581,9 +794,14 @@ margin_left = 115.0
 margin_right = 215.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "2"
 clip_text = true
 
@@ -592,9 +810,14 @@ margin_left = 230.0
 margin_right = 330.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "3"
 clip_text = true
 
@@ -603,9 +826,14 @@ margin_left = 345.0
 margin_right = 445.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "4"
 clip_text = true
 
@@ -614,9 +842,14 @@ margin_left = 460.0
 margin_right = 560.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "5"
 clip_text = true
 
@@ -625,9 +858,14 @@ margin_top = 115.0
 margin_right = 100.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "6"
 clip_text = true
 
@@ -637,9 +875,14 @@ margin_top = 115.0
 margin_right = 215.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "7"
 clip_text = true
 
@@ -649,9 +892,14 @@ margin_top = 115.0
 margin_right = 330.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "8"
 clip_text = true
 
@@ -661,9 +909,14 @@ margin_top = 115.0
 margin_right = 445.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "9"
 clip_text = true
 
@@ -673,20 +926,24 @@ margin_top = 115.0
 margin_right = 560.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 7 )
 text = "10"
 clip_text = true
 
 [node name="coin_toss" type="Node2D" parent="."]
-visible = false
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="ColorRect" type="TextureRect" parent="coin_toss"]
 margin_right = 600.0
 margin_bottom = 1024.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -696,7 +953,7 @@ margin_left = 180.0
 margin_top = 200.0
 margin_right = 443.0
 margin_bottom = 288.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 15 )
 text = "TOSS"
 align = 1
 __meta__ = {
@@ -708,7 +965,7 @@ margin_left = 100.0
 margin_top = 500.0
 margin_right = 529.0
 margin_bottom = 555.0
-theme = ExtResource( 4 )
+theme = ExtResource( 12 )
 custom_constants/separation = 50
 __meta__ = {
 "_edit_use_anchors_": false
@@ -717,85 +974,113 @@ __meta__ = {
 [node name="heads" type="Button" parent="coin_toss/coinbox"]
 margin_right = 212.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 16 )
 text = "HEADS"
 
 [node name="tails" type="Button" parent="coin_toss/coinbox"]
 margin_left = 262.0
 margin_right = 437.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 16 )
 text = "TAILS"
 
 [node name="opp_choice" type="WindowDialog" parent="coin_toss"]
 margin_left = 50.0
-margin_top = 400.0
+margin_top = 267.0
 margin_right = 550.0
-margin_bottom = 600.0
+margin_bottom = 952.0
 rect_min_size = Vector2( 500, 300 )
-theme = SubResource( 7 )
+theme = SubResource( 17 )
+custom_styles/panel = SubResource( 18 )
 
 [node name="Label" type="Label" parent="coin_toss/opp_choice"]
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 450.0
 margin_bottom = 80.0
+custom_fonts/font = SubResource( 20 )
 text = "You lost the toss."
+align = 1
+valign = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="coin_toss/opp_choice"]
-margin_left = 220.0
-margin_top = 220.0
-margin_right = 320.0
-margin_bottom = 279.0
-theme = ExtResource( 4 )
+margin_left = 207.892
+margin_top = 578.41
+margin_right = 307.892
+margin_bottom = 637.41
+theme = ExtResource( 12 )
 text = "OK!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="player_choice" type="WindowDialog" parent="coin_toss"]
-margin_left = 40.0
-margin_top = 400.0
-margin_right = 540.0
-margin_bottom = 600.0
-window_title = "You won the toss"
+margin_left = 38.0
+margin_top = 281.0
+margin_right = 581.0
+margin_bottom = 711.0
+custom_styles/panel = SubResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="coin_toss/player_choice"]
-margin_right = 500.0
-margin_bottom = 101.0
-custom_fonts/font = SubResource( 8 )
+margin_left = 24.2169
+margin_top = 24.2169
+margin_right = 524.217
+margin_bottom = 125.217
+custom_fonts/font = SubResource( 22 )
 text = "Do you wish to bat or bowl?"
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Batting" type="Button" parent="coin_toss/player_choice"]
-margin_left = 50.0
-margin_top = 100.0
-margin_right = 143.0
-margin_bottom = 126.0
-theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 9 )
+margin_left = 137.181
+margin_top = 170.229
+margin_right = 407.181
+margin_bottom = 247.229
+theme = ExtResource( 12 )
+custom_fonts/font = SubResource( 24 )
 text = "Batting"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bowling" type="Button" parent="coin_toss/player_choice"]
-margin_left = 320.0
-margin_top = 100.0
-margin_right = 418.0
-margin_bottom = 126.0
-theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 10 )
+margin_left = 131.109
+margin_top = 274.361
+margin_right = 418.109
+margin_bottom = 351.361
+theme = ExtResource( 12 )
+custom_fonts/font = SubResource( 26 )
 text = "Bowling"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupPanel" type="PopupPanel" parent="coin_toss"]
+margin_left = 155.0
+margin_top = 838.0
+margin_right = 439.0
+margin_bottom = 986.0
+custom_styles/panel = SubResource( 27 )
+
+[node name="Label" type="Label" parent="coin_toss/PopupPanel"]
+margin_right = 284.0
+margin_bottom = 148.0
+custom_fonts/font = ExtResource( 7 )
+text = "Tossing..."
+align = 1
+valign = 1
 
 [node name="you_won" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
@@ -804,12 +1089,12 @@ margin_left = -100.0
 margin_top = -300.0
 margin_right = 500.0
 margin_bottom = 724.0
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="you_won"]
 margin_right = 400.0
 margin_bottom = 61.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 text = "You WON!!!"
 align = 1
 __meta__ = {
@@ -818,7 +1103,7 @@ __meta__ = {
 
 [node name="confetti" type="AnimatedSprite" parent="you_won"]
 scale = Vector2( 0.8, 0.5 )
-frames = SubResource( 75 )
+frames = SubResource( 92 )
 animation = "blow"
 frame = 49
 centered = false
@@ -829,13 +1114,15 @@ margin_top = 300.0
 margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
-theme = ExtResource( 4 )
+theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="they_won" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
@@ -852,7 +1139,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="they_won"]
 margin_right = 400.0
 margin_bottom = 300.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 text = "You lost...."
 align = 1
 valign = 1
@@ -863,13 +1150,15 @@ margin_top = 300.0
 margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
-theme = ExtResource( 4 )
+theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="drawn" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
@@ -878,12 +1167,12 @@ margin_left = -100.0
 margin_top = -300.0
 margin_right = 500.0
 margin_bottom = 724.0
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="drawn"]
 margin_right = 400.0
 margin_bottom = 300.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 text = "Game drawn...."
 align = 1
 valign = 1
@@ -894,47 +1183,63 @@ margin_top = 300.0
 margin_right = 250.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
-theme = ExtResource( 4 )
+theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="innings_over" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 position = Vector2( 100, 300 )
 
-[node name="ColorRect" type="ColorRect" parent="innings_over"]
-margin_left = -100.0
-margin_top = -300.0
-margin_right = 500.0
-margin_bottom = 724.0
-color = Color( 0.239216, 0.239216, 0.239216, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ColorRect" type="Panel" parent="innings_over"]
+margin_left = 19.0
+margin_top = 56.0
+margin_right = 577.0
+margin_bottom = 506.0
+rect_scale = Vector2( 0.6, 0.75 )
+custom_styles/panel = SubResource( 94 )
 
 [node name="Label" type="Label" parent="innings_over"]
 margin_right = 400.0
 margin_bottom = 300.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 text = "Innings over"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="continue2" type="Button" parent="innings_over"]
-margin_left = 150.0
+margin_left = 130.0
 margin_top = 300.0
-margin_right = 250.0
+margin_right = 269.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 100, 50 )
+theme = ExtResource( 12 )
+custom_styles/focus = SubResource( 93 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="transition_anim" parent="." instance=ExtResource( 11 )]
-anims/init = SubResource( 76 )
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+autoplay = true
+
+[node name="special_event_sound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ambient_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_Button_pressed"]
+[connection signal="animation_finished" from="PUMP/pump_up/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="team_logo/scorecard_button" to="." method="_on_scorecard_button_pressed"]
 [connection signal="pressed" from="button_array/Button1" to="button_array" method="_on_Button1_pressed"]
 [connection signal="pressed" from="button_array/Button2" to="button_array" method="_on_Button2_pressed"]
 [connection signal="pressed" from="button_array/Button3" to="button_array" method="_on_Button3_pressed"]

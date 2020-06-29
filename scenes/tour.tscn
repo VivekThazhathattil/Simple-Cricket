@@ -141,9 +141,9 @@ custom_fonts/font = ExtResource( 11 )
 text = "Select team:"
 
 [node name="select_team" type="GridContainer" parent="select_options"]
-margin_left = 49.0
+margin_left = 50.0
 margin_top = 87.0
-margin_right = 549.0
+margin_right = 550.0
 margin_bottom = 387.0
 rect_min_size = Vector2( 500, 300 )
 size_flags_horizontal = 4
@@ -260,9 +260,9 @@ align = 2
 expand_icon = true
 
 [node name="display_selected_teams" type="HBoxContainer" parent="select_options"]
-margin_left = 49.0
+margin_left = 50.0
 margin_top = 437.0
-margin_right = 549.0
+margin_right = 550.0
 margin_bottom = 637.0
 rect_min_size = Vector2( 500, 200 )
 size_flags_horizontal = 4
@@ -277,13 +277,14 @@ size_flags_vertical = 3
 
 [node name="team_logo" type="TextureRect" parent="select_options/display_selected_teams/player_team"]
 margin_right = 204.0
-margin_bottom = 98.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
 
 [node name="team_name" type="Label" parent="select_options/display_selected_teams/player_team"]
-margin_top = 102.0
+margin_top = 124.0
 margin_right = 204.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
@@ -315,13 +316,14 @@ size_flags_vertical = 3
 
 [node name="team_logo" type="TextureRect" parent="select_options/display_selected_teams/opponent_team"]
 margin_right = 204.0
-margin_bottom = 98.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
 
 [node name="team_name" type="Label" parent="select_options/display_selected_teams/opponent_team"]
-margin_top = 102.0
+margin_top = 124.0
 margin_right = 204.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
@@ -415,8 +417,7 @@ custom_styles/normal = SubResource( 2 )
 custom_fonts/font = ExtResource( 11 )
 text = "Next"
 
-[node name="transition_anim" type="AnimationPlayer" parent="." instance=ExtResource( 13 )]
-autoplay = "init"
+[node name="transition_anim" parent="." instance=ExtResource( 13 )]
 anims/init = SubResource( 3 )
 anims/sec = SubResource( 4 )
 anims/thir = SubResource( 5 )
@@ -576,9 +577,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="thir_screen/winner"]
-margin_top = -1.0
 margin_right = 600.0
-margin_bottom = 499.0
+margin_bottom = 500.0
 rect_min_size = Vector2( 0, 500 )
 custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 11 )

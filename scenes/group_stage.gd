@@ -256,6 +256,7 @@ func _on_Back_pressed():
 		print("change scene error")
 
 func _on_Button_pressed():
+	$save.save(2,"tournament_mode",true)
 	var game_inst = preload("res://scenes/base_game.tscn")
 	_group_stage_handler()
 	add_child(game_inst.instance())
