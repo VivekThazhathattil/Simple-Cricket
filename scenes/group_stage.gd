@@ -136,12 +136,12 @@ func _group_stage_handler():
 		$next_opp_display/TextureRect.set_texture($save.team_icon_arr[idx+1])
 	#	print("team roster = " + str(team_roster))
 	#	print("idx = " + str(idx))
-		if idx < 1 and tourn_type == "tourn":
+		if idx < 9 and tourn_type == "tourn":
 			$save.save(2,"curr_opponent",team_roster[idx])
 			_get_all_match_results()
 			var game_inst = preload("res://scenes/base_game.tscn")
 			add_child(game_inst.instance())
-		elif idx == 1 and tourn_type == "tourn":
+		elif idx == 9 and tourn_type == "tourn":
 			progress = "to_semifinal"
 			$save.save(2,"progress",progress)
 			_my_game_results()
@@ -373,7 +373,7 @@ func _my_game_results():
 			var tourn_texture_name
 			var overs = $save.read_save(2,"overs")
 			var tourn_type = $save.read_save(2,"tourn_type")
-			if overs == 1 and tourn_type == "tourn":
+			if overs == 5 and tourn_type == "tourn":
 				tourn_name = "T5 International Cup"
 				tourn_cup_name = "T5 Cup"
 				tourn_texture_name = "res://sprites/T5_cup.png"
