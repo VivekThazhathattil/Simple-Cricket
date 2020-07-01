@@ -8,21 +8,43 @@ var opp_num = 0
 var ply_score = 0
 var opp_score = 0
 var ball_count = 0
+var lost_wickets = 0
+var which_innings = 1
+var max_wickets = 1
+var ovr_size = 6
 
 func _ready():
 	$base_game.visible = false
 	$coin_toss.visible = true
+	$winner.visible = false
+	randomize()
 	toss = randi()%2
+	get_tree().set_quit_on_go_back(false)
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		_on_Back_pressed()
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		_on_Back_pressed()
+	
+func _on_Back_pressed():
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error")
+
 
 func _on_heads_or_tails_pressed():
+	print("toss = " + str(toss))
 	if toss == 0: # server won the toss
+		print("you won the toss")
 		$".."._server_won_the_toss()
 	else: # client won the toss
+		print("you lost the toss")
 		$".."._client_won_the_toss()
 
 func _change_coinbox_visibility():
-	$coin_toss/VBoxContainer/HBoxContainer.visible = false
-	$coin_toss/VBoxContainer/coin_toss_text.visible = false
+	$coin_toss/VBoxContainer/HBoxContainer/heads.visible = false
+	$coin_toss/VBoxContainer/HBoxContainer/tails.visible = false
+	$coin_toss/VBoxContainer/coin_toss_text.set_text("Waiting for opponent to choose heads or tails ...")
 
 
 func _on_batting_pressed():
@@ -43,13 +65,12 @@ func _exec_sg():
 	$coin_toss/VBoxContainer/decider.visible = false
 	$coin_toss.visible = false
 	$base_game.visible = true
+	$winner.visible = false
 
 func _exec_pvto(val):
 	opp_send = true
 	opp_num = val
 	if ply_send and opp_send:
-		ball_count += 1
-		_temp_fn()
 		_set_score()
 		_set_display()
 	
@@ -62,18 +83,16 @@ func _handle_val_display(val):
 	Network._pass_val_to_opp(ply_num)
 	ply_send = true
 	if ply_send and opp_send:
-		ball_count += 1
-		_temp_fn()
 		_set_score()
 		_set_display()
 
 func _set_display():
 	if _batting:
-		$"base_game/VBoxContainer/player".set_text("Player: " + str(ply_score))
-		$"base_game/VBoxContainer/opponent".set_text("Opp: Overs = " + str(ball_count))
+		$"base_game/VBoxContainer/player".set_text("  Player(Bat) Runs: " + str(ply_score) + " - " + str(lost_wickets))
+		$"base_game/VBoxContainer/opponent".set_text("  Opponent(Bowl) Ovr: " + str(ball_count/ovr_size) +  "." + str(ball_count%ovr_size))
 	else:
-		$"base_game/VBoxContainer/opponent".set_text("Opp: " + str(opp_score))
-		$"base_game/VBoxContainer/player".set_text("Player: Overs = " + str(ball_count))
+		$"base_game/VBoxContainer/opponent".set_text("  Opponent(Bat) Runs:" + str(opp_score) + " - " + str(lost_wickets))
+		$"base_game/VBoxContainer/player".set_text("  Player(Bowl) Ovr: " + str(ball_count/ovr_size) +  "." + str(ball_count%ovr_size))
 		
 	$"base_game/VBoxContainer/action/ply".set_text(str(ply_num))
 	$"base_game/VBoxContainer/action/opp".set_text(str(opp_num))
@@ -103,8 +122,55 @@ func _on_5_pressed():
 func _on_6_pressed():
 	_handle_val_display(6)
 
+func _game_decider():
+	pass
+
+func _innings_over():
+	$base_game.visible = false
+	$Popup.visible = true
+	which_innings = 2
+	lost_wickets = 0
+	_batting = not _batting
+	ball_count = 0
+
 func _set_score():
-	if _batting:
-		ply_score += ply_num
+	_check_winner()
+	ball_count += 1
+	if ply_num == opp_num:
+		lost_wickets += 1
+		if lost_wickets == max_wickets:
+			if which_innings == 2:
+				_check_winner()
+			else:
+				_innings_over()
+		ply_num = 0
+		opp_num = 0
 	else:
-		opp_score += opp_num
+		if _batting:
+			ply_score += ply_num
+		else:
+			opp_score += opp_num
+
+func _check_winner():
+	if which_innings == 2:
+		if _batting and ply_score > opp_score:
+			_declare_winner("You")
+		elif not _batting and ply_score < opp_score:
+			_declare_winner("Opponent")
+
+func _declare_winner(val):
+	$base_game.visible = false
+	$winner.visible = true
+	if val == "You":
+		$"winner/Label2".set_text("You won the match!!!")
+	else:
+		$"winner/Label2".set_text("You lost the match...")
+		
+func _on_ok_pressed():
+	$Popup.visible = false
+	$base_game.visible = true
+
+
+func _on_Button_pressed():
+	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
+		print("change scene error mp")

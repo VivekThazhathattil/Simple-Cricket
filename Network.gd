@@ -49,12 +49,12 @@ func client_toss_win():
 	rpc("ctw")
 	
 remotesync func stw():
-	if get_tree().is_network_server():
-		get_node("/root/menu/multiplayer")._exec_stw()
+	print("stw")
+	get_node("/root/menu/multiplayer")._exec_stw()
 
 remotesync func ctw():
-	if not get_tree().is_network_server():
-		get_node("/root/menu/multiplayer")._exec_ctw()
+	print("ctw")
+	get_node("/root/menu/multiplayer")._exec_ctw()
 
 func _set_opp_bat_or_bowl(val):
 	rpc("sobob",val)

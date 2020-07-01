@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/mp.gd" type="Script" id=1]
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=2]
@@ -21,26 +21,92 @@ corner_radius_bottom_left = 50
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.6, 0.6, 0.6, 0.0588235 )
 
-[sub_resource type="DynamicFontData" id=7]
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://other_data/helvetica.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = SubResource( 4 )
+
+[sub_resource type="DynamicFontData" id=6]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 40
-font_data = SubResource( 7 )
+font_data = SubResource( 6 )
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.00392157, 0.00392157, 0.00392157, 0.298039 )
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.560784, 0.560784, 0.560784, 0.298039 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_size = 10
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="DynamicFontData" id=11]
 font_path = "res://other_data/neuropol x rg.ttf"
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=12]
 size = 40
-font_data = SubResource( 5 )
+font_data = SubResource( 11 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 0.368627 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_size = 10
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.294118, 0.294118, 0.294118, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color( 0, 0, 0, 0.870588 )
+shadow_size = 10
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.27451, 0.27451, 0.27451, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_size = 10
+shadow_offset = Vector2( 5, 5 )
 
 [node name="mp" type="Node2D"]
 script = ExtResource( 1 )
@@ -89,6 +155,8 @@ text = "
 
 Choose Heads or Tails"
 align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -124,9 +192,10 @@ __meta__ = {
 }
 
 [node name="decider" type="PopupPanel" parent="coin_toss/VBoxContainer"]
-margin_left = 49.0
+visible = true
+margin_left = 50.0
 margin_top = 477.0
-margin_right = 549.0
+margin_right = 550.0
 margin_bottom = 877.0
 rect_min_size = Vector2( 500, 400 )
 size_flags_horizontal = 4
@@ -134,30 +203,28 @@ size_flags_vertical = 5
 custom_styles/panel = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="coin_toss/VBoxContainer/decider"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 496.0
-margin_bottom = 396.0
+margin_right = 500.0
+margin_bottom = 400.0
 custom_constants/separation = 30
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="coin_toss/VBoxContainer/decider/VBoxContainer"]
-margin_top = -1.0
-margin_right = 492.0
-margin_bottom = 199.0
+margin_right = 500.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/normal = SubResource( 2 )
 custom_fonts/font = ExtResource( 3 )
-text = "You wont the toss"
+text = "You won the toss"
 align = 1
 valign = 1
+autowrap = true
 
 [node name="batting" type="Button" parent="coin_toss/VBoxContainer/decider/VBoxContainer"]
-margin_left = 162.0
+margin_left = 166.0
 margin_top = 230.0
-margin_right = 330.0
+margin_right = 334.0
 margin_bottom = 283.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
@@ -169,9 +236,9 @@ __meta__ = {
 }
 
 [node name="bowling" type="Button" parent="coin_toss/VBoxContainer/decider/VBoxContainer"]
-margin_left = 157.0
+margin_left = 161.0
 margin_top = 313.0
-margin_right = 335.0
+margin_right = 339.0
 margin_bottom = 366.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
@@ -183,6 +250,7 @@ __meta__ = {
 }
 
 [node name="base_game" type="Node2D" parent="."]
+visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="base_game"]
 margin_top = 50.0
@@ -195,16 +263,14 @@ __meta__ = {
 }
 
 [node name="player" type="Label" parent="base_game/VBoxContainer"]
-margin_left = 49.0
-margin_top = -1.0
-margin_right = 549.0
-margin_bottom = 99.0
+margin_left = 50.0
+margin_right = 550.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 500, 100 )
 size_flags_horizontal = 4
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 8 )
-text = "Player"
-align = 1
+custom_fonts/font = SubResource( 5 )
+text = "  Player: - "
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -219,52 +285,48 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="ply" type="Label" parent="base_game/VBoxContainer/action"]
-margin_left = 30.0
-margin_top = -1.0
-margin_right = 196.0
-margin_bottom = 199.0
+margin_left = 31.0
+margin_right = 197.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 166, 200 )
 size_flags_horizontal = 4
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 
 [node name="action" type="Label" parent="base_game/VBoxContainer/action"]
-margin_left = 216.0
-margin_top = -1.0
-margin_right = 382.0
-margin_bottom = 199.0
+margin_left = 217.0
+margin_right = 383.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 166, 200 )
 size_flags_horizontal = 4
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 
 [node name="opp" type="Label" parent="base_game/VBoxContainer/action"]
-margin_left = 402.0
-margin_top = -1.0
-margin_right = 568.0
-margin_bottom = 199.0
+margin_left = 403.0
+margin_right = 569.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 166, 200 )
 size_flags_horizontal = 4
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 
 [node name="opponent" type="Label" parent="base_game/VBoxContainer"]
-margin_left = 49.0
-margin_top = 399.0
-margin_right = 549.0
-margin_bottom = 499.0
+margin_left = 50.0
+margin_top = 400.0
+margin_right = 550.0
+margin_bottom = 500.0
 rect_min_size = Vector2( 500, 100 )
 size_flags_horizontal = 4
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 8 )
-text = "Opponent"
-align = 1
+custom_fonts/font = SubResource( 5 )
+text = "  Opponent: - "
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -291,8 +353,10 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "1"
 
 [node name="2" type="Button" parent="base_game/VBoxContainer/button_array"]
@@ -302,8 +366,10 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "2"
 
 [node name="3" type="Button" parent="base_game/VBoxContainer/button_array"]
@@ -313,8 +379,10 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "3"
 
 [node name="4" type="Button" parent="base_game/VBoxContainer/button_array"]
@@ -324,8 +392,10 @@ margin_bottom = 330.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "4"
 
 [node name="5" type="Button" parent="base_game/VBoxContainer/button_array"]
@@ -336,8 +406,10 @@ margin_bottom = 330.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "5"
 
 [node name="6" type="Button" parent="base_game/VBoxContainer/button_array"]
@@ -348,9 +420,90 @@ margin_bottom = 330.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "6"
+
+[node name="winner" type="Node2D" parent="."]
+visible = false
+
+[node name="Label2" type="Label" parent="winner"]
+margin_left = 50.0
+margin_top = 300.0
+margin_right = 550.0
+margin_bottom = 500.0
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 3 )
+text = "You won the match!!!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="winner"]
+margin_left = 141.108
+margin_top = 887.305
+margin_right = 474.108
+margin_bottom = 930.305
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = ExtResource( 3 )
+text = "Return to menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="Panel" parent="."]
+visible = false
+margin_left = 50.0
+margin_top = 300.0
+margin_right = 550.0
+margin_bottom = 800.0
+rect_min_size = Vector2( 500, 500 )
+custom_styles/panel = SubResource( 17 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+margin_right = 500.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 500, 500 )
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 500, 300 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 3 )
+text = "Innings over..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ok" type="Button" parent="Popup/VBoxContainer"]
+margin_left = 100.0
+margin_top = 349.0
+margin_right = 400.0
+margin_bottom = 449.0
+rect_min_size = Vector2( 300, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/pressed = SubResource( 18 )
+custom_styles/normal = SubResource( 19 )
+custom_fonts/font = ExtResource( 3 )
+text = "ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="coin_toss/VBoxContainer/HBoxContainer/heads" to="." method="_on_heads_or_tails_pressed"]
 [connection signal="pressed" from="coin_toss/VBoxContainer/HBoxContainer/tails" to="." method="_on_heads_or_tails_pressed"]
 [connection signal="pressed" from="coin_toss/VBoxContainer/decider/VBoxContainer/batting" to="." method="_on_batting_pressed"]
@@ -361,3 +514,5 @@ text = "6"
 [connection signal="pressed" from="base_game/VBoxContainer/button_array/4" to="." method="_on_4_pressed"]
 [connection signal="pressed" from="base_game/VBoxContainer/button_array/5" to="." method="_on_5_pressed"]
 [connection signal="pressed" from="base_game/VBoxContainer/button_array/6" to="." method="_on_6_pressed"]
+[connection signal="pressed" from="winner/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/ok" to="." method="_on_ok_pressed"]

@@ -15,6 +15,8 @@ var my_idx
 var opp_idx
 var tourn_type
 var my_team
+var progress = "group stage"
+var knockout_opp_idx = 0
 
 func _ready():
 	var inst = preload("res://scenes/save.tscn")
@@ -31,6 +33,16 @@ func _ready():
 	tourn_type = $save.read_save(2,"tourn_type")
 	_print_table()
 	get_tree().set_quit_on_go_back(false)
+	progress = $save.read_save(2,"progress")
+	_switch_page()
+	
+func _switch_page():
+	if progress == "semifinal":
+		$transition_animation.play("to_second_page")
+	elif progress == "final":
+		$transition_animation.play("to_third_page")
+	elif progress == "won":
+		$transition_animation.play("to_fourth_page")
 	
 func _print_table():
 	$ItemList.clear()
@@ -90,40 +102,140 @@ func _sort_table():
 	idx_arr.invert()
 	return idx_arr
 
-func _group_stage_handler():
-	if tourn_type == "tourn":
-		team_roster = [] + team_list
-	elif tourn_type == "league":
-		team_roster = [] + team_list + team_list + team_list + team_list
-	var roster_size = team_roster.size()
-	var i = 0
-	while i < roster_size:
-		if team_roster[i] == my_team:
-			team_roster.remove(i)
-			roster_size -= 1
-		i += 1
-	print(str(team_roster))
-	idx += 1
-	$next_opp_display/TextureRect.set_texture($save.team_icon_arr[idx+1])
-#	print("team roster = " + str(team_roster))
-#	print("idx = " + str(idx))
-	if idx < 9 and tourn_type == "tourn":
-		$save.save(2,"curr_opponent",team_roster[idx])
-		_get_all_match_results()
-	elif idx < 36 and tourn_type == "league":
-		$save.save(2,"curr_opponent",team_roster[idx])
-		_get_all_match_results()
-	elif idx == 36 and tourn_type == "league":
-		_league_results_decider()
+func _check_if_group_stage_end_reached(val):
+	if val == "T5" or val == "T10":
+		if idx == 8:
+			return true;
+		else:
+			return false
+	elif val == "CCL":
+		if idx == 35:
+			return true
+		else:
+			return false
 	else:
-		_semi_final_handler()
+		return false
+
+
+func _group_stage_handler():
+	print("_group_stage_handler called")
+	if progress == "group stage":
+		if tourn_type == "tourn":
+			team_roster = [] + team_list
+		elif tourn_type == "league":
+			team_roster = [] + team_list + team_list + team_list + team_list
+		var roster_size = team_roster.size()
+		var i = 0
+		while i < roster_size:
+			if team_roster[i] == my_team:
+				team_roster.remove(i)
+				roster_size -= 1
+			i += 1
+	#	print(str(team_roster))
+		idx += 1
+		$next_opp_display/TextureRect.set_texture($save.team_icon_arr[idx+1])
+	#	print("team roster = " + str(team_roster))
+	#	print("idx = " + str(idx))
+		if idx < 1 and tourn_type == "tourn":
+			$save.save(2,"curr_opponent",team_roster[idx])
+			_get_all_match_results()
+			var game_inst = preload("res://scenes/base_game.tscn")
+			add_child(game_inst.instance())
+		elif idx == 1 and tourn_type == "tourn":
+			progress = "to_semifinal"
+			$save.save(2,"progress",progress)
+			_my_game_results()
+		elif idx < 36 and tourn_type == "league":
+			$save.save(2,"curr_opponent",team_roster[idx])
+			var game_inst = preload("res://scenes/base_game.tscn")
+			add_child(game_inst.instance())
+			_get_all_match_results()
+		elif idx == 36 and tourn_type == "league":
+			_league_results_decider()
+		else:
+			pass
+	elif progress == "semifinal" or progress == "final":
+		self.position = Vector2(0,0)
+		var game_inst = preload("res://scenes/base_game.tscn")
+		add_child(game_inst.instance())
 		
 func _league_results_decider():
 	pass
 
 func _semi_final_handler():
-	pass
-		
+	print("semi_final_handler_called")
+	if progress == "to_semifinal":
+		var sorted_team_array = _sort_table()
+		var flag = -1
+		for i in range(4):
+			if sorted_team_array[i] == my_idx:
+				$semifinal._set_teams(1,sorted_team_array[0])
+				$semifinal._set_teams(2,sorted_team_array[3])
+				$semifinal._set_teams(3,sorted_team_array[1])
+				$semifinal._set_teams(4,sorted_team_array[2])
+				$transition_animation.play("to_second_page")
+				flag = 0
+				break
+		if flag == -1:
+			$winner._set_loser(my_team, "group stages")
+			$transition_animation.play("to_fourth_page")
+			progress = "won"
+			$save.save(2,"progress",progress)
+		else:
+			if my_idx == sorted_team_array[0]:
+				opp_idx = sorted_team_array[3]
+			elif my_idx == sorted_team_array[1]:
+				opp_idx = sorted_team_array[2]
+			elif my_idx == sorted_team_array[2]:
+				opp_idx = sorted_team_array[1]
+			else:
+				opp_idx = sorted_team_array[0]
+			$save.save(2,"curr_opponent",team_list[opp_idx])
+			$transition_animation.play("to_second_page")
+			progress = "semifinal"
+			$save.save(2,"progress",progress)
+			randomize()
+			knockout_opp_idx = randi()%2
+			if my_idx == sorted_team_array[0] or my_idx == sorted_team_array[3]:
+				if knockout_opp_idx == 0:
+					knockout_opp_idx = sorted_team_array[1]
+				else:
+					knockout_opp_idx = sorted_team_array[2] 
+			else:
+				if knockout_opp_idx == 0:
+					knockout_opp_idx = sorted_team_array[0]
+				else:
+					knockout_opp_idx = sorted_team_array[3]
+#func _proceed_to_finals_or_not():
+#	if team_won_in_knockout == 1:
+#		progress = "final"
+#		$save.save(2,"progress",progress)
+#		$transition_animation.play("to_third_page")
+#	elif team_won_in_knockout == 2:
+#		progress = "won"
+#		$save.save(2,"progress",progress)
+#		var tourn_name
+#		var tourn_cup_name
+#		var tourn_texture_name
+#		var overs = $save.read_save(2,"overs")
+#		var tourn_type = $save.read_save(2,"tourn_type")
+#		if overs == 1 and tourn_type == "tourn":
+#			tourn_name = "T5 International Cup"
+#			tourn_cup_name = "T5 Cup"
+#			tourn_texture_name = "res://sprites/T5_cup.png"
+#		elif overs == 10 and tourn_type == "tourn":
+#			tourn_name = "T10 International Cup"
+#			tourn_cup_name = "T10 Cup"
+#			tourn_texture_name = "res://sprites/T10_cup.png"
+#		elif overs == 10 and tourn_type == "league":
+#			tourn_name = "Cricket Champions League"
+#			tourn_cup_name = "CCL Cup"
+#			tourn_texture_name = "res://sprites/CCL_cup.png"
+#		$winner._set_winner(my_team,tourn_name,tourn_cup_name, tourn_texture_name)
+#		$transition_animation.play("to_fourth_page")
+#	else:
+#		$winner._set_loser(my_team, progress)
+#		$transition_animation.play("to_fourth_page")
 #func _get_all_match_results_stub():
 #	randomize()
 #	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
@@ -207,7 +319,7 @@ func _get_all_match_results():
 			else:
 				temp_arr[j] = -1
 				break
-		print("i = " + str(i) + " and j = " + str(j))
+#		print("i = " + str(i) + " and j = " + str(j))
 		token_rand = randf()
 		if token_rand < 0.55 and token_rand > 0.50:
 			team_draws[i] += 1
@@ -220,20 +332,66 @@ func _get_all_match_results():
 			team_losses[j] += 1
 
 func _my_game_results():
+	print("my_game_results called")
 	my_idx = _find_idx_of_team($save.read_save(2,"my_team"))
 	opp_idx = _find_idx_of_team($save.read_save(2,"curr_opponent"))
-	if game_stat == "won":
-		team_wins[my_idx] += 1
-		team_losses[opp_idx] += 1
-	elif game_stat == "lost":
-		team_wins[opp_idx] += 1
-		team_losses[my_idx] += 1
-	elif game_stat == "drawn":
-		team_draws[my_idx] += 1
-		team_draws[opp_idx] += 1
-	else:
-		print("error in deciding game_stat")
-	_print_table()
+	if progress == "group stage":
+		if game_stat == "won":
+			team_wins[my_idx] += 1
+			team_losses[opp_idx] += 1
+		elif game_stat == "lost":
+			team_wins[opp_idx] += 1
+			team_losses[my_idx] += 1
+		elif game_stat == "drawn":
+			team_draws[my_idx] += 1
+			team_draws[opp_idx] += 1
+		else:
+			print("error in deciding game_stat")
+		_print_table()
+	elif progress == "to_semifinal":
+		_semi_final_handler()
+	elif progress == "semifinal":
+		if game_stat == "won":
+			progress = "final"
+			$save.save(2,"progress",progress)
+			opp_idx = knockout_opp_idx
+			$final._set_final_teams(1,my_idx)
+			$final._set_final_teams(2,opp_idx)
+			$transition_animation.play("to_third_page")
+			$save.save(2,"curr_opponent",$save.team_list[opp_idx])
+		else:
+			progress = "won"
+			$save.save(2,"progress",progress)
+			$winner._set_loser(my_team)
+			$transition_animation.play("to_fourth_page")
+	elif progress == "final":
+		if game_stat == "won":
+			progress = "won"
+			$save.save(2,"progress",progress)
+			var tourn_name
+			var tourn_cup_name
+			var tourn_texture_name
+			var overs = $save.read_save(2,"overs")
+			var tourn_type = $save.read_save(2,"tourn_type")
+			if overs == 1 and tourn_type == "tourn":
+				tourn_name = "T5 International Cup"
+				tourn_cup_name = "T5 Cup"
+				tourn_texture_name = "res://sprites/T5_cup.png"
+			elif overs == 10 and tourn_type == "tourn":
+				tourn_name = "T10 International Cup"
+				tourn_cup_name = "T10 Cup"
+				tourn_texture_name = "res://sprites/T10_cup.png"
+			elif overs == 10 and tourn_type == "league":
+				tourn_name = "Cricket Champions League"
+				tourn_cup_name = "CCL Cup"
+				tourn_texture_name = "res://sprites/CCL_cup.png"
+			$winner._set_winner(my_team,tourn_name,tourn_cup_name, tourn_texture_name)
+			$transition_animation.play("to_fourth_page")
+		else:
+			progress = "won"
+			$save.save(2,"progress",progress)
+			$winner._set_loser(my_team,"finals")
+			$transition_animation.play("to_fourth_page")
 
 func _find_idx_of_team(team_name):
 #	print("team_name = " + team_name)
@@ -257,10 +415,7 @@ func _on_Back_pressed():
 
 func _on_Button_pressed():
 	$save.save(2,"tournament_mode",true)
-	var game_inst = preload("res://scenes/base_game.tscn")
 	_group_stage_handler()
-	add_child(game_inst.instance())
-
 
 func _on_save_tourn_pressed():
 	$PopupPanel.popup()
@@ -275,5 +430,7 @@ func _on_save_tourn_pressed():
 func _on_Button2_pressed():
 	if $save.read_save(2,"tournament_mode"):
 		$save.save(2,"tournament_mode",false)
+	if progress == "won":
+		$save.save(2,"saved_tourn",false)
 	if get_tree().change_scene("res://scenes/menu.tscn") != OK:
 		print("change scene error")

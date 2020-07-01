@@ -1,7 +1,40 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/multiplayer_menu.gd" type="Script" id=1]
 [ext_resource path="res://texture/button_theme.tres" type="Theme" id=2]
+[ext_resource path="res://texture/font.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.45098, 0.45098, 0.45098, 0.172549 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.501961, 0.498039, 0.498039, 0.290196 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://other_data/helvetica.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = SubResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.584314, 0.584314, 0.584314, 0.745098 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="multiplayer" type="Control"]
 script = ExtResource( 1 )
@@ -13,53 +46,117 @@ __meta__ = {
 margin_right = 600.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 600, 1024 )
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="create_server" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 300.0
-margin_right = 200.0
-margin_bottom = 400.0
+margin_left = 64.9356
+margin_top = 296.104
+margin_right = 255.936
+margin_bottom = 396.104
 theme = ExtResource( 2 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 text = "create server"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="join_server" type="Button" parent="."]
-margin_left = 400.0
-margin_top = 300.0
-margin_right = 568.0
-margin_bottom = 400.0
+margin_left = 349.352
+margin_top = 298.052
+margin_right = 517.352
+margin_bottom = 398.052
 theme = ExtResource( 2 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 text = "Join server"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextEdit" type="TextEdit" parent="."]
-margin_left = 100.0
-margin_top = 500.0
-margin_right = 300.0
-margin_bottom = 550.0
+[node name="ip_prompt" type="TextEdit" parent="."]
+visible = false
+margin_left = 60.0
+margin_top = 711.0
+margin_right = 418.0
+margin_bottom = 761.0
 rect_min_size = Vector2( 200, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="."]
+margin_left = 45.1791
+margin_top = 486.0
+margin_right = 545.179
+margin_bottom = 586.0
+rect_min_size = Vector2( 500, 100 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="start" type="Button" parent="."]
-margin_left = 288.403
-margin_top = 694.444
-margin_right = 388.403
-margin_bottom = 794.444
+margin_left = 387.752
+margin_top = 885.35
+margin_right = 487.752
+margin_bottom = 985.35
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit" type="Button" parent="."]
+margin_left = 64.5112
+margin_top = 891.773
+margin_right = 252.511
+margin_bottom = 972.773
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ip_prompt_text" type="Label" parent="."]
+visible = false
+margin_left = 48.7005
+margin_top = 663.639
+margin_right = 530.701
+margin_bottom = 700.639
+custom_fonts/font = ExtResource( 3 )
+text = "Enter opponent's IP address here: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ok" type="Button" parent="."]
+visible = false
+margin_left = 461.681
+margin_top = 720.131
+margin_right = 507.681
+margin_bottom = 751.131
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = ExtResource( 3 )
+text = "ok"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="create_server" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="join_server" to="." method="_on_JoinButton_pressed"]
-[connection signal="text_changed" from="TextEdit" to="." method="_on_TextField_text_changed" binds= [ "new_text" ]]
+[connection signal="text_changed" from="ip_prompt" to="." method="_on_TextField_text_changed" binds= [ "new_text" ]]
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ok" to="." method="_on_ok_pressed"]

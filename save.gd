@@ -41,6 +41,7 @@ var saved_tourn = false
 var tournament_mode = false
 var tourn_type = "tourn" # alts = "league","tourn"
 var overs = 5 # alts = 10 for T10 tourn, 5 for T5 tourn, 5 for super_league
+var progress = "group stage"
 var save_data_tournament = {
 							"team_list" : team_list,
 							"team_wins" : team_wins,
@@ -52,7 +53,8 @@ var save_data_tournament = {
 							"tournament_mode" : tournament_mode,
 							"match_idx" : match_idx,
 							"tourn_type" : tourn_type,
-							"overs" : overs
+							"overs" : overs,
+							"progress" : progress
 }
 var team_icon_arr = [preload("res://sprites/afgan_flag.png"),
 					preload("res://sprites/australia_flag.png"),

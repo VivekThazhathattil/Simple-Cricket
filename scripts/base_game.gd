@@ -129,7 +129,7 @@ func _end_match():
 				$save.save(1,"games_won",$save.read_save(1,"games_won")+1)
 				if tournament_mode:
 					get_parent().game_stat = "won"
-					get_parent()._my_game_results()
+#					get_parent()._my_game_results()
 				elif tours_mode:
 					get_parent().ply_score += 1
 					get_parent()._update_scores()
@@ -141,7 +141,7 @@ func _end_match():
 				$save.save(1,"games_lost",$save.read_save(1,"games_lost")+1)
 				if tournament_mode:
 					get_parent().game_stat = "lost"
-					get_parent()._my_game_results()
+#					get_parent()._my_game_results()
 				elif tours_mode:
 					get_parent().opp_score += 1
 					get_parent()._update_scores()
@@ -153,7 +153,7 @@ func _end_match():
 				$save.save(1,"games_drawn",$save.read_save(1,"games_drawn")+1)
 				if tournament_mode:
 					get_parent().game_stat = "drawn"
-					get_parent()._my_game_results()
+#					get_parent()._my_game_results()
 	_update_labels()
 			
 func _final_action():
@@ -162,6 +162,8 @@ func _final_action():
 	$save.save(1,"percent_win_rate",float($save.read_save(1,"games_won"))/$save.read_save(1,"games_played")*100)
 	if tours_mode:
 		$"../transition_anim".play("sec")
+	elif tournament_mode:
+		get_parent()._my_game_results()
 	queue_free()
 	
 func _check_if_won():
@@ -350,6 +352,7 @@ func _update_labels():
 #				print(str(ball_count/balls_per_over + 0.1*(ball_count%balls_per_over)))
 				$ColorRect/misc_stats.set_text("Current runrate: " + str(stepify(float(opp_score)/ball_count*balls_per_over,0.01)))
 	elif num_sides_batted_so_far == 2:
+		randomize()
 		if randi()%2 == 0:
 			if not _match_over:
 				$ColorRect/misc_stats.set_text("Need " + str(abs(player_score-opp_score)+1) + " runs from " + str(over_max*6 - ball_count) + " balls to win.")

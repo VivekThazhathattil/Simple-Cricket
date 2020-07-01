@@ -14,6 +14,7 @@ func _ready():
 	pass
 	
 func _get_opponent_move(wght_arr):
+	randomize()
 	var rnd = randi()%100
 	for i in range(6):
 		if rnd < wght_arr[i]:
@@ -35,6 +36,7 @@ func _get_req_runrate():
 func adjust_for_player_difficulty(opp_move, inst_score):
 	if inst_score == opp_move:
 		if not get_parent()._player_batting:
+			randomize()
 			if(randi()%get_parent().difficulty == 0):
 				get_parent()._not_out = false
 			else:
@@ -55,9 +57,11 @@ func get_opponent_action():
 			opponent_move = _get_opponent_move([2,3,5,25,30,35])
 		elif not get_parent()._player_batting and get_parent().num_sides_batted_so_far == 1:
 			if get_parent().over_max*6 - get_parent().ball_count <= 12:
-				opponent_move = _get_opponent_move([1,2,3,30,31,33])
+#				opponent_move = _get_opponent_move([1,2,3,30,31,33])
+				opponent_move = _get_opponent_move([1,2,3,4,5,85])
 			else:
-				opponent_move = _get_opponent_move([8, 12, 16, 18, 20, 25])
+#				opponent_move = _get_opponent_move([8, 12, 16, 18, 20, 25])
+				opponent_move = _get_opponent_move([1,2,3,4,5,85])
 		elif not get_parent()._player_batting and get_parent().num_sides_batted_so_far == 2:
 			var rr = _get_req_runrate()
 			if rr > 6:
